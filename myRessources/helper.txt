@@ -1,0 +1,51 @@
+- typer les variables ?
+
+- jointure pour categories ?
+////////////////////////////////////////////
+//
+les Managers se connectent, recuperent et ajoutent les données dans la base
+les Controllers envoient des données dans la base et renvoi le template
+
+///////////////////////////////////////////
+DatabaseManager
+    - ses props sont les infos de connections
+    - instancié avec les infos de co
+    - initialise le pdo 
+
+    - se connecte a la base
+
+    - find
+    - findAll
+
+UserManager extends DatabaseManager
+    - instancié avec $tablename
+    
+    - add($user)    require user 
+    - update($id)   
+
+*idem pour OfferManager
+////////////////////////////////////////////
+//
+
+- j'ai fait les entités:
+    - User:
+        private $id;            int
+        private $username;      str
+        private $email;
+        private $password;
+        private $role;
+     
+    - Offer:
+        private $id;
+        private $title;
+        private $content;
+        private $price;
+        private $place;
+
+        private $publicationDate;
+        private $category;
+        private $image;
+
+- j'ai cree les tables users et offers
+
+    *crud user 

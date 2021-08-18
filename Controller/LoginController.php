@@ -11,6 +11,8 @@ class LoginController {
 
     static function logout() {
         unset($_SESSION['username']);
+        unset($_SESSION['user_id']);
+
         session_destroy();
         LoginController::index();
     }
@@ -21,6 +23,7 @@ class LoginController {
         if($data = $logs->fetch()) {
             if($pass == $data['pass']) {
                 $_SESSION['username'] = htmlspecialchars($username);
+                $_SESSION['user_id'] = $data['id'];
                 setcookie('session', htmlspecialchars($username), time() + 1);
 
                 header('Location: index.php?action=admin');

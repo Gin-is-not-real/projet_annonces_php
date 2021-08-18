@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
 </head>
-</head>
 
 <body>
     <?php include 'templates/header.php'; ?>
@@ -22,7 +21,9 @@
                     $offers = $_POST['user-offers'];
 
                     while($data = $_POST['user-offers']->fetch()) {
-
+                        // var_dump($data);
+                        
+                        include 'templates/offer/_offer.php';
                         // include '../../offer/_offer.php';
 
                         ?>

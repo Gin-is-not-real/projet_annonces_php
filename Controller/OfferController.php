@@ -2,14 +2,15 @@
 require_once 'Entity/Offer.php';
 
 class OfferController {
-    static function index($offerManager) {
-        $_POST['all-offers'] = $offerManager->findAll();
+    static function index($offerManager, $loginManager) {
+        $_POST['all-offers'] = $offerManager->findRelations($loginManager);
         require_once 'templates/offer/index.php';
     }
 
-    static function admin($offerManager) {
+    static function admin($offerManager, $loginManager) {
         //lister les offres correspondant a l'user
-        $_POST['user-offers'] = $offerManager->find(1);
+        // $_POST['user-offers'] = $offerManager->findBy('user_id', 1);
+        $_POST['user-offers'] = $offerManager->findByRelations($loginManager, $_SESSION['user_id']);
 
         require_once 'templates/admin/index.php';
     }

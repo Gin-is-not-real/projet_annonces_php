@@ -24,10 +24,11 @@ try {
         if(isset($_SESSION['username'])) {
             if(session_id() !== '') {
                 unset($_SESSION['username']);
+                unset($_SESSION['user_id']);
                 session_destroy();
             }
         }
-        OfferController::index($offerManager);
+        OfferController::index($offerManager, $loginManager);
     }
     else {
         if($_GET['action'] == 'login-index') {
@@ -43,14 +44,14 @@ try {
         }
         elseif($_GET['action'] == 'logout') {
             $_POST['message'] = 'You have been correctly disconnected';
-            OfferController::index($offerManager);
+            LoginController::logout();
         }
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
-            OfferController::admin($offerManager);
+            OfferController::admin($offerManager, $loginManager);
         }
         elseif($_GET['action'] == 'offer-index') {
-            OfferController::index($offerManager);
+            OfferController::index($offerManager, $loginManager);
         }
 
         elseif($_GET['action'] == 'edit') {

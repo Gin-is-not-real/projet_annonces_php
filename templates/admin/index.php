@@ -19,6 +19,9 @@
                             <div>
                                 <a href="index.php?action=edit&amp;id=<?= $data['id']; ?>">EDIT</a>
                             </div>
+                            <div>
+                                <a href="index.php?action=new">NEW</a>
+                            </div>
                         </footer>
             <?php
                     }

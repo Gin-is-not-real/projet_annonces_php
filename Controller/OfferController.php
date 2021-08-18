@@ -15,12 +15,21 @@ class OfferController {
         require_once 'templates/admin/index.php';
     }
 
-    static function new() {
+    static function new($offerManager) {
+        //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
+        if(isset($_POST['title'])) {
+            $offerManager->add($_POST);
+            header('Location: index.php?action=admin');
 
+        }
+        else {
+            require 'templates/offer/_form.php';
+        }
     }
 
     static function edit($offerManager, $id) {
         $_POST['offer'] = $offerManager->find($id);
+        //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
             $offerManager->update($id);
 

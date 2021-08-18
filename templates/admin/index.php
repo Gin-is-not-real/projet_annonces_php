@@ -20,9 +20,41 @@
             }
         ?>
 
-        <div class="content">
+<div class="content">
             **admin/index.php</br>
             
+            <?php 
+                if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {
+                    $offers = $_POST['user-offers'];
+
+                    while($data = $_POST['user-offers']->fetch()) {
+                    ?>
+                        <section>
+                            <header>
+                                <h2><?= $data['title']; ?> </h3>
+                                <p>Publiée le:
+                                    <?= $data['date']; ?>
+                                </p>
+                            </header>
+
+                            <div class="offer-content">
+                                <div>Prix: 
+                                    <?= $data['price']; ?> euros
+                                </div>
+                                <div>Lieu:
+                                    <?= $data['place']; ?>
+                                </div>
+                                <div>
+                                    <?= $data['content']; ?>
+                                </div>
+                            </div>
+                        </section>
+
+<?php
+                    }
+                }
+
+            ?>
 
         </div>
 

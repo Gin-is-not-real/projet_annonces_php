@@ -9,6 +9,8 @@ class OfferController {
 
     static function admin($offerManager) {
         //lister les offres correspondant a l'user
+        $_POST['user-offers'] = $offerManager->find(1);
+
         require_once 'templates/admin/index.php';
     }
 

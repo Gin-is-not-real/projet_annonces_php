@@ -34,7 +34,7 @@ try {
         if($_GET['action'] == 'login-index') {
             LoginController::index();
         }
-        if($_GET['action'] == 'login') {
+        elseif($_GET['action'] == 'login') {
             if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
                 LoginController::login($loginManager, $_POST['username'], $_POST['pass']);
             }
@@ -43,7 +43,7 @@ try {
             LoginController::register($loginManager, $_POST['username'], $_POST['email'], $_POST['pass']);
         }
         elseif($_GET['action'] == 'logout') {
-            $_POST['message'] = 'You have been correctly disconnected';
+            // $_POST['message'] = 'You have been correctly disconnected';
             LoginController::logout();
         }
         elseif($_GET['action'] == 'admin') {

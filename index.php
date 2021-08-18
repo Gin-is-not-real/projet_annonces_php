@@ -55,7 +55,7 @@ try {
         }
 
         elseif($_GET['action'] == 'edit') {
-            OfferController::edit($_GET['id']);
+            OfferController::edit($offerManager, $_GET['id']);
         }
     }
     

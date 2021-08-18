@@ -2,8 +2,22 @@
 require_once 'DatabaseManager.php';
 
 class OfferManager extends DatabaseManager {
-    public function update($id) {
+    public function update($id, $values) {
+        try {
+            $toUp = $this->pdo->prepare("UPDATE $this->tablename SET 
+                title = :title, content = :content, price = :price, place = :place, date = :date WHERE id = $id");
 
+            $affectedLines = $toUp->execute(array(
+                'title' => $_POST['title'],
+                'content' => $_POST['content'],
+                'price' => $_POST['price'],
+                'place' => $_POST['place'],
+                'date' => date('Y-m-d H:i:s')
+            ));
+        }
+        catch (Exception $e) {
+            die('Error on update: ' . $e->getMessage());
+        }
     }
 
     public function findRelations($entityManager) {

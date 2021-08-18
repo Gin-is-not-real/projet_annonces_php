@@ -1,9 +1,11 @@
 <?php 
     if(!isset($_SESSION['username'])) {
-        $logInfo = 'Not connected.';   
-        if($_GET['action'] != 'login-index' AND $_GET['action'] != 'logout') {
-            $logInfo .=  'Please <a href="index.php?action=login-index">Login or register</a>';
-        }  
+        $logInfo = 'Not connected.';
+        if(isset($_GET['action'])) {
+            if($_GET['action'] != 'login-index' AND $_GET['action'] != 'logout') {
+                $logInfo .=  'Please <a href="index.php?action=login-index">Login or register</a>';
+            }  
+        }   
     }
     else {
         $logInfo = 'Connected as in ' . $_SESSION['username'];

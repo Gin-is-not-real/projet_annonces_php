@@ -6,19 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
 </head>
-<body>
-    <header>
+</head>
 
-    </header>
+<body>
+    <?php include 'templates/header.php'; ?>
 
     <main>
-        <?php 
-            if(isset($_SESSION['username'])) {
-                echo '<div>welcome ' . $_SESSION['username'] . '</div>';
-                echo '<div><a href="index.php?action=logout">LOGOUT</a></div>';
-                echo '<div><a href="index.php?action=offer-index">OFFERS</a></div>';
-            }
-        ?>
+
 
 <div class="content">
             **admin/index.php</br>
@@ -28,27 +22,15 @@
                     $offers = $_POST['user-offers'];
 
                     while($data = $_POST['user-offers']->fetch()) {
-                    ?>
-                        <section>
-                            <header>
-                                <h2><?= $data['title']; ?> </h3>
-                                <p>Publiée le:
-                                    <?= $data['date']; ?>
-                                </p>
-                            </header>
 
-                            <div class="offer-content">
-                                <div>Prix: 
-                                    <?= $data['price']; ?> euros
-                                </div>
-                                <div>Lieu:
-                                    <?= $data['place']; ?>
-                                </div>
+                        // include '../../offer/_offer.php';
+
+                        ?>
+                            <footer class="offer-footer">
                                 <div>
-                                    <?= $data['content']; ?>
+                                    <a href="index.php?action=edit&amp;id=<?= $data['id']; ?>">EDIT</a>
                                 </div>
-                            </div>
-                        </section>
+                            </footer>
 
 <?php
                     }

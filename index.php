@@ -45,14 +45,16 @@ try {
             $_POST['message'] = 'You have been correctly disconnected';
             OfferController::index($offerManager);
         }
-
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
             OfferController::admin($offerManager);
         }
-
         elseif($_GET['action'] == 'offer-index') {
             OfferController::index($offerManager);
+        }
+
+        elseif($_GET['action'] == 'edit') {
+            OfferController::edit($_GET['id']);
         }
     }
     

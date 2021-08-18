@@ -4,7 +4,7 @@ require_once 'Entity/Offer.php';
 class OfferController {
     static function index($offerManager) {
         $_POST['all-offers'] = $offerManager->findAll();
-        require_once 'templates/base.php';
+        require_once 'templates/offer/index.php';
     }
 
     static function admin($offerManager) {
@@ -15,6 +15,10 @@ class OfferController {
     }
 
     static function new() {
+
+    }
+
+    static function edit($id) {
 
     }
 }

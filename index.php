@@ -1,29 +1,57 @@
-<?php
-require('Manager/UserManager.php');
-require('Controller/UserController.php');
+<?php 
+/**
+ * routeur
+ */
+require_once 'Controller/LoginController.php';
+require_once 'Controller/OfferController.php';
 
-$userManager = new UserManager('localhost', 'projet_offers', 'admin', 'admin', 'users');
+// require_once 'Manager/DatabaseManager.php';
+require_once 'Manager/LoginManager.php';
+require_once 'Manager/OfferManager.php';
+
+
+$loginManager = new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users');
+$offerManager = new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers');
+
+
+if(session_id() == '') {
+    session_start();
+}
 
 try {
     if(!isset($_GET['action'])) {
-        // require_once('templates/base.php');
+        if(isset($_GET['session-state']) AND $_GET['session-state'] == 'init-session') {
 
-        //TESTS
-        $test = $userManager->findBy("username", "admin");
-        var_dump($test) ;
+            if(isset($_SESSION['username'])) {
+                if(session_id() !== '') {
+                    unset($_SESSION['username']);
+                    session_destroy();
+                }
+            }
+        }
+        LoginController::index();
     }
     else {
-        if($_GET['action'] == 'connect') {
-            //on recupere les POST du form
-            // $data = $_POST;
-            //post est recup dans le controller
-            UserController::connect($userManager);
+        if($_GET['action'] == 'login') {
+            if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
+                LoginController::login($loginManager, $_POST['username'], $_POST['pass']);
+            }
+        }
+        elseif($_GET['action'] == 'register') {
+            LoginController::register($loginManager, $_POST['username'], $_POST['email'], $_POST['pass']);
+        }
+        elseif($_GET['action'] == 'logout') {
+            $_POST['message'] = 'You have been correctly disconnected';
+            OfferController::index($offerManager);
         }
 
-        elseif($_GET['action'] = 'test') {
-
+        elseif($_GET['action'] == 'admin') {
+            // require 'templates/offer/index.php.php';
         }
     }
+    
+    
+
 } catch (Exception $e) {
-    die("Erreur : " . $e->getMessage());
+    die('ERROR: ' . $e->getMessage());
 }

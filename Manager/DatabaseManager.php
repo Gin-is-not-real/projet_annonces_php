@@ -12,11 +12,14 @@ class DatabaseManager {
 
     protected $tablename;
     
-    public function __construct($servname, $dbname, $user, $pass) {
+    public function __construct($servname, $dbname, $user, $pass, $tablename) {
         $this->servname = $servname;
         $this->dbname = $dbname;
         $this->user = $user;
         $this->pass = $pass;
+        if(!empty($tablename) AND $tablename !== null) {
+            $this->tablename = $tablename;
+        }
         $this->pdo = $this->initPdo($servname, $dbname, $user, $pass);
     }
 
@@ -59,7 +62,8 @@ class DatabaseManager {
         catch (Exception $e) {
             die('ERROR function findBy: ' . $e->getMessage());
         }
-        return $this->fetchData($result);
+        return $result;
+        // return $this->fetchData($result);
     }
 
     public function fetchData($result) {

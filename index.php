@@ -20,18 +20,19 @@ if(session_id() == '') {
 
 try {
     if(!isset($_GET['action'])) {
-        if(isset($_GET['session-state']) AND $_GET['session-state'] == 'init-session') {
 
-            if(isset($_SESSION['username'])) {
-                if(session_id() !== '') {
-                    unset($_SESSION['username']);
-                    session_destroy();
-                }
+        if(isset($_SESSION['username'])) {
+            if(session_id() !== '') {
+                unset($_SESSION['username']);
+                session_destroy();
             }
         }
-        LoginController::index();
+        OfferController::index($offerManager);
     }
     else {
+        if($_GET['action'] == 'login-index') {
+            LoginController::index();
+        }
         if($_GET['action'] == 'login') {
             if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
                 LoginController::login($loginManager, $_POST['username'], $_POST['pass']);
@@ -47,6 +48,11 @@ try {
 
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
+            OfferController::admin($offerManager);
+        }
+
+        elseif($_GET['action'] == 'offer-index') {
+            OfferController::index($offerManager);
         }
     }
     

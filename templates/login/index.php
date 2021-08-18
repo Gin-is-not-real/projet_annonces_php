@@ -8,16 +8,15 @@
 </head>
 <body>
     <header>
-
-    </header>
-
-    <main>
         <?php 
             if(isset($_SESSION['username'])) {
                 echo '<div>welcome ' . $_SESSION['username'] . '</div>';
                 echo '<div><a href="index.php?action=logout">LOGOUT</a></div>';
             }
         ?>
+    </header>
+
+    <main>
 
         <div class="content">
             **login/index.php</br>

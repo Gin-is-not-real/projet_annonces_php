@@ -54,6 +54,9 @@ try {
             OfferController::index($offerManager, $loginManager);
         }
 
+        elseif($_GET['action'] == 'new') {
+            OfferController::new($offerManager);
+        }
         elseif($_GET['action'] == 'edit') {
             OfferController::edit($offerManager, $_GET['id']);
         }

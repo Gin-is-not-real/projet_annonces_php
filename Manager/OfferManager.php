@@ -2,7 +2,7 @@
 require_once 'DatabaseManager.php';
 
 class OfferManager extends DatabaseManager {
-    public function update($id, $values) {
+    public function update($id) {
         try {
             $toUp = $this->pdo->prepare("UPDATE $this->tablename SET 
                 title = :title, content = :content, price = :price, place = :place, date = :date WHERE id = $id");

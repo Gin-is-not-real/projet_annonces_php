@@ -22,10 +22,12 @@ class OfferController {
     static function edit($offerManager, $id) {
         $_POST['offer'] = $offerManager->find($id);
         if(isset($_POST['title'])) {
-            $offerManager->update($id, $_POST);
+            $offerManager->update($id);
 
-            require 'templates/admin/index.php';
+            header('Location: index.php?action=admin');
         }
-        require 'templates/offer/_form.php';
+        else {
+            require 'templates/offer/_form.php';
+        }
     }
 }

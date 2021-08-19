@@ -35,6 +35,18 @@ class DatabaseManager {
     }
 
 ///////////////////////////////////////////////////////////////////////
+    //try to create a generic function
+    public function findRelationsBetween($manager1, $manager2) {
+        $table1 = $manager1->tablename;
+        $table2 = $manager2->tablename;
+        try {
+            $result = $this->pdo->query("SELECT * FROM $table1 INNER JOIN $table2 ON $table1.id = $table2.user_id");
+        } catch (Exception $e) {
+            die('ERROR on DatabaseManager->findRelationsBetween(): ' . $e->getMessage());
+        }
+    }
+
+
     public function findAll() {
         try {
             $result = $this->pdo->query("SELECT * FROM $this->tablename");

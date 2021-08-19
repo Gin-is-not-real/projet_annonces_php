@@ -5,7 +5,7 @@ class LoginManager extends DatabaseManager {
 
     public function insert($username, $email, $pass) {
         try {
-            $req = $this->pdo->prepare("INSERT INTO $this->tablename(id, username, email, pass) VALUES (id, :username, :email, :pass)");
+            $req = $this->pdo->prepare("INSERT INTO $this->tablename(id, username, email, pass) VALUES (:id, :username, :email, :pass)");
 
             $affectedLines = $req->execute(array(
                 'id' => date('mdhis'),

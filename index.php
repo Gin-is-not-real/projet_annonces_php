@@ -31,7 +31,7 @@ try {
             }
         }
         OfferController::index($offerManager, $loginManager);
-        // require 'templates/upload/upload.php';
+        $offerManager->testJoin();
     }
     else {
         if($_GET['action'] == 'login-index') {

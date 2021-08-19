@@ -4,14 +4,20 @@ require_once 'DatabaseManager.php';
 class LoginManager extends DatabaseManager {
 
     public function insert($username, $email, $pass) {
-        $req = $this->pdo->prepare("INSERT INTO $this->tablename(username, email, pass) VALUES (:username, :email, :pass)");
+        try {
+            $req = $this->pdo->prepare("INSERT INTO $this->tablename(id, username, email, pass) VALUES (id, :username, :email, :pass)");
 
-        $affectedLines = $req->execute(array(
-            'username' => $username,
-            'email' => $email, 
-            'pass' => $pass
-        ));
-        return $affectedLines;
+            $affectedLines = $req->execute(array(
+                'id' => date('mdhis'),
+                'username' => $username,
+                'email' => $email, 
+                'pass' => $pass
+            ));
+            return $affectedLines;
+        } catch (Exception $e) {
+            'ERROR on LoginManager->insert(): ' . $e->getMessage()
+;        }
+
     }
 
     public function findRelations() {

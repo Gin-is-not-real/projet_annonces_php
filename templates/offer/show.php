@@ -25,8 +25,10 @@
                 <div>Lieu:
                     <?= $data['place']; ?>
                 </div>
-                <div>
+                <div>Description:
                     <?= $data['content']; ?>
+                </div>
+                <div>Image name:
                 </div>
             </div>
 

@@ -81,3 +81,14 @@ UserManager extends DatabaseManager
 - j'ai cree les tables users et offers
 
     *crud user 
+
+////////////////////////////////////////////
+//UPLOAD IMAGES 
+
+    - j'ai cree une table image 
+        id, filename, offer_id
+
+    - a partir de la table images j'ai cree la jointure:
+        offer_id / projet_offers / offers / id
+
+    

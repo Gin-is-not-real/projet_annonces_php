@@ -2,11 +2,13 @@
 require_once 'DatabaseManager.php';
 
 class OfferManager extends DatabaseManager {
+    
     public function add($offer) {
         var_dump($offer);
         try {
-            $entry = $this->pdo->prepare("INSERT INTO $this->tablename (title, content, price, place, user_id) VALUES (:title, :content, :price, :place, :user_id)");
+            $entry = $this->pdo->prepare("INSERT INTO $this->tablename (id, title, content, price, place, user_id) VALUES (:id, :title, :content, :price, :place, :user_id)");
             $affectedLines = $entry->execute(array(
+                'id' => date('mdhis'),
                 'title' => $_POST['title'],
                 'content' => $_POST['content'],
                 'price' => floatval($_POST['price']),
@@ -30,6 +32,7 @@ class OfferManager extends DatabaseManager {
                 'place' => $_POST['place'],
                 'date' => date('Y-m-d H:i:s')
             ));
+            return $affectedLines;
         }
         catch (Exception $e) {
             die('Error on update: ' . $e->getMessage());

@@ -54,11 +54,18 @@ try {
             OfferController::index($offerManager, $loginManager);
         }
 
+        elseif($_GET['action'] == 'show') {
+            OfferController::show($offerManager, $loginManager, $_GET['id']);
+        }
+
         elseif($_GET['action'] == 'new') {
             OfferController::new($offerManager);
         }
         elseif($_GET['action'] == 'edit') {
             OfferController::edit($offerManager, $_GET['id']);
+        }
+        elseif($_GET['action'] == 'delete') {
+            OfferController::delete($offerManager, $_GET['id']);
         }
     }
     

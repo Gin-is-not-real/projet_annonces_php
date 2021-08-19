@@ -15,12 +15,16 @@ class OfferController {
         require_once 'templates/admin/index.php';
     }
 
+    static function show($offerManager, $loginManager, $id) {
+        $_POST['offer'] = $offerManager->findRelationsBy($loginManager, 'offers.id', $id);
+        require 'templates/offer/show.php';
+    }
+
     static function new($offerManager) {
         //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
             $offerManager->add($_POST);
             header('Location: index.php?action=admin');
-
         }
         else {
             require 'templates/offer/_form.php';
@@ -38,5 +42,10 @@ class OfferController {
         else {
             require 'templates/offer/_form.php';
         }
+    }
+
+    static function delete($offerManager, $id) {
+        $offerManager->remove($id);
+        header('Location: index.php?action=admin');
     }
 }

@@ -4,9 +4,15 @@
 ?>
 
     <main>
+    **admin/index.php</br>
 
         <div class="content">
-            **admin/index.php</br>
+            <header>
+                <h1>your offers</h1>
+            </header>
+            <div>
+                <a href="index.php?action=new">new offer</a>
+            </div>
             <?php 
                 if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {
                     $offers = $_POST['user-offers'];
@@ -20,7 +26,7 @@
                                 <a href="index.php?action=edit&amp;id=<?= $data['id']; ?>">EDIT</a>
                             </div>
                             <div>
-                                <a href="index.php?action=new">NEW</a>
+                                <a href="index.php?action=delete&amp;id=<?= $data['id']; ?>">DELETE</a>
                             </div>
                         </footer>
             <?php

@@ -1,6 +1,38 @@
-- typer les variables ?
+TODO:
+    - consulter la liste des annonces par catégories
+    - fiche détaillée de chaque annonce
+OK    - s'inscrire pour ajouter des annonces      
+OK    - pouvoir modifier ses annonces
+    - supprimer ses annonces
+    - lister les 10 premières annonces du site et les suivantes 10 par 10
+    - afficher une image par défaut (offer), ne doit être pas bloquant
 
-- jointure pour categories ?
+    annonces
+OK        Titre (exemple : nom d'un objet)
+        Possibilité d'ajouter une photo
+OK        Description
+        Catégorie
+OK        Prix
+OK        Date de publication
+OK        Lieu
+    
+    utilisateurs
+OK        Nom d'utilisateur
+OK        Adress e-mail
+OK        Mot de passe
+
+PAPIER    - Créer un MCD 
+    - maquette
+
+BONUS:
+    - cron qui supprime les annonces qui sont publiées à n+30 jours de la date de création, 
+    - Envoyer un mail à la personne de la suppression de son annonce
+    - infinite-scroll pour la pagination des annonces
+    -  annonces en favoris
+    - annonce: show: lien permettant de la télécharger au format pdf
+    - système pour communiquer avec le vendeur
+
+    
 ////////////////////////////////////////////
 //
 les Managers se connectent, recuperent et ajoutent les données dans la base

@@ -9,7 +9,6 @@
             
             <?php 
                 if(isset($_POST['all-offers']) AND !empty($_POST['all-offers'])) {
-                    $offers = $_POST['all-offers'];
 
                     while($data = $_POST['all-offers']->fetch()) {
                         include '_offer.php';

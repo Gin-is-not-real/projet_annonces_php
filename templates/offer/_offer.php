@@ -18,4 +18,10 @@
             <?= $data['content']; ?>
         </div>
     </div>
+
+    <footer>
+        <div>
+            <a href="index.php?action=show&amp;id=<?= $data['id'] ?>">show</a>
+        </div>
+    </footer>
 </section>

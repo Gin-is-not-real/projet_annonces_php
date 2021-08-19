@@ -66,6 +66,10 @@ class DatabaseManager {
         // return $this->fetchData($result);
     }
 
+    public function remove($id) {
+        $this->pdo->exec("DELETE FROM $this->tablename WHERE id =" . $id);
+    }
+
     public function fetchData($result) {
         $fetched = [];
         while($data = $result->fetch()) {

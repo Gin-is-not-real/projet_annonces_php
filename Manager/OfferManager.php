@@ -52,11 +52,22 @@ class OfferManager extends DatabaseManager {
         try {
             // $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = '" . $user_id ."'");
             $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE offers.user_id='" . $user_id ."'");
-
         }
         catch (Exception $e) {
             die('ERROR function findByRelations: ' . $e->getMessage());
         }
+        return $result;
+        // return $this->fetchData($result);
+    }
+    
+    public function findRelationsBy($entityManager, $field, $value) {
+        try {
+            $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE " . $field . "='" . $value . "'");
+        }
+        catch (Exception $e) {
+            die('ERROR function findByRelations: ' . $e->getMessage());
+        }
+
         return $result;
         // return $this->fetchData($result);
     }

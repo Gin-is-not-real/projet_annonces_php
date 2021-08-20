@@ -83,6 +83,29 @@ UserManager extends DatabaseManager
     *crud user 
 
 ////////////////////////////////////////////
+    //tester les requetes de jointures 
+    public function testJoin() {
+        try {
+            $result = $this->pdo->prepare("
+                SELECT * FROM offers AS of
+                INNER JOIN users AS us 
+                ON us.id = of.user_id
+                UNION 
+                SELECT * FROM images AS im
+                INNER JOIN offers AS of 
+                ON im.offer_id = of.id 
+                WHERE user_id = 819122120 
+            ");
+
+            $data = $result->fetchAll();
+            var_dump($result, $data);
+
+        } catch (Exception $e) {
+            die('Error on add: ' . $e->getMessage());
+        } 
+    }
+
+////////////////////////////////////////////
 //UPLOAD IMAGES 
 
     - j'ai cree une table image 
@@ -91,4 +114,13 @@ UserManager extends DatabaseManager
     - a partir de la table images j'ai cree la jointure:
         offer_id / projet_offers / offers / id
 
-    
+////////////////////////////////////////////
+//NEW STRUCTURE RELATIONS 
+
+    - les controller instancie les managers 
+    - les controller ont une prop ENTITY = nom de l'entitée liée
+    - les Entity ont une prop TABLE_NAME et une prop PRIMARY_KEY, qui seront utilisée par le Manager
+
+
+//TODO: 
+

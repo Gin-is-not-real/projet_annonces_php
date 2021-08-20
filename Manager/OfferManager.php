@@ -1,29 +1,9 @@
 <?php 
 require_once 'DatabaseManager.php';
+require_once 'Entity/User.php';
+
 
 class OfferManager extends DatabaseManager {
-
-    //tester les requetes de jointures 
-    public function testJoin() {
-        try {
-            $result = $this->pdo->prepare("
-                SELECT * FROM offers AS of
-                INNER JOIN users AS us 
-                ON us.id = of.user_id
-                UNION 
-                SELECT * FROM images AS im
-                INNER JOIN offers AS of 
-                ON im.offer_id = of.id 
-                WHERE user_id = 819122120 
-            ");
-
-            $data = $result->fetchAll();
-            var_dump($result, $data);
-
-        } catch (Exception $e) {
-            die('Error on add: ' . $e->getMessage());
-        } 
-    }
 
     public function uploadImageAndCreatePost($file) {
         if(isset($file) AND !empty($file)) {
@@ -85,40 +65,53 @@ class OfferManager extends DatabaseManager {
         }
     }
 
-    public function findRelations($entityManager) {
-        try {
-            $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id ");
-        }
-        catch (Exception $e) {
-            die('ERROR function findByRelations: ' . $e->getMessage());
-        }
-        return $result;
-        // return $this->fetchData($result);
-    }
+    // public function findByRelatedUser() {
+    //     try {
+    //         // $result = $this->pdo->query("SELECT * FROM User::table INNER JOIN offers ON users.id = offers.user_id ");
+    //         $result = $this->pdo->query("SELECT * FROM ". User::$TABLE_NAME . " WHERE id = 1");
 
-    public function findByRelations($entityManager, $user_id) {
-        try {
-            // $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = '" . $user_id ."'");
-            $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE offers.user_id='" . $user_id ."'");
-        }
-        catch (Exception $e) {
-            die('ERROR function findByRelations: ' . $e->getMessage());
-        }
-        return $result;
-        // return $this->fetchData($result);
-    }
+    //     }
+    //     catch (Exception $e) {
+    //         die('ERROR function findByRelations: ' . $e->getMessage());
+    //     }
+    //     var_dump($result->fetchAll());
+    //     // return $result;
+    // }
+
+    // public function findRelations($entityManager) {
+    //     try {
+    //         $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id ");
+    //     }
+    //     catch (Exception $e) {
+    //         die('ERROR function findByRelations: ' . $e->getMessage());
+    //     }
+    //     return $result;
+    //     // return $this->fetchData($result);
+    // }
+
+    // public function findByRelations($entityManager, $user_id) {
+    //     try {
+    //         // $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = '" . $user_id ."'");
+    //         $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE offers.user_id='" . $user_id ."'");
+    //     }
+    //     catch (Exception $e) {
+    //         die('ERROR function findByRelations: ' . $e->getMessage());
+    //     }
+    //     return $result;
+    //     // return $this->fetchData($result);
+    // }
     
-    public function findRelationsBy($entityManager, $field, $value) {
-        try {
-            $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE " . $field . "='" . $value . "'");
-        }
-        catch (Exception $e) {
-            die('ERROR function findByRelations: ' . $e->getMessage());
-        }
+    // public function findRelationsBy($entityManager, $field, $value) {
+    //     try {
+    //         $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE " . $field . "='" . $value . "'");
+    //     }
+    //     catch (Exception $e) {
+    //         die('ERROR function findByRelations: ' . $e->getMessage());
+    //     }
 
-        return $result;
-        // return $this->fetchData($result);
-    }
+    //     return $result;
+    //     // return $this->fetchData($result);
+    // }
 }
 
 

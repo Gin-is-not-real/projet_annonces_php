@@ -2,6 +2,7 @@
 require_once 'DatabaseManager.php';
 
 class LoginManager extends DatabaseManager {
+    
 
     public function insert($username, $email, $pass) {
         try {

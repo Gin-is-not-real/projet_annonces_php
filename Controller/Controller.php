@@ -2,7 +2,9 @@
 
 class Controller {
     public $manager;
-    public static $entity;
+    public static $ENTITY;
+    //relation = [table, strangerKey, key]
+    public $relations = [];
 
 
     public function getManager() {
@@ -14,11 +16,18 @@ class Controller {
     }
 
     public function getEntity() {
-        return $this->entity;
+        return $this->ENTITY;
     }
-    public function setEntity($entity) {
-        $this->entity = $entity;
+    public function setEntity($ENTITY) {
+        $this->ENTITY = $ENTITY;
         return $this;
+    }
+
+    public function getRelations() {
+        return $this->relations;
+    }
+    public function pushRelation($table, $strangerKey, $key) {
+        $this->relations[$table] = ['table' => $table, 'strangerKey' => $strangerKey, 'key' => $key];
     }
 }
 //class user public static prop 

@@ -1,6 +1,9 @@
 <?php 
 
 class User {
+    public static $TABLE_NAME = 'users';
+    public static $PRIMARY_KEY = 'id';
+
     private $id;
     private $username;
     private $email;

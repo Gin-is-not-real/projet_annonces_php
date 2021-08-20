@@ -4,22 +4,24 @@ require_once 'Entity/Offer.php';
 require_once 'Manager/OfferManager.php';
 
 class OfferController extends Controller {
-    
-    public function index($loginManager) {
-        $_POST['all-offers'] = $this->manager->findRelations($loginManager);
+    public static $ENTITY = Offer::class;
+
+    public function index() {
+        $_POST['all-offers'] = $this->manager->findByRelation($this->relations['users']);
+
         require_once 'templates/offer/index.php';
     }
 
-    public function admin($loginManager) {
-        //lister les offres correspondant a l'user
-        // $_POST['user-offers'] = $this->manager->findBy('user_id', 1);
-        $_POST['user-offers'] = $this->manager->findByRelations($loginManager, $_SESSION['user_id']);
-
+    public function admin() {
+        //lister les offres correspondant a l'id user
+        $_POST['user-offers'] = $this->manager->findByRelation($this->relations['users'], ['user_id', $_SESSION['user_id']]);
         require_once 'templates/admin/index.php';
     }
 
-    public function show($loginManager, $id) {
-        $_POST['offer'] = $this->manager->findRelationsBy($loginManager, 'offers.id', $id);
+    public function show($id) {
+        // $_POST['offer'] = $this->manager->findRelationsBy($loginManager, 'offers.id', $id);
+        $_POST['offer'] = $this->manager->findByRelation($this->relations['users'], ['offers.id', $id]);
+
         require 'templates/offer/show.php';
     }
 

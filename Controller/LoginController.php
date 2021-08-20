@@ -4,6 +4,7 @@ require_once 'Entity/User.php';
 require_once 'Manager/LoginManager.php';
 
 class LoginController extends Controller {
+    public static $ENTITY = User::class;
 
     public function index() {
         require_once('templates/login/index.php');
@@ -55,8 +56,10 @@ class LoginController extends Controller {
         else {
             $result = $this->manager->insert($username, $email, $pass);
             if($result) {
-                $_SESSION['username'] = $username;
-                setcookie('session', $username, time() + 1);
+                // $_SESSION['username'] = $username;
+                // setcookie('session', $username, time() + 1);
+
+                $this->login($username, $pass);
                 
                 header('Location: index.php?action=admin');
             }

@@ -2,6 +2,7 @@
 require_once 'DatabaseManager.php';
 
 class ImageManager extends DatabaseManager {
+    
     public function add($image) {
         var_dump($image);
         try {

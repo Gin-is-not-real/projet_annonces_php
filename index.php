@@ -15,13 +15,10 @@ $loginController = new LoginController();
 $loginController->setManager(new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users'));
 
 $offerController = new OfferController();
-$offerController->setManager(new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers'));
+$offerController->setManager(new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers'), 'Offer');
+$offerController->pushRelation(User::$TABLE_NAME, User::$PRIMARY_KEY, 'user_id');
 
-
-
-$offerManager = new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers');
-// $imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
-
+$imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
 
 if(session_id() == '') {
     session_start();
@@ -37,9 +34,11 @@ try {
                 session_destroy();
             }
         }
-        // $offerController->index($offerManager, $loginManager);
-        // $offerManager->testJoin();
-        $loginController->index();
+        $offerController->index($loginController);
+        
+        //TEST
+        // $offerController->manager->findByRelation($offerController->relations['users'], ['offers.id', 1]);
+
     }
     else {
         if($_GET['action'] == 'login-index') {
@@ -59,14 +58,14 @@ try {
         }
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
-            $offerController->admin($loginController->manager);
+            $offerController->admin();
         }
         elseif($_GET['action'] == 'offer-index') {
-            $offerController->index($loginController->manager);
+            $offerController->index();
         }
 
         elseif($_GET['action'] == 'show') {
-            $offerController->show($loginController->manager, $_GET['id']);
+            $offerController->show($_GET['id']);
         }
 
         elseif($_GET['action'] == 'new') {

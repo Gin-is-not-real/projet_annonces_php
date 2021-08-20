@@ -2,7 +2,6 @@
 /**
  * 
  */
-
 class DatabaseManager {
     private $servname;
     private $dbname;
@@ -41,15 +40,29 @@ class DatabaseManager {
 
 ///////////////////////////////////////////////////////////////////////
     //try to create a generic function
-    public function findRelationsBetween($manager1, $manager2) {
-        $table1 = $manager1->tablename;
-        $table2 = $manager2->tablename;
+
+    // public function findByRelation($table, $strangerKey, $key) {
+    /**
+     * $relation = controller->relation[{name}] = [{table}, {strngerKey}, {key}]
+     * $where = null || [{field}, {value}]
+     */
+    public function findByRelation($relation, $where = null) {
+        $table = $relation['table'];
+        $strKey = $table.'.'.$relation['strangerKey'];
+        $thisKey = $this->tablename.'.'.$relation['key'];
+
+        $where = $where != null ? ' WHERE ' . $where[0] . ' = ' . $where[1] : '';
+
         try {
-            $result = $this->pdo->query("SELECT * FROM $table1 INNER JOIN $table2 ON $table1.id = $table2.user_id");
+            $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $where);
+
         } catch (Exception $e) {
-            die('ERROR on DatabaseManager->findRelationsBetween(): ' . $e->getMessage());
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
         }
+
+        return $result;
     }
+
 
 
     public function findAll() {

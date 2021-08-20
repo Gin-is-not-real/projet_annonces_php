@@ -31,7 +31,7 @@ try {
             }
         }
         OfferController::index($offerManager, $loginManager);
-        $offerManager->testJoin();
+        // $offerManager->testJoin();
     }
     else {
         if($_GET['action'] == 'login-index') {

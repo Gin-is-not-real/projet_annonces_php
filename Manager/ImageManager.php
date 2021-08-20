@@ -15,5 +15,5 @@ class ImageManager extends DatabaseManager {
             die('Error while try add an image: ' . $e->getMessage());
         }
     }
-
+    //test merging git
 }

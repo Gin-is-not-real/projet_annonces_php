@@ -1,24 +1,24 @@
 <?php 
-require_once 'Controller.php';
 require_once 'Entity/User.php';
-require_once 'Manager/LoginManager.php';
+if(session_id() == '') {
+    session_start();
+}
+class LoginController {
 
-class LoginController extends Controller {
-
-    public function index() {
+    static function index() {
         require_once('templates/login/index.php');
     }
 
-    public function logout() {
+    static function logout() {
         unset($_SESSION['username']);
         unset($_SESSION['user_id']);
 
         session_destroy();
-        $this->index();
+        LoginController::index();
     }
 
-    public function login($username, $pass) {
-        $logs = $this->manager->findBy('username', $username);
+    static function login($loginManager, $username, $pass) {
+        $logs = $loginManager->findBy('username', $username);
 
         if($data = $logs->fetch()) {
             if($pass == $data['pass']) {
@@ -30,30 +30,30 @@ class LoginController extends Controller {
             }
             else {
                 $_POST['login-error'] = 'Wrong password or username';
-                $this->index();
+                LoginController::index();
             }
         }
         else {
             $_POST['login-error'] = 'Wrong password or username';
-            $this->index();
+            LoginController::index();
         }
     }
 
-    public function register($username, $email, $pass) {
-        if($data = $this->manager->findBy('username', $username)->fetch()) {
+    static function register($loginManager, $username, $email, $pass) {
+        if($data = $loginManager->findBy('username', $username)->fetch()) {
             $error = 'This username is not available';
         }
-        elseif($data = $this->manager->findBy('email', $email)->fetch()) {
+        elseif($data = $loginManager->findBy('email', $email)->fetch()) {
             $error = 'This email is not available';
         }
 
         if(isset($error)) {
             $_POST['login-error'] = $error;
-            $this->index();
+            LoginController::index();
         }
         
         else {
-            $result = $this->manager->insert($username, $email, $pass);
+            $result = $loginManager->insert($username, $email, $pass);
             if($result) {
                 $_SESSION['username'] = $username;
                 setcookie('session', $username, time() + 1);

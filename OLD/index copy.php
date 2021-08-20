@@ -11,17 +11,10 @@ require_once 'Manager/OfferManager.php';
 require_once 'Manager/ImageManager.php';
 
 
-$loginController = new LoginController();
-$loginController->setManager(new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users'));
 
-$offerController = new OfferController();
-$offerController->setManager(new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers'));
-
-
-
+$loginManager = new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users');
 $offerManager = new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers');
-// $imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
-
+$imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
 
 if(session_id() == '') {
     session_start();
@@ -37,46 +30,45 @@ try {
                 session_destroy();
             }
         }
-        // $offerController->index($offerManager, $loginManager);
+        OfferController::index($offerManager, $loginManager);
         // $offerManager->testJoin();
-        $loginController->index();
     }
     else {
         if($_GET['action'] == 'login-index') {
-            $loginController->index();
+            LoginController::index();
         }
         elseif($_GET['action'] == 'login') {
             if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
-                $loginController->login($_POST['username'], $_POST['pass']);
+                LoginController::login($loginManager, $_POST['username'], $_POST['pass']);
             }
         }
         elseif($_GET['action'] == 'register') {
-            $loginController->register($_POST['username'], $_POST['email'], $_POST['pass']);
+            LoginController::register($loginManager, $_POST['username'], $_POST['email'], $_POST['pass']);
         }
         elseif($_GET['action'] == 'logout') {
             // $_POST['message'] = 'You have been correctly disconnected';
-            $loginController->logout();
+            LoginController::logout();
         }
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
-            $offerController->admin($loginController->manager);
+            OfferController::admin($offerManager, $loginManager);
         }
         elseif($_GET['action'] == 'offer-index') {
-            $offerController->index($loginController->manager);
+            OfferController::index($offerManager, $loginManager);
         }
 
         elseif($_GET['action'] == 'show') {
-            $offerController->show($loginController->manager, $_GET['id']);
+            OfferController::show($offerManager, $loginManager, $_GET['id']);
         }
 
         elseif($_GET['action'] == 'new') {
-            $offerController->new($imageManager);
+            OfferController::new($offerManager, $imageManager);
         }
         elseif($_GET['action'] == 'edit') {
-            $offerController->edit($_GET['id']);
+            OfferController::edit($offerManager, $_GET['id']);
         }
         elseif($_GET['action'] == 'delete') {
-            $offerController->delete($_GET['id']);
+            OfferController::delete($offerManager, $_GET['id']);
         }
     }
     

@@ -34,6 +34,11 @@ class DatabaseManager {
         return $pdo;        
     }
 
+    public function __toString()
+    {
+        return get_class();
+    }
+
 ///////////////////////////////////////////////////////////////////////
     //try to create a generic function
     public function findRelationsBetween($manager1, $manager2) {

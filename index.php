@@ -8,11 +8,13 @@ require_once 'Controller/OfferController.php';
 // require_once 'Manager/DatabaseManager.php';
 require_once 'Manager/LoginManager.php';
 require_once 'Manager/OfferManager.php';
+require_once 'Manager/ImageManager.php';
+
 
 
 $loginManager = new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users');
 $offerManager = new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers');
-
+$imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
 
 if(session_id() == '') {
     session_start();
@@ -29,6 +31,7 @@ try {
             }
         }
         OfferController::index($offerManager, $loginManager);
+        // $offerManager->testJoin();
     }
     else {
         if($_GET['action'] == 'login-index') {
@@ -59,7 +62,7 @@ try {
         }
 
         elseif($_GET['action'] == 'new') {
-            OfferController::new($offerManager);
+            OfferController::new($offerManager, $imageManager);
         }
         elseif($_GET['action'] == 'edit') {
             OfferController::edit($offerManager, $_GET['id']);

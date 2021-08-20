@@ -20,10 +20,17 @@ class OfferController {
         require 'templates/offer/show.php';
     }
 
-    static function new($offerManager) {
+    static function new($offerManager, $imageManager) {
         //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
+            //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
+            $_POST['id'] = date('mdhis');
+            //081 911 3657
+            //UPLOAD
+            $_POST['image'] = $offerManager->uploadImageAndCreatePost($_FILES['image']);
+
             $offerManager->add($_POST);
+            $imageManager->add($_POST['image']);
             header('Location: index.php?action=admin');
         }
         else {
@@ -35,6 +42,7 @@ class OfferController {
         $_POST['offer'] = $offerManager->find($id);
         //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
+
             $offerManager->update($id);
 
             header('Location: index.php?action=admin');

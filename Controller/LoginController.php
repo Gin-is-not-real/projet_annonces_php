@@ -51,6 +51,7 @@ class LoginController {
             $_POST['login-error'] = $error;
             LoginController::index();
         }
+        
         else {
             $result = $loginManager->insert($username, $email, $pass);
             if($result) {

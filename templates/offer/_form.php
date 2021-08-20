@@ -14,12 +14,11 @@ else {
 
 ?>
 <h2><?= $title; ?></h2>
-<form action="index.php?action=<?= $action ?>" method="post">
+<form action="index.php?action=<?= $action ?>" method="post" enctype="multipart/form-data">
 
     <div>
         <label for="title">title</label>
         <input type="text" name="title" value="<?= $edit ? $data[0]['title'] : ''; ?>" required>
-
     </div>
 
     <div>
@@ -35,6 +34,11 @@ else {
     <div>
         <label for="content">description</label>
         <input type="text" name="content" value="<?= $edit ? $data[0]['content'] : ''; ?>" required>
+    </div>
+
+    <div>
+        <label for="image">image</label></br>
+        <input type="file" name="image" maxlength="255" value="">
     </div>
 
     <div>

@@ -15,6 +15,7 @@
             </div>
             <?php 
                 if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {
+                    var_dump($_POST['user-offers']);
                     $offers = $_POST['user-offers'];
                     while($data = $_POST['user-offers']->fetch()) {
                         // var_dump($data);

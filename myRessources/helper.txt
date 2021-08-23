@@ -105,6 +105,20 @@ UserManager extends DatabaseManager
         } 
     }
 
+
+    OK:
+                    $result = $this->pdo->query("
+                SELECT id
+                FROM users 
+                INNER JOIN offers 
+                ON users.id = offers.user_id
+                UNION ALL
+                SELECT id 
+                FROM images 
+                INNER JOIN offers
+                ON images.offer_id = offers.id
+                ");
+
 ////////////////////////////////////////////
 //UPLOAD IMAGES 
 

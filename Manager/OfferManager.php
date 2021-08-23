@@ -1,14 +1,16 @@
 <?php 
 require_once 'DatabaseManager.php';
+
 require_once 'Entity/User.php';
+require_once 'ArrayPrint.php';
 
 
 class OfferManager extends DatabaseManager {
 
-    public function uploadImageAndCreatePost($file) {
+    public function uploadImageAndCreatePost($file, $offerId) {
         if(isset($file) AND !empty($file)) {
             $img = $file;
-            var_dump($img, '</br>');
+            // var_dump($img, '</br>');
 
             //on verifie si c'est une image
             if(strpos($img['type'], 'image') !== '') {
@@ -22,7 +24,7 @@ class OfferManager extends DatabaseManager {
                 $dest = 'public/uploads/';
                 move_uploaded_file($tmpName, $dest . $filename);
 
-                $_POST['image'] = ['filename'=> $filename, 'offer_id' => $_POST['id']];
+                $_POST['image'] = ['filename'=> $filename, 'offer_id' => $offerId];
 
                 return $_POST['image'];
             }
@@ -47,6 +49,7 @@ class OfferManager extends DatabaseManager {
     }
 
     public function update($id) {
+        // var_dump($_POST);
         try {
             $toUp = $this->pdo->prepare("UPDATE $this->tablename SET 
                 title = :title, content = :content, price = :price, place = :place, date = :date WHERE id = $id");
@@ -64,6 +67,39 @@ class OfferManager extends DatabaseManager {
             die('Error on update: ' . $e->getMessage());
         }
     }
+                // UNION ALL
+
+    public function listOffers($option = null) {
+            $option = $option != null ? $option[0] . ' ' . $option[1] : '';
+
+            try {
+                $result = $this->pdo->query("
+                SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content
+                FROM users 
+                INNER JOIN offers 
+                ON users.id = offers.user_id
+                " . $option);
+            } catch (Exception $e) {
+                die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+            }
+            return $result;
+    }
+
+    public function findOffer($id) {
+        try {
+            $result = $this->pdo->query("
+            SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content
+            FROM users 
+            INNER JOIN offers 
+            ON users.id = offers.user_id
+            WHERE offers.id = $id
+            ");
+        } catch (Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+        ArrayPrint::printMultiArray($result->fetchAll());
+        return $result;
+}
 
     // public function findByRelatedUser() {
     //     try {

@@ -16,7 +16,11 @@ $loginController->setManager(new LoginManager('localhost', 'projet_offers', 'adm
 
 $offerController = new OfferController();
 $offerController->setManager(new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers'), 'Offer');
-$offerController->pushRelation(User::$TABLE_NAME, User::$PRIMARY_KEY, 'user_id');
+// $offerController->pushRelation(User::$TABLE_NAME, User::$TABLE_NAME . User::$PRIMARY_KEY,  'user_id');
+$offerController->pushRelation('users', 'users.id',  'offers.user_id');
+
+$offerController->pushRelation('images', 'images.id', 'offers.image_id');
+
 
 $imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
 
@@ -34,10 +38,7 @@ try {
                 session_destroy();
             }
         }
-        $offerController->index($loginController);
-        
-        //TEST
-        // $offerController->manager->findByRelation($offerController->relations['users'], ['offers.id', 1]);
+        $offerController->index();
 
     }
     else {
@@ -53,12 +54,12 @@ try {
             $loginController->register($_POST['username'], $_POST['email'], $_POST['pass']);
         }
         elseif($_GET['action'] == 'logout') {
-            // $_POST['message'] = 'You have been correctly disconnected';
+            // $_POST['message'] = 'You have been correctly disconnected';820014009
             $loginController->logout();
         }
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
-            $offerController->admin();
+            $offerController->listByUser($_SESSION['user_id'], $imageManager);
         }
         elseif($_GET['action'] == 'offer-index') {
             $offerController->index();
@@ -72,7 +73,7 @@ try {
             $offerController->new($imageManager);
         }
         elseif($_GET['action'] == 'edit') {
-            $offerController->edit($_GET['id']);
+            $offerController->edit($_GET['id'], $imageManager);
         }
         elseif($_GET['action'] == 'delete') {
             $offerController->delete($_GET['id']);

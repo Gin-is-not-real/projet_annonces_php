@@ -9,12 +9,12 @@
             
             <?php 
                 if(isset($_POST['all-offers']) AND !empty($_POST['all-offers'])) {
-
-                    while($data = $_POST['all-offers']->fetch()) {
+                    $data = $_POST['all-offers'];
+                    
+                    foreach($_POST['all-offers'] as $data) {
                         include '_offer.php';
-                    }
+                    } 
                 }
-                $_POST['all-offers']->closeCursor();
             ?>
         </div>
     </main>

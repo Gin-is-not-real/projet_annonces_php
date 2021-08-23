@@ -46,15 +46,16 @@ class DatabaseManager {
      * $relation = controller->relation[{name}] = [{table}, {strngerKey}, {key}]
      * $where = null || [{field}, {value}]
      */
-    public function findByRelation($relation, $where = null) {
-        $table = $relation['table'];
-        $strKey = $table.'.'.$relation['strangerKey'];
-        $thisKey = $this->tablename.'.'.$relation['key'];
 
-        $where = $where != null ? ' WHERE ' . $where[0] . ' = ' . $where[1] : '';
+    public function findByRelation($relation, $option = null) {
+        $table = $relation['table'];
+        $strKey = $relation['strangerKey'];
+        $thisKey = $relation['key'];
+
+        $option = $option != null ? $option[0] . ' ' . $option[1] : '';
 
         try {
-            $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $where);
+            $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $option);
 
         } catch (Exception $e) {
             die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
@@ -62,8 +63,39 @@ class DatabaseManager {
 
         return $result;
     }
+        // public function findByRelation($relation, $where = null) {
+    //     $table = $relation['table'];
+    //     $strKey = $relation['strangerKey'];
+    //     $thisKey = $relation['key'];
 
+    //     $where = $where != null ? ' WHERE ' . $where[0] . ' = ' . $where[1] : '';
 
+    //     try {
+    //         $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $where);
+
+    //     } catch (Exception $e) {
+    //         die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+    //     }
+    //     // var_dump($result);
+    //     return $result;
+    // }
+
+    public function findByRelationBetween($manager, $relation, $option = null) {
+        $tableRel = $relation['table'];
+        $strKey = $tableRel.'.'.$relation['strangerKey'];
+        $thisKey = $manager->tablename.'.'.$relation['key'];
+
+        $option = $option != null ? ' WHERE ' . $option[0] . ' ' . $option[1] : '';
+
+        try {
+            $result = $this->pdo->query("SELECT * FROM $tableRel INNER JOIN $manager->tablename ON $strKey = $thisKey" . $option);
+
+        } catch (Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+
+        return $result;
+    }
 
     public function findAll() {
         try {
@@ -91,6 +123,17 @@ class DatabaseManager {
         }
         catch (Exception $e) {
             die('ERROR function findBy: ' . $e->getMessage());
+        }
+        return $result;
+        // return $this->fetchData($result);
+    }
+
+    public function findByIn($table, $field, $value) {
+        try {
+            $result = $this->pdo->query("SELECT * FROM $table WHERE " . $field . "='" . $value ."'");
+        }
+        catch (Exception $e) {
+            die('ERROR on: ' . __METHOD__ . $e->getMessage());
         }
         return $result;
         // return $this->fetchData($result);

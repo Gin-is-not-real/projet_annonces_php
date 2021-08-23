@@ -2,6 +2,9 @@
 if(isset($_POST['offer'])) {
     $values = [];
     $data = $_POST['offer']->fetchAll();
+    $images = $_POST['images']->fetchAll();
+    // die(var_dump($images[0]));
+
     $edit = true;
     $title = 'edit';
     $action = 'edit&amp;id=' . $data[0]['id'];
@@ -37,8 +40,33 @@ else {
     </div>
 
     <div>
-        <label for="image">image</label></br>
-        <input type="file" name="image" maxlength="255" value="">
+        <label for="image">images</label></br>
+        <div>
+            <div> 
+<!-- 
+                <?php 
+                    $path = $_SERVER['DOCUMENT_ROOT'] . '/' . $_SERVER['SCRIPT_NAME'];
+                    $path = str_replace('index.php', '', $path) . 'public/uploads/';
+                    echo $path;
+                ?> 
+                -->
+            </div>
+
+        <div>    
+            <input type="file" name="image" maxlength="255" >
+        </div>
+
+        <!-- <div>    
+            <input type="file" name="image1" maxlength="255" >
+        </div>
+        <div>
+            <input type="file" name="image2" maxlength="255">
+        </div>
+        <div>
+            <input type="file" name="image3" maxlength="255">
+        </div> -->
+
+
     </div>
 
     <div>

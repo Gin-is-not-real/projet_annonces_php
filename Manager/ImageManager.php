@@ -16,5 +16,20 @@ class ImageManager extends DatabaseManager {
             die('Error while try add an image: ' . $e->getMessage());
         }
     }
-    //test merging git
+
+    public function update($id) {
+        try {
+            $toUp = $this->pdo->prepare("UPDATE $this->tablename SET 
+                filename = :filename, offer_id = :offer_id WHERE id = $id");
+
+            $affectedLines = $toUp->execute(array(
+                'filename' => $_POST['image']['filename'],
+                'offer_id' => $_POST['image']['offer_id']
+            ));
+            return $affectedLines;
+        }
+        catch (Exception $e) {
+            die('Error on ' . __METHOD__ . ' : ' . $e->getMessage());
+        }
+    }
 }

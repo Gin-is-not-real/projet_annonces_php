@@ -22,11 +22,23 @@ class ImageController extends Controller {
                 $dest = 'public/uploads/';
                 move_uploaded_file($tmpName, $dest . $filename);
 
-                $image = ['filename'=> $filename, 'offer_id' => $offerId];
+                $image = [
+                    'filename'=> $filename, 
+                    'offer_id' => $offerId,
+                    'id' => date('hismd') . substr($filename, -6, 3)
+                ];
 
                 return $image;
             }
         }
+    }
+
+    public function send($image) {
+        die(var_dump($image));
+
+        $search = $this->manager->find($image['id']);
+        $fetched = $search->fetch();
+        die(var_dump($fetched));
     }
 
     public function new($image) {

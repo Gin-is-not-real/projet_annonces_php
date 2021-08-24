@@ -70,17 +70,17 @@ class OfferController extends Controller {
             //UPLOAD
             $this->manager->add($_POST);
 
-            if(isset($_FILES['image-0'])) {
+            if(isset($_FILES['image-0'] ) AND strlen($_FILES['image-0']['name']) != 0) {
                 $image = $imageController->uploadImageAndCreatePost($_FILES['image-0'], $generateOfferId);
                 $imageController->new($image);
                 // die(var_dump($image));
             }
-            if(isset($_FILES['image-1'])) {
+            if(isset($_FILES['image-1']) AND strlen($_FILES['image-1']['name']) != 0) {
                 $image = $imageController->uploadImageAndCreatePost($_FILES['image-1'], $generateOfferId);
                 $imageController->new($image);
                 // die(var_dump($image));
             }
-            if(isset($_FILES['image-2'])) {
+            if(isset($_FILES['image-2']) AND strlen($_FILES['image-2']['name']) != 0) {
                 $image = $imageController->uploadImageAndCreatePost($_FILES['image-2'], $generateOfferId);
                 $imageController->new($image);
                 // die(var_dump($image));
@@ -102,13 +102,42 @@ class OfferController extends Controller {
         if(isset($_POST['title'])) {
             $this->manager->update($offerId);
 
+            if($_FILES['image-0'] AND strlen($_FILES['image-0']['name']) != 0) {
+                $img = $imageController->uploadImageAndCreatePost($_FILES['image-0'], $offerId);
+
+                if($_POST['hidden-img0'] == 'edit-img') {
+                    $imageController->edit($_POST['hidden-id0'], $img);
+                }
+                else {
+                    $imageController->new($img);
+                }
+            }
+
+            if($_FILES['image-1'] AND strlen($_FILES['image-1']['name']) != 0) {
+                $img = $imageController->uploadImageAndCreatePost($_FILES['image-1'], $offerId);
+
+                if($_POST['hidden-img1'] == 'edit-img') {
+                    $imageController->edit($_POST['hidden-id1'], $img);
+                }
+                else {
+                    $imageController->new($img);
+                }
+            }
+
+            if($_FILES['image-2'] AND strlen($_FILES['image-2']['name']) != 0) {
+                $img = $imageController->uploadImageAndCreatePost($_FILES['image-1'], $offerId);
+
+                if($_POST['hidden-img2'] == 'edit-img') {
+                    $imageController->edit($_POST['hidden-id2'], $img);
+                }
+                else {
+                    $imageController->new($img);
+                }
+            }
+
             header('Location: index.php?action=admin');
         }
         else {
-            $offers = $this->manager->find($offerId);
-            //cherche en base les images liées a l'offre
-            $images = $imageController->manager->findBy('offer_id', $offerId);
-
             $_POST['offer'] = $offers;
             $_POST['images'] = $images;
 

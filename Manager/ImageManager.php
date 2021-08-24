@@ -7,7 +7,7 @@ class ImageManager extends DatabaseManager {
         try {
             $entry = $this->pdo->prepare("INSERT INTO $this->tablename (id, filename, offer_id) VALUES (:id, :filename, :offer_id)");
             $affectedLines = $entry->execute(array(
-                'id' => date('hismd') . substr($image['filename'], 3, 3),
+                'id' => $image['id'],
                 'filename' => $image['filename'],
                 'offer_id' => $image['offer_id']
             ));

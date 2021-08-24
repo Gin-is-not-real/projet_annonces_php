@@ -7,7 +7,6 @@ if(isset($offers)) {
     $imgData = $images->fetchAll();
     // $images = $images->fetchAll();
     var_dump($imgData);
-
     $edit = true;
     $title = 'edit';
     $action = 'edit&amp;id=' . $data[0]['id'];
@@ -45,13 +44,13 @@ else {
 
     <?php 
         $src0 = isset($imgData[0]) ? $imgData[0]['filename'] : 'default';
-        $act0 = isset($imgData[0]) ? 'update-img' : 'new-img';
+        $act0 = isset($imgData[0]) ? 'edit-img' : 'new-img';
 
         $src1 = isset($imgData[1]) ? $imgData[1]['filename'] : 'default';
-        $act1 = isset($imgData[1]) ? 'update-img' : 'new-img';
+        $act1 = isset($imgData[1]) ? 'edit-img' : 'new-img';
 
         $src2 = isset($imgData[2]) ? $imgData[2]['filename'] : 'default';
-        $act2 = isset($imgData[2]) ? 'update-img' : 'new-img';
+        $act2 = isset($imgData[2]) ? 'edit-img' : 'new-img';
 
 
     ?>
@@ -66,7 +65,9 @@ else {
 <?php 
         if(isset($imgData[0])) {
 ?>            
+        <input type="hidden" name="hidden-id0" value="<?= $imgData[0]['id']; ?>">
         <div>
+
             <a href="index.php?action=delete-img&amp;id=<?= $imgData[0]['id']; ?>&amp;filename=<?= $imgData[0]['filename']; ?>">delete</a>
         </div>
 <?php
@@ -85,7 +86,10 @@ else {
         <?php 
         if(isset($imgData[1])) {
 ?>            
+
         <div>
+            <input type="hidden" name="hidden-id1" value="<?= $imgData[1]['id']; ?>">
+
             <a href="index.php?action=delete-img&amp;id=<?= $imgData[1]['id']; ?>&amp;filename=<?= $imgData[1]['filename']; ?>">delete</a>
         </div>
 <?php
@@ -106,6 +110,7 @@ else {
         if(isset($imgData[2])) {
 ?>            
         <div>
+            <input type="hidden" name="hidden-id1" value="<?= $imgData[2]['id']; ?>">
             <a href="index.php?action=delete-img&amp;id=<?= $imgData[2]['id']; ?>&amp;filename=<?= $imgData[2]['filename']; ?>">delete</a>
         </div>
 <?php

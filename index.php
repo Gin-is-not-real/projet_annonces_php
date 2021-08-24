@@ -4,6 +4,7 @@
  */
 require_once 'Controller/LoginController.php';
 require_once 'Controller/OfferController.php';
+require_once 'Controller/ImageController.php';
 
 // require_once 'Manager/DatabaseManager.php';
 require_once 'Manager/LoginManager.php';
@@ -21,8 +22,10 @@ $offerController->pushRelation('users', 'users.id',  'offers.user_id');
 
 $offerController->pushRelation('images', 'images.id', 'offers.image_id');
 
+$imageController = new ImageController();
+$imageController->setManager(new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images'), 'Image');
+// $imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
 
-$imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
 
 if(session_id() == '') {
     session_start();
@@ -59,7 +62,7 @@ try {
         }
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
-            $offerController->listByUser($_SESSION['user_id'], $imageManager);
+            $offerController->listByUser($_SESSION['user_id'], $imageController);
         }
         elseif($_GET['action'] == 'offer-index') {
             $offerController->index();
@@ -70,13 +73,20 @@ try {
         }
 
         elseif($_GET['action'] == 'new') {
-            $offerController->new($imageManager);
+            $offerController->new($imageController);
         }
         elseif($_GET['action'] == 'edit') {
-            $offerController->edit($_GET['id'], $imageManager);
+            $offerController->edit($_GET['id'], $imageController);
         }
         elseif($_GET['action'] == 'delete') {
             $offerController->delete($_GET['id']);
+        }
+
+        elseif($_GET['action'] == 'edit-img') {
+            require 'TEST.php';
+        }
+        elseif($_GET['action'] == 'new-img') {
+            require 'TEST.php';
         }
     }
     

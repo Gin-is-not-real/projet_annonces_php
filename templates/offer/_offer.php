@@ -22,6 +22,7 @@
         <div>Images:
             <?php 
                 foreach($data['images'] as $image) {
+                    // var_dump($image);
                     echo '<div>image: ' . $image['filename'] . '</div>';
                 }
             ?>

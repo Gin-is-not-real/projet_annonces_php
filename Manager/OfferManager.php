@@ -7,32 +7,31 @@ require_once 'ArrayPrint.php';
 
 class OfferManager extends DatabaseManager {
 
-    public function uploadImageAndCreatePost($file, $offerId) {
-        if(isset($file) AND !empty($file)) {
-            $img = $file;
-            // var_dump($img, '</br>');
+    // public function uploadImageAndCreatePost($file, $offerId) {
+    //     if(isset($file) AND !empty($file)) {
+    //         $img = $file;
+    //         // var_dump($img, '</br>');
 
-            //on verifie si c'est une image
-            if(strpos($img['type'], 'image') !== '') {
+    //         //on verifie si c'est une image
+    //         if(strpos($img['type'], 'image') !== '') {
 
-                $tmpName = $file['tmp_name'];
-                //C:\Users\acs\AppData\Local\Temp\php5F0E.tmp
+    //             $tmpName = $file['tmp_name'];
+    //             //C:\Users\acs\AppData\Local\Temp\php5F0E.tmp
 
-                $filename = $img['name'];
-                //user-shape_icon-64px.png
+    //             $filename = $img['name'];
+    //             //user-shape_icon-64px.png
 
-                $dest = 'public/uploads/';
-                move_uploaded_file($tmpName, $dest . $filename);
+    //             $dest = 'public/uploads/';
+    //             move_uploaded_file($tmpName, $dest . $filename);
 
-                $_POST['image'] = ['filename'=> $filename, 'offer_id' => $offerId];
+    //             $_POST['image'] = ['filename'=> $filename, 'offer_id' => $offerId];
 
-                return $_POST['image'];
-            }
-        }
-    }
+    //             return $_POST['image'];
+    //         }
+    //     }
+    // }
 
     public function add($offer) {
-        var_dump($offer);
         try {
             $entry = $this->pdo->prepare("INSERT INTO $this->tablename (id, title, content, price, place, user_id) VALUES (:id, :title, :content, :price, :place, :user_id)");
             $affectedLines = $entry->execute(array(

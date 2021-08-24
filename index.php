@@ -88,6 +88,10 @@ try {
         elseif($_GET['action'] == 'new-img') {
             require 'TEST.php';
         }
+
+        elseif($_GET['action'] == 'delete-img') {
+            $imageController->delete($_GET['id'], $_GET['filename']);
+        }
     }
     
     

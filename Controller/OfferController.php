@@ -80,6 +80,11 @@ class OfferController extends Controller {
                 $imageController->new($image);
                 // die(var_dump($image));
             }
+            if(isset($_FILES['image-2'])) {
+                $image = $imageController->uploadImageAndCreatePost($_FILES['image-2'], $generateOfferId);
+                $imageController->new($image);
+                // die(var_dump($image));
+            }
 
             header('Location: index.php?action=admin');
         }

@@ -5,6 +5,7 @@ require_once 'ArrayPrint.php';
 
 class ImageController extends Controller {
     public static $ENTITY = Offer::class;
+    public static $FILE_DEST = 'public/uploads/';
 
     public function uploadImageAndCreatePost($file, $offerId) {
         if(isset($file) AND !empty($file)) {
@@ -15,7 +16,7 @@ class ImageController extends Controller {
                 $tmpName = $file['tmp_name'];
                 //C:\Users\acs\AppData\Local\Temp\php5F0E.tmp
 
-                $filename = $offerId . '-' . $img['name'];
+                $filename = substr($offerId, 0, 3) . $img['name'];
                 //user-shape_icon-64px.png
 
                 $dest = 'public/uploads/';
@@ -34,5 +35,17 @@ class ImageController extends Controller {
 
     public function edit($id, $image) {
         $this->manager->update($id, $image);
+    }
+
+    public function delete($id) {
+        $file = $this->manager->find($id);
+        $fetched = $file->fetch();
+
+        if(file_exists($this::$FILE_DEST . $fetched['filename'])) {
+            unlink($this::$FILE_DEST . $fetched['filename']);
+        }
+        $this->manager->removeImage($id);
+
+        header("Location: index.php?action=edit&id=" . $fetched['offer_id']);
     }
 }

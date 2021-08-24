@@ -109,7 +109,7 @@ class DatabaseManager {
 
     public function find($id) {
         try {
-            $result = $this->pdo->query("SELECT * FROM $this->tablename WHERE id=" . $id);
+            $result = $this->pdo->query("SELECT * FROM $this->tablename WHERE id='" . $id ."'");
         }
         catch (Exception $e) {
             die('ERROR function find ' . $e->getMessage());

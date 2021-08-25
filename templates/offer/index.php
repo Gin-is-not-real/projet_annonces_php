@@ -4,8 +4,9 @@
 ?>
 
     <main>
-        <div class="content">
-            **offer/index.php</br>
+        **offer/index.php</br>
+
+        <div class="container">
             
             <?php 
                 if(isset($_POST['all-offers']) AND !empty($_POST['all-offers'])) {

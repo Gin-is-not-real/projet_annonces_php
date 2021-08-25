@@ -3,12 +3,10 @@
     ob_start();
 ?>
     <main>
-        <div class="content">
+    **login/index.php</br>
 
-            **login/index.php</br>
-            
+        <div class="container">
             <?php include 'templates/_error.php'; ?>
-            
             <?php include('_form-login.php'); ?> 
             <?php include('_form-register.php'); ?> 
 

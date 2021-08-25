@@ -58,12 +58,15 @@ try {
             $loginController->register($_POST['username'], $_POST['email'], $_POST['pass']);
         }
         elseif($_GET['action'] == 'logout') {
-            // $_POST['message'] = 'You have been correctly disconnected';820014009
             $loginController->logout();
         }
         elseif($_GET['action'] == 'admin') {
-            // require 'templates/offer/index.php.php';
-            $offerController->listByUser($_SESSION['user_id'], $imageController);
+            if(isset($_SESSION['user_id'])) {
+                $offerController->listByUser($_SESSION['user_id'], $imageController);
+            }
+            else {
+                $loginController->index();
+            }
         }
         elseif($_GET['action'] == 'offer-index') {
             $offerController->index();
@@ -81,13 +84,6 @@ try {
         }
         elseif($_GET['action'] == 'delete') {
             $offerController->delete($_GET['id']);
-        }
-
-        elseif($_GET['action'] == 'edit-img') {
-            require 'TEST.php';
-        }
-        elseif($_GET['action'] == 'new-img') {
-            require 'TEST.php';
         }
 
         elseif($_GET['action'] == 'delete-img') {

@@ -6,7 +6,7 @@
     <main>
     **admin/index.php</br>
 
-        <div class="content">
+        <div class="container">
             <header>
                 <h1>your offers</h1>
             </header>

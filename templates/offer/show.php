@@ -6,7 +6,7 @@
 
 ?>
 <main>
-    <div class="content">
+    <div class="container">
         **offer/show.php</br>
 
         <section>

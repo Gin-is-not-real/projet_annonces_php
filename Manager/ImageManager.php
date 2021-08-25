@@ -34,7 +34,6 @@ class ImageManager extends DatabaseManager {
     }
 
     public function removeImage($id) {
-        // die("DELETE FROM $this->tablename WHERE id='$id'");
         $this->pdo->exec("DELETE FROM $this->tablename WHERE id='$id'");
     }
 }

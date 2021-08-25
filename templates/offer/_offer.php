@@ -1,5 +1,4 @@
-<section>
-
+<section class="offer-container">
     <header>
         <h2><?= $data['title']; ?> </h3>
         <h3>Par: <?= $data['username']; ?></h3>
@@ -19,11 +18,17 @@
             <?= $data['content']; ?>
         </div>
 
-        <div>Images:
+        <div class="img-container">Images:
             <?php 
                 foreach($data['images'] as $image) {
-                    // var_dump($image);
-                    echo '<div>image: ' . $image['filename'] . '</div>';
+            ?>
+                <figure>
+                    <img src="public/uploads/<?= $image['filename']; ?>" alt="<?= $image['filename']; ?>" width="100px" height="auto">
+                    <figcaption><?= $image['filename']; ?></figcaption>
+                </figure>
+
+
+            <?php
                 }
             ?>
         </div>

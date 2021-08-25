@@ -63,13 +63,15 @@ class ImageController extends Controller {
         $files = scandir($this::$FILE_DEST);
 
         foreach($files as $file) {
-            if(file_exists($this::$FILE_DEST . $file) AND $file != "\." OR $file != "\..") {
-                $image = $this->manager->findBy('filename', $file);
-
-                if(!$image->fetch()) {
-                    // $this->delete($id);
-                    unlink($this::$FILE_DEST . $file);
+            if(file_exists($this::$FILE_DEST . $file)) {
+                if($file !== '.' AND $file !== '..') {
+                    $image = $this->manager->findBy('filename', $file);
+                    if(!$image->fetch()) {
+                        // $this->delete($id);
+                        unlink($this::$FILE_DEST . $file);
+                    }
                 }
+
             }
         }
     }

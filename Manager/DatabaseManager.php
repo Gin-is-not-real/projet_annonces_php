@@ -2,7 +2,6 @@
 /**
  * 
  */
-
 class DatabaseManager {
     private $servname;
     private $dbname;
@@ -34,18 +33,53 @@ class DatabaseManager {
         return $pdo;        
     }
 
-///////////////////////////////////////////////////////////////////////
-    //try to create a generic function
-    public function findRelationsBetween($manager1, $manager2) {
-        $table1 = $manager1->tablename;
-        $table2 = $manager2->tablename;
-        try {
-            $result = $this->pdo->query("SELECT * FROM $table1 INNER JOIN $table2 ON $table1.id = $table2.user_id");
-        } catch (Exception $e) {
-            die('ERROR on DatabaseManager->findRelationsBetween(): ' . $e->getMessage());
-        }
+    public function __toString()
+    {
+        return get_class();
     }
 
+///////////////////////////////////////////////////////////////////////
+    //try to create a generic function
+
+    // public function findByRelation($table, $strangerKey, $key) {
+    /**
+     * $relation = controller->relation[{name}] = [{table}, {strngerKey}, {key}]
+     * $where = null || [{field}, {value}]
+     */
+
+    public function findByRelation($relation, $option = null) {
+        $table = $relation['table'];
+        $strKey = $relation['strangerKey'];
+        $thisKey = $relation['key'];
+
+        $option = $option != null ? $option[0] . ' ' . $option[1] : '';
+
+        try {
+            $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $option);
+
+        } catch (Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+
+        return $result;
+    }
+
+    public function findByRelationBetween($manager, $relation, $option = null) {
+        $tableRel = $relation['table'];
+        $strKey = $tableRel.'.'.$relation['strangerKey'];
+        $thisKey = $manager->tablename.'.'.$relation['key'];
+
+        $option = $option != null ? ' WHERE ' . $option[0] . ' ' . $option[1] : '';
+
+        try {
+            $result = $this->pdo->query("SELECT * FROM $tableRel INNER JOIN $manager->tablename ON $strKey = $thisKey" . $option);
+
+        } catch (Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+
+        return $result;
+    }
 
     public function findAll() {
         try {
@@ -59,7 +93,7 @@ class DatabaseManager {
 
     public function find($id) {
         try {
-            $result = $this->pdo->query("SELECT * FROM $this->tablename WHERE id=" . $id);
+            $result = $this->pdo->query("SELECT * FROM $this->tablename WHERE id='" . $id ."'");
         }
         catch (Exception $e) {
             die('ERROR function find ' . $e->getMessage());
@@ -73,6 +107,17 @@ class DatabaseManager {
         }
         catch (Exception $e) {
             die('ERROR function findBy: ' . $e->getMessage());
+        }
+        return $result;
+        // return $this->fetchData($result);
+    }
+
+    public function findByIn($table, $field, $value) {
+        try {
+            $result = $this->pdo->query("SELECT * FROM $table WHERE " . $field . "='" . $value ."'");
+        }
+        catch (Exception $e) {
+            die('ERROR on: ' . __METHOD__ . $e->getMessage());
         }
         return $result;
         // return $this->fetchData($result);

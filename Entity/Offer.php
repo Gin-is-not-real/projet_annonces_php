@@ -1,6 +1,9 @@
 <?php 
 
 class Offer {
+    public static $TABLE_NAME = 'Offer';
+    public static $PRIMARY_KEY = 'id';
+
     private $id;
     private $title;
     private $content;
@@ -9,7 +12,8 @@ class Offer {
 
     private $publicationDate;
     private $category;
-    private $image;
+    public $userId;
+
 
     // public function __construct($title, $content, $price, $place, $date) {
     //     $this->title = $title;
@@ -78,11 +82,11 @@ class Offer {
         return $this;
     }
 
-    public function getImage() {
-        return $this->image;
+    public function getUserId() {
+        return $this->userId;
     }
-    public function setImage($image) {
-        $this->image = $image;
+    public function setUserId($userId) {
+        $this->userId = $userId;
         return $this;
     }
 }

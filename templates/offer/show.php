@@ -2,7 +2,7 @@
     $title = 'Offers';
     ob_start();
 
-    $data = $_POST['offer']->fetch();
+    $data = $_POST['offer'][0];
 
 ?>
 <main>
@@ -28,7 +28,13 @@
                 <div>Description:
                     <?= $data['content']; ?>
                 </div>
-                <div>Image name:
+
+                <div>Images:
+                    <?php 
+                        foreach($data['images'] as $image) {
+                            echo '<div>image: ' . $image['filename'] . '</div>';
+                        }
+                    ?>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@
  */
 require_once 'Controller/LoginController.php';
 require_once 'Controller/OfferController.php';
+require_once 'Controller/ImageController.php';
 
 // require_once 'Manager/DatabaseManager.php';
 require_once 'Manager/LoginManager.php';
@@ -11,10 +12,20 @@ require_once 'Manager/OfferManager.php';
 require_once 'Manager/ImageManager.php';
 
 
+$loginController = new LoginController();
+$loginController->setManager(new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users'));
 
-$loginManager = new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users');
-$offerManager = new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers');
-$imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
+$offerController = new OfferController();
+$offerController->setManager(new OfferManager('localhost', 'projet_offers', 'admin', 'admin', 'offers'), 'Offer');
+// $offerController->pushRelation(User::$TABLE_NAME, User::$TABLE_NAME . User::$PRIMARY_KEY,  'user_id');
+$offerController->pushRelation('users', 'users.id',  'offers.user_id');
+
+$offerController->pushRelation('images', 'images.id', 'offers.image_id');
+
+$imageController = new ImageController();
+$imageController->setManager(new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images'), 'Image');
+// $imageManager = new ImageManager('localhost', 'projet_offers', 'admin', 'admin', 'images');
+
 
 if(session_id() == '') {
     session_start();
@@ -30,45 +41,57 @@ try {
                 session_destroy();
             }
         }
-        OfferController::index($offerManager, $loginManager);
-        // $offerManager->testJoin();
+        $imageController->clearFolder();
+        $offerController->index();
+
     }
     else {
         if($_GET['action'] == 'login-index') {
-            LoginController::index();
+            $loginController->index();
         }
         elseif($_GET['action'] == 'login') {
             if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
-                LoginController::login($loginManager, $_POST['username'], $_POST['pass']);
+                $loginController->login($_POST['username'], $_POST['pass']);
             }
         }
         elseif($_GET['action'] == 'register') {
-            LoginController::register($loginManager, $_POST['username'], $_POST['email'], $_POST['pass']);
+            $loginController->register($_POST['username'], $_POST['email'], $_POST['pass']);
         }
         elseif($_GET['action'] == 'logout') {
-            // $_POST['message'] = 'You have been correctly disconnected';
-            LoginController::logout();
+            // $_POST['message'] = 'You have been correctly disconnected';820014009
+            $loginController->logout();
         }
         elseif($_GET['action'] == 'admin') {
             // require 'templates/offer/index.php.php';
-            OfferController::admin($offerManager, $loginManager);
+            $offerController->listByUser($_SESSION['user_id'], $imageController);
         }
         elseif($_GET['action'] == 'offer-index') {
-            OfferController::index($offerManager, $loginManager);
+            $offerController->index();
         }
 
         elseif($_GET['action'] == 'show') {
-            OfferController::show($offerManager, $loginManager, $_GET['id']);
+            $offerController->show($_GET['id']);
         }
 
         elseif($_GET['action'] == 'new') {
-            OfferController::new($offerManager, $imageManager);
+            $offerController->new($imageController);
         }
         elseif($_GET['action'] == 'edit') {
-            OfferController::edit($offerManager, $_GET['id']);
+            $offerController->edit($_GET['id'], $imageController);
         }
         elseif($_GET['action'] == 'delete') {
-            OfferController::delete($offerManager, $_GET['id']);
+            $offerController->delete($_GET['id']);
+        }
+
+        elseif($_GET['action'] == 'edit-img') {
+            require 'TEST.php';
+        }
+        elseif($_GET['action'] == 'new-img') {
+            require 'TEST.php';
+        }
+
+        elseif($_GET['action'] == 'delete-img') {
+            $imageController->delete($_GET['id'], $_GET['filename']);
         }
     }
     

@@ -1,4 +1,5 @@
 <section>
+
     <header>
         <h2><?= $data['title']; ?> </h3>
         <h3>Par: <?= $data['username']; ?></h3>
@@ -17,14 +18,20 @@
         <div>Description:
             <?= $data['content']; ?>
         </div>
-        <div>File name:
-            <!-- <?= $data['content']; ?> -->
+
+        <div>Images:
+            <?php 
+                foreach($data['images'] as $image) {
+                    // var_dump($image);
+                    echo '<div>image: ' . $image['filename'] . '</div>';
+                }
+            ?>
         </div>
     </div>
 
     <footer>
         <div>
-            <a href="index.php?action=show&amp;id=<?= $data['id'] ?>">show</a>
+            <a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>">show</a>
         </div>
     </footer>
 </section>

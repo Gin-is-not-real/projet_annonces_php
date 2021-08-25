@@ -15,24 +15,23 @@
             </div>
             <?php 
                 if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {
-                    var_dump($_POST['user-offers']);
-                    $offers = $_POST['user-offers'];
-                    while($data = $_POST['user-offers']->fetch()) {
-                        // var_dump($data);
+                    $data = $_POST['user-offers'];
+                    
+                    foreach($_POST['user-offers'] as $data) {
                         include 'templates/offer/_offer.php';
-                        // include '../../offer/_offer.php';
-            ?>
+
+                        ?>
                         <footer class="offer-footer">
                             <div>
-                                <a href="index.php?action=edit&amp;id=<?= $data['id']; ?>">EDIT</a>
+                                <a href="index.php?action=edit&amp;id=<?= $data['offerid']; ?>">EDIT</a>
                             </div>
                             <div>
-                                <a href="index.php?action=delete&amp;id=<?= $data['id']; ?>">DELETE</a>
+                                <a href="index.php?action=delete&amp;id=<?= $data['offerid']; ?>">DELETE</a>
                             </div>
                         </footer>
             <?php
-                    }
-                    $_POST['user-offers']->closeCursor();
+                    } 
+
                 }
             ?>
         </div>

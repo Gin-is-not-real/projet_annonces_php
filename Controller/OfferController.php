@@ -125,7 +125,7 @@ class OfferController extends Controller {
             }
 
             if($_FILES['image-2'] AND strlen($_FILES['image-2']['name']) != 0) {
-                $img = $imageController->uploadImageAndCreatePost($_FILES['image-1'], $offerId);
+                $img = $imageController->uploadImageAndCreatePost($_FILES['image-2'], $offerId);
 
                 if($_POST['hidden-img2'] == 'edit-img') {
                     $imageController->edit($_POST['hidden-id2'], $img);

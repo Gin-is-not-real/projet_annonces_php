@@ -16,7 +16,7 @@ class ImageController extends Controller {
                 $tmpName = $file['tmp_name'];
                 //C:\Users\acs\AppData\Local\Temp\php5F0E.tmp
 
-                $filename = substr($offerId, 0, 3) . $img['name'];
+                $filename = rand(0, 500) . $img['name'];
                 //user-shape_icon-64px.png
 
                 $dest = 'public/uploads/';
@@ -25,7 +25,7 @@ class ImageController extends Controller {
                 $image = [
                     'filename'=> $filename, 
                     'offer_id' => $offerId,
-                    'id' => date('hismd') . substr($filename, -7, 3)
+                    'id' => rand(0, 500) . substr($filename, -7, 3)
                 ];
 
                 return $image;
@@ -33,19 +33,14 @@ class ImageController extends Controller {
         }
     }
 
-    public function send($image) {
-        die(var_dump($image));
-
-        $search = $this->manager->find($image['id']);
-        $fetched = $search->fetch();
-        die(var_dump($fetched));
-    }
-
     public function new($image) {
         $this->manager->add($image);
     }
 
     public function edit($id, $image) {
+        if(file_exists($this::$FILE_DEST . $image['filename'])) {
+            unlink($this::$FILE_DEST . $image['filename']);
+        }
         $this->manager->update($id, $image);
     }
 

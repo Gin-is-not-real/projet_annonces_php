@@ -65,9 +65,8 @@ else {
 <?php 
         if(isset($imgData[0])) {
 ?>            
-        <input type="hidden" name="hidden-id0" value="<?= $imgData[0]['id']; ?>">
         <div>
-
+            <input type="hidden" name="hidden-id0" value="<?= $imgData[0]['id']; ?>">
             <a href="index.php?action=delete-img&amp;id=<?= $imgData[0]['id']; ?>&amp;filename=<?= $imgData[0]['filename']; ?>">delete</a>
         </div>
 <?php
@@ -86,7 +85,6 @@ else {
         <?php 
         if(isset($imgData[1])) {
 ?>            
-
         <div>
             <input type="hidden" name="hidden-id1" value="<?= $imgData[1]['id']; ?>">
 
@@ -110,7 +108,7 @@ else {
         if(isset($imgData[2])) {
 ?>            
         <div>
-            <input type="hidden" name="hidden-id1" value="<?= $imgData[2]['id']; ?>">
+            <input type="hidden" name="hidden-id2" value="<?= $imgData[2]['id']; ?>">
             <a href="index.php?action=delete-img&amp;id=<?= $imgData[2]['id']; ?>&amp;filename=<?= $imgData[2]['filename']; ?>">delete</a>
         </div>
 <?php

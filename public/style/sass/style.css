@@ -37,20 +37,27 @@ li {
   margin: 2%;
   border: 1px solid black;
 }
-
-.offer-container {
-  margin: 2%;
-  border: 1px solid black;
-}
-.offer-container header {
+.container header {
   background-color: var(--bg-header);
+  padding: 2%;
+}
+.container header > * {
+  margin: 1%;
+}
+.container .content {
+  padding: 2%;
 }
 
 .img-container {
   margin: 2%;
-  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
 }
 .img-container figure {
   margin: 2%;
-  border: 1px solid black;
-}/*# sourceMappingURL=style.css.map */
+}
+.img-container figcaption {
+  font-size: 0.7rem;
+}
+
+/*# sourceMappingURL=style.css.map */

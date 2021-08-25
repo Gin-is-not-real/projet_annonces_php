@@ -5,7 +5,7 @@
     <main>
     **login/index.php</br>
 
-        <div class="container">
+        <div class="container" id="login-main-container">
             <?php include 'templates/_error.php'; ?>
             <?php include('_form-login.php'); ?> 
             <?php include('_form-register.php'); ?> 

@@ -44,6 +44,9 @@ li {
 .container header > * {
   margin: 1%;
 }
+.container header .offer-title {
+  margin-bottom: 3%;
+}
 .container .content {
   padding: 2%;
 }
@@ -60,4 +63,25 @@ li {
   font-size: 0.7rem;
 }
 
-/*# sourceMappingURL=style.css.map */
+#login-main-container {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* FORM */
+.form-container {
+  width: 300px;
+}
+
+form {
+  margin: 1%;
+}
+form div {
+  display: flex;
+  justify-content: space-between;
+}
+form input {
+  margin: 1% 0;
+}/*# sourceMappingURL=style.css.map */

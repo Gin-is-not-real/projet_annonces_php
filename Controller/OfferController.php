@@ -48,7 +48,6 @@ class OfferController extends Controller {
         $_POST['offer'] = [];
         $offer = $this->manager->listOffers([' WHERE offers.id= ', $id . '']);
 
-
         while($data = $offer->fetch()) {
             $images = $this->manager->findByIn('images', 'offer_id', $data['offerid']);
 
@@ -98,7 +97,7 @@ class OfferController extends Controller {
         //cherche en base les images liées a l'offre
         $images = $imageController->manager->findBy('offer_id', $offerId);
 
-        //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
+        //on verifie que le formulaire a été touché 
         if(isset($_POST['title'])) {
             $this->manager->update($offerId);
 

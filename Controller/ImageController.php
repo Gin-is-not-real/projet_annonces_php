@@ -25,7 +25,7 @@ class ImageController extends Controller {
                 $image = [
                     'filename'=> $filename, 
                     'offer_id' => $offerId,
-                    'id' => date('hismd') . substr($filename, -6, 3)
+                    'id' => date('hismd') . substr($filename, -7, 3)
                 ];
 
                 return $image;

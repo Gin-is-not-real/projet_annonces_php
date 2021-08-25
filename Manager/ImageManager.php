@@ -12,16 +12,17 @@ class ImageManager extends DatabaseManager {
                 'offer_id' => $image['offer_id']
             ));
         } catch (Exception $e) {
-            die('Error while try add an image: ' . $e->getMessage());
+            die('Error on ' . __METHOD__ . ' : ' . $e->getMessage());
         }
     }
 
     public function update($id, $image) {
         try {
-            $toUp = $this->pdo->prepare("UPDATE $this->tablename SET 
-                filename = :filename, offer_id = :offer_id WHERE id = $id");
+            $toUp = $this->pdo->prepare("UPDATE $this->tablename SET id = :id,
+                filename = :filename, offer_id = :offer_id WHERE id='" . $id . "'");
 
             $affectedLines = $toUp->execute(array(
+                'id' => $id, 
                 'filename' => $image['filename'],
                 'offer_id' => $image['offer_id']
             ));

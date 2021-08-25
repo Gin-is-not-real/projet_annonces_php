@@ -41,6 +41,7 @@ try {
                 session_destroy();
             }
         }
+        $imageController->clearFolder();
         $offerController->index();
 
     }

@@ -63,22 +63,6 @@ class DatabaseManager {
 
         return $result;
     }
-        // public function findByRelation($relation, $where = null) {
-    //     $table = $relation['table'];
-    //     $strKey = $relation['strangerKey'];
-    //     $thisKey = $relation['key'];
-
-    //     $where = $where != null ? ' WHERE ' . $where[0] . ' = ' . $where[1] : '';
-
-    //     try {
-    //         $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $where);
-
-    //     } catch (Exception $e) {
-    //         die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
-    //     }
-    //     // var_dump($result);
-    //     return $result;
-    // }
 
     public function findByRelationBetween($manager, $relation, $option = null) {
         $tableRel = $relation['table'];

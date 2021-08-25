@@ -38,8 +38,11 @@ class ImageController extends Controller {
     }
 
     public function edit($id, $image) {
-        if(file_exists($this::$FILE_DEST . $image['filename'])) {
-            unlink($this::$FILE_DEST . $image['filename']);
+        $oldImage = $this->manager->find($id);
+        $oldImage = $oldImage->fetch();
+
+        if(file_exists($this::$FILE_DEST . $oldImage['filename'])) {
+            unlink($this::$FILE_DEST . $oldImage['filename']);
         }
         $this->manager->update($id, $image);
     }
@@ -54,5 +57,20 @@ class ImageController extends Controller {
         $this->manager->removeImage($id);
 
         header("Location: index.php?action=edit&id=" . $fetched['offer_id']);
+    }
+
+    public function clearFolder() {
+        $files = scandir($this::$FILE_DEST);
+
+        foreach($files as $file) {
+            if(file_exists($this::$FILE_DEST . $file) AND $file != "\." OR $file != "\..") {
+                $image = $this->manager->findBy('filename', $file);
+
+                if(!$image->fetch()) {
+                    // $this->delete($id);
+                    unlink($this::$FILE_DEST . $file);
+                }
+            }
+        }
     }
 }

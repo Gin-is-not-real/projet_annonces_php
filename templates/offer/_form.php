@@ -20,7 +20,6 @@ else {
 ?>
 <div><a href="index.php?action=admin">your offers</a></div>
 
-
 <div class="container form-container">
     <header>
         <h2><?= $title; ?></h2>

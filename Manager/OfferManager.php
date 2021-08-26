@@ -7,30 +7,6 @@ require_once 'ArrayPrint.php';
 
 class OfferManager extends DatabaseManager {
 
-    // public function uploadImageAndCreatePost($file, $offerId) {
-    //     if(isset($file) AND !empty($file)) {
-    //         $img = $file;
-    //         // var_dump($img, '</br>');
-
-    //         //on verifie si c'est une image
-    //         if(strpos($img['type'], 'image') !== '') {
-
-    //             $tmpName = $file['tmp_name'];
-    //             //C:\Users\acs\AppData\Local\Temp\php5F0E.tmp
-
-    //             $filename = $img['name'];
-    //             //user-shape_icon-64px.png
-
-    //             $dest = 'public/uploads/';
-    //             move_uploaded_file($tmpName, $dest . $filename);
-
-    //             $_POST['image'] = ['filename'=> $filename, 'offer_id' => $offerId];
-
-    //             return $_POST['image'];
-    //         }
-    //     }
-    // }
-
     public function add($offer) {
         try {
             $entry = $this->pdo->prepare("INSERT INTO $this->tablename (id, title, content, price, place, user_id) VALUES (:id, :title, :content, :price, :place, :user_id)");
@@ -98,55 +74,8 @@ class OfferManager extends DatabaseManager {
         }
         ArrayPrint::printMultiArray($result->fetchAll());
         return $result;
-}
+    }
 
-    // public function findByRelatedUser() {
-    //     try {
-    //         // $result = $this->pdo->query("SELECT * FROM User::table INNER JOIN offers ON users.id = offers.user_id ");
-    //         $result = $this->pdo->query("SELECT * FROM ". User::$TABLE_NAME . " WHERE id = 1");
-
-    //     }
-    //     catch (Exception $e) {
-    //         die('ERROR function findByRelations: ' . $e->getMessage());
-    //     }
-    //     var_dump($result->fetchAll());
-    //     // return $result;
-    // }
-
-    // public function findRelations($entityManager) {
-    //     try {
-    //         $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id ");
-    //     }
-    //     catch (Exception $e) {
-    //         die('ERROR function findByRelations: ' . $e->getMessage());
-    //     }
-    //     return $result;
-    //     // return $this->fetchData($result);
-    // }
-
-    // public function findByRelations($entityManager, $user_id) {
-    //     try {
-    //         // $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = '" . $user_id ."'");
-    //         $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE offers.user_id='" . $user_id ."'");
-    //     }
-    //     catch (Exception $e) {
-    //         die('ERROR function findByRelations: ' . $e->getMessage());
-    //     }
-    //     return $result;
-    //     // return $this->fetchData($result);
-    // }
-    
-    // public function findRelationsBy($entityManager, $field, $value) {
-    //     try {
-    //         $result = $this->pdo->query("SELECT * FROM $entityManager->tablename INNER JOIN offers ON users.id = offers.user_id WHERE " . $field . "='" . $value . "'");
-    //     }
-    //     catch (Exception $e) {
-    //         die('ERROR function findByRelations: ' . $e->getMessage());
-    //     }
-
-    //     return $result;
-    //     // return $this->fetchData($result);
-    // }
 }
 
 

@@ -65,24 +65,14 @@ class OfferController extends Controller {
         if(isset($_POST['title'])) {
             //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
             $generateOfferId = date('mdhis');
-            //081 911 3657
-            //UPLOAD
+
             $this->manager->add($_POST);
 
-            if(isset($_FILES['image-0'] ) AND strlen($_FILES['image-0']['name']) != 0) {
-                $image = $imageController->uploadImageAndCreatePost($_FILES['image-0'], $generateOfferId);
-                $imageController->new($image);
-                // die(var_dump($image));
-            }
-            if(isset($_FILES['image-1']) AND strlen($_FILES['image-1']['name']) != 0) {
-                $image = $imageController->uploadImageAndCreatePost($_FILES['image-1'], $generateOfferId);
-                $imageController->new($image);
-                // die(var_dump($image));
-            }
-            if(isset($_FILES['image-2']) AND strlen($_FILES['image-2']['name']) != 0) {
-                $image = $imageController->uploadImageAndCreatePost($_FILES['image-2'], $generateOfferId);
-                $imageController->new($image);
-                // die(var_dump($image));
+            foreach($_FILES as $file) {
+                if(strlen($file['name']) != 0) {
+                    $image = $imageController->uploadImageAndCreatePost($file, $generateOfferId);
+                    $imageController->new($image);
+                }
             }
 
             header('Location: index.php?action=admin');
@@ -101,36 +91,17 @@ class OfferController extends Controller {
         if(isset($_POST['title'])) {
             $this->manager->update($offerId);
 
-            if($_FILES['image-0'] AND strlen($_FILES['image-0']['name']) != 0) {
-                $img = $imageController->uploadImageAndCreatePost($_FILES['image-0'], $offerId);
+            $count = 0;
+            foreach($_FILES as $file) {
+                if(isset($file) AND strlen($file['name']) != 0) {
+                    $image = $imageController->uploadImageAndCreatePost($file, $offerId);
 
-                if($_POST['hidden-img0'] == 'edit-img') {
-                    $imageController->edit($_POST['hidden-id0'], $img);
-                }
-                else {
-                    $imageController->new($img);
-                }
-            }
-
-            if($_FILES['image-1'] AND strlen($_FILES['image-1']['name']) != 0) {
-                $img = $imageController->uploadImageAndCreatePost($_FILES['image-1'], $offerId);
-
-                if($_POST['hidden-img1'] == 'edit-img') {
-                    $imageController->edit($_POST['hidden-id1'], $img);
-                }
-                else {
-                    $imageController->new($img);
-                }
-            }
-
-            if($_FILES['image-2'] AND strlen($_FILES['image-2']['name']) != 0) {
-                $img = $imageController->uploadImageAndCreatePost($_FILES['image-2'], $offerId);
-
-                if($_POST['hidden-img2'] == 'edit-img') {
-                    $imageController->edit($_POST['hidden-id2'], $img);
-                }
-                else {
-                    $imageController->new($img);
+                    if($_POST['hidden-img'.$count] == 'edit-img') {
+                        $imageController->edit($_POST['hidden-id'.$count], $image);
+                    }
+                    else {
+                        $imageController->new($image);
+                    }
                 }
             }
 

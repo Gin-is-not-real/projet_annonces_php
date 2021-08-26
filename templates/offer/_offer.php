@@ -1,14 +1,11 @@
 <section class="container offer-container">
     <header>
-        <div class="offer-head">
+        <div class="offer-header">
             <h2 class="offer-title"><a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>"><?= $data['title']; ?> </a></h2>
-            <h2 class="offer-price"><?= $data['price']; ?></h2>
+            <h2 class="offer-price"><?= $data['price']; ?> €</h2>
         </div>
 
-
-        <h3 class="offer-user">Par: <?= $data['username']; ?></h3>
-        <!-- <p class="offer-date">Publiée le: <?= $data['date']; ?></p> -->
-
+        <!-- <h3 class="offer-user">Par: <?= $data['username']; ?></h3> -->
         <?php
             $now = new DateTime();
             $interval = $now->diff(new DateTime($data['date']));
@@ -17,29 +14,25 @@
                 'hour' => $interval->format('%h'),
                 'minute' => $interval->format(('%i'))
             ];
-            $str = 'Posted ';
+            $dateStr = 'Posted ';
 
             foreach($intervals as $key => $value) {
                 if($value != 0) {
-                    $str .= $value . ' ' . $key;
-                    $str .= $value == 1 ? '' : 's ';
+                    $dateStr .= $value . ' ' . $key;
+                    $dateStr .= $value == 1 ? '' : 's ';
                 }
             }
-            $str .= ' ago';
-
+            $dateStr .= ' ago';
         ?>
 
-        <p class="offer-date"><?= $str; ?></p>
-        <div><?= $data['place']; ?></div>
+        <div class="offer-sub-header">
+            <div class="offer-date"><?= $dateStr; ?></div>
+            <div class="offer-place"><p><i class="fab fa-periscope"></i></p> <p><?= $data['place']; ?></p></div>
+        </div>
     </header>
 
     <div class="content">
-        <div>Prix: 
-            <?= $data['price']; ?> euros
-        </div>
-        <!-- <div>Lieu:
-            <?= $data['place']; ?>
-        </div> -->
+
         <div>Description:
             <?= $data['content']; ?>
         </div>

@@ -1,10 +1,17 @@
 html {
     --grey: rgba(128, 128, 128, 0.344);
+    --orange: rgba(235, 118, 41, 0.981);
+    --black-font: rgba(0, 0, 0, 0.809);
+
+    --box-shadow: 0 1px 3px black;
 
     --bg-header: var(--grey);
     // --bg-header: red;
+    --color-1: var(--black-font);
+    --color-2: var(--orange);
 
     font-size: 12pt;
+    color: var(--color-1);
 }
 
 
@@ -40,10 +47,16 @@ li {
     }
 }
 
+
+
+
+
 /* CONTAINER */ 
 .container {
     margin: 2%;
-    border: 1px solid black;
+    // border: 1px solid black;
+
+    box-shadow: 1px 1px 0 3p;
 
     header {
         // padding: 2%;
@@ -62,16 +75,54 @@ li {
 }
 
 .offer-container {
+    box-shadow: var(--box-shadow);
+    min-width: 320px;
     max-width: 400px;
+
+    .offer-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .offer-sub-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .offer-price {
+        color: var(--orange);
+    }
+
+    .offer-date {
+        font-size: 0.75rem;
+        width: max-content;
+    }
+
+    .offer-place {
+        width: max-content;
+        display: flex;
+        gap: 5px;
+    }
+
+    .content {
+        * {
+            border: 1px solid black;
+        }
+        background-color: aqua;
+    }
 }
+// map point
+// f3c5
 
 .img-container {
     margin: 2%;
     display: flex;
     justify-content: space-around;
+
     figure {
         margin: 2%;
     }
+
     figcaption {
         font-size: 0.7rem;
     }

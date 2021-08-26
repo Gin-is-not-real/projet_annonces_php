@@ -51,6 +51,10 @@ li {
   padding: 2%;
 }
 
+.offer-container {
+  max-width: 400px;
+}
+
 .img-container {
   margin: 2%;
   display: flex;
@@ -84,4 +88,6 @@ form div {
 }
 form input {
   margin: 1% 0;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

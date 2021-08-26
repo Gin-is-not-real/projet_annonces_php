@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container offer-container">
     <header>
         <div class="offer-head">
             <h2 class="offer-title"><a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>"><?= $data['title']; ?> </a></h2>
@@ -59,9 +59,11 @@
         </div>
     </div>
 
-    <footer>
-        <!-- <div>
-            <a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>">show</a>
-        </div> -->
-    </footer>
+<?php 
+    include 'templates/' . $currentDirectory . '/_offer-footer.php';
+    // if($currentDirectory == 'admin') {
+    //     include '_offer-footer.php';
+    // }
+?>
+
 </section>

@@ -1,5 +1,6 @@
 <?php 
     $title = 'Offers';
+    $currentDirectory = basename(__DIR__); 
     ob_start();
 ?>
 

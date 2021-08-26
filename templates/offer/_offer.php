@@ -33,27 +33,36 @@
 
     <div class="content">
 
-        <div>Description:
-            <?= $data['content']; ?>
+        <div class="img-container">
+            <div class="img-preview">
+                <figure>
+                    <img src="public/uploads/<?= $data['images'][0]['filename']; ?>" alt="<?= $data['images'][0]['filename']; ?>" >
+                </figure>
+            </div>
+
+            <!-- <div class="img-mini"> -->
+                <?php 
+                    foreach($data['images'] as $image) {
+                ?>
+                <!--  
+                    <figure>
+                        <img src="public/uploads/<?= $image['filename']; ?>" alt="<?= $image['filename']; ?>" width="50px" height="auto">
+                        <figcaption><?= $image['filename']; ?></figcaption>
+                    </figure>
+                -->
+                <?php
+                    }
+                ?>
+            <!-- </div> -->
         </div>
 
-        <div class="container img-container">
-            <?php 
-                foreach($data['images'] as $image) {
-            ?>
-                <figure>
-                    <img src="public/uploads/<?= $image['filename']; ?>" alt="<?= $image['filename']; ?>" width="100px" height="auto">
-                    <figcaption><?= $image['filename']; ?></figcaption>
-                </figure>
-
-            <?php
-                }
-            ?>
+        <div class="offer-description">
+            <?= $data['content']; ?>
         </div>
     </div>
 
 <?php 
-    include 'templates/' . $currentDirectory . '/_offer-footer.php';
+    // include 'templates/' . $currentDirectory . '/_offer-footer.php';
     // if($currentDirectory == 'admin') {
     //     include '_offer-footer.php';
     // }

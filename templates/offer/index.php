@@ -5,9 +5,12 @@
 ?>
 
     <main>
-        **offer/index.php</br>
+        <!-- **offer/index.php</br> -->
 
         <div class="container">
+            <header>
+                <h1>all offers</h1>
+            </header>
             
             <?php 
                 if(isset($_POST['all-offers']) AND !empty($_POST['all-offers'])) {

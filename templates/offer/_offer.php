@@ -6,6 +6,8 @@
         </div>
 
         <!-- <h3 class="offer-user">Par: <?= $data['username']; ?></h3> -->
+
+        <!-- formatage de la str pour la date -->
         <?php
             $now = new DateTime();
             $interval = $now->diff(new DateTime($data['date']));
@@ -35,8 +37,16 @@
 
         <div class="img-container">
             <div class="img-preview">
+                <!--  -->
+                <?php
+                    $file = isset($data['images'][0]) ? $data['images'][0]['filename'] : 'default-image-300x225.jpg';
+
+                ?>
                 <figure>
-                    <img src="public/uploads/<?= $data['images'][0]['filename']; ?>" alt="<?= $data['images'][0]['filename']; ?>" >
+                    <!-- <img src="public/uploads/<?= $data['images'][0]['filename']; ?>" alt="<?= $data['images'][0]['filename']; ?>" > -->
+
+                    <img src="public/uploads/<?= $file; ?>" alt="<?= $file; ?>" >
+
                 </figure>
             </div>
 

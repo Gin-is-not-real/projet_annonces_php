@@ -2,7 +2,8 @@
     // border: 1px solid black;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    gap: 5%;
 }
 
 .offer-container {
@@ -29,7 +30,6 @@
         padding: 0;
         height: 200px;
         display: flex;
-
 
         .img-container {
             width: 68%;

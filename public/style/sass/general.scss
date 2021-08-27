@@ -1,12 +1,16 @@
+// @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+
 html {
     --grey: rgba(128, 128, 128, 0.344);
     --light-grey: rgba(141, 140, 140, 0.22);
     --orange: rgba(235, 118, 41, 0.981);
     --black-font: rgba(0, 0, 0, 0.809);
 
-
     --bg-header: var(--grey);
-    // --bg-header: red;
     --bg-1: var(--light-grey);
 
     --color-1: var(--black-font);
@@ -15,7 +19,11 @@ html {
     --box-shadow: 0 1px 3px black;
     --border-radius-input: 2px;
 
-    font-size: 12pt;
+    font-size: 11pt;
+    // font-family: 'Comfortaa';
+    font-family: 'Do Hyeon', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+
     color: var(--color-1);
 }
 
@@ -38,6 +46,9 @@ input {
     padding: 1%;
 }
 
+.return-link {
+    margin: 0% 0% 0% 2%;
+}
 
 /* HEADER */
 #general-header {
@@ -53,9 +64,7 @@ input {
         gap: 20%;
     }
     a {
-        // text-decoration: none;
         color: rgba(0, 0, 0, 0.871);
-        // color: var(--color-2);
         text-transform: uppercase;
         font-weight: bold;
         font-size: 0.9rem;

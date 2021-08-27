@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 html {
   --grey: rgba(128, 128, 128, 0.344);
   --light-grey: rgba(141, 140, 140, 0.22);
@@ -9,7 +11,9 @@ html {
   --color-2: var(--orange);
   --box-shadow: 0 1px 3px black;
   --border-radius-input: 2px;
-  font-size: 12pt;
+  font-size: 11pt;
+  font-family: "Do Hyeon", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: var(--color-1);
 }
 
@@ -31,6 +35,10 @@ figure {
 
 input {
   padding: 1%;
+}
+
+.return-link {
+  margin: 0% 0% 0% 2%;
 }
 
 /* HEADER */
@@ -78,7 +86,8 @@ input {
 .offers-list {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  gap: 5%;
 }
 
 .offer-container {
@@ -157,14 +166,24 @@ input {
   gap: 10%;
 }
 
-.main-show-offer {
-  display: flex;
-  justify-content: space-evenly;
+@media screen and (min-width: 800px) {
+  .main-show-offer {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
-
+@media screen and (max-width: 800px) {
+  .main-show-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .offer-show-container {
   box-shadow: var(--box-shadow);
-  width: 65%;
+  max-width: 85%;
+  max-width: 800px;
+  min-width: 320px;
 }
 .offer-show-container .offer-header {
   height: 20%;
@@ -214,14 +233,14 @@ input {
   font-size: 0.7rem;
 }
 .offer-show-container .content .offer-description {
-  width: 32%;
-  padding: 2%;
+  padding: 4%;
   background-color: var(--bg-1);
 }
 
 .seller-container {
   box-shadow: var(--box-shadow);
   width: 30%;
+  min-width: 200px;
 }
 
 /* FORM */
@@ -244,6 +263,7 @@ input {
   width: 80%;
   max-width: 400px;
   box-shadow: var(--box-shadow);
+  margin: 4% auto;
 }
 .offer-form-container .form-inputs div {
   max-width: 400px;

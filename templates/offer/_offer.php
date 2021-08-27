@@ -1,4 +1,5 @@
-<section class="container offer-container">
+<section>
+    <div class="container offer-container">
     <header>
         <div class="offer-header">
             <h2 class="offer-title"><a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>"><?= $data['title']; ?> </a></h2>
@@ -34,9 +35,8 @@
     </header>
 
     <div class="content">
-
         <div class="img-container">
-        <div class="img-preview">
+            <div class="img-preview">
                 <?php
                     $file = isset($data['images'][0]) ? "public/uploads/" .$data['images'][0]['filename'] : 'public/images/default-image-300x225.jpg';
                 ?>
@@ -69,11 +69,13 @@
             <?= $description; ?>
         </div>
     </div>
-</section>
 
-<?php 
+    </div>
+    
+    <?php 
     include 'templates/' . $currentDirectory . '/_offer-footer.php';
     if($currentDirectory == 'admin') {
         include '_offer-footer.php';
     }
 ?>
+</section>

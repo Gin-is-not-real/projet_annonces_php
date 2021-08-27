@@ -21,7 +21,7 @@ else {
 }
 
 ?>
-<div><a href="index.php?action=admin">your offers</a></div>
+<div class="return-link"><a href="index.php?action=admin">your offers</a></div>
 
 <div class="container offer-form-container">
     <header>
@@ -66,24 +66,21 @@ else {
         <div>
             <figure>
                 <img src="public/uploads/<?= $src0; ?>" alt="<?= $src0; ?>" width="100px" height="auto" >
-                
             </figure>
             <input type="file" name="image-0" value="" >
             <input type="hidden" name="hidden-img0" value="<?= $act0; ?>">
+        </div>
     <?php 
             if(isset($imgData[0])) {
     ?>            
-    <?php
-            }
-    ?>
-        </div>
-
         <div class="img-delete">
             <input type="hidden" name="hidden-id0" value="<?= $imgData[0]['id']; ?>">
             <a href="index.php?action=delete-img&amp;id=<?= $imgData[0]['id']; ?>&amp;filename=<?= $imgData[0]['filename']; ?>">delete</a>
         </div>
 
-
+    <?php
+            }
+    ?>
         <!-- img 1 -->
         <div>
             <figure>
@@ -91,18 +88,18 @@ else {
             </figure>
             <input type="file" name="image-1" value="" >
             <input type="hidden" name="hidden-img1" value="<?= $act1; ?>">
-
+        </div>
             <?php 
             if(isset($imgData[1])) {
     ?>            
+                <div class="img-delete">
+                    <input type="hidden" name="hidden-id1" value="<?= $imgData[1]['id']; ?>">
+                    <a href="index.php?action=delete-img&amp;id=<?= $imgData[1]['id']; ?>&amp;filename=<?= $imgData[1]['filename']; ?>">delete</a>
+                </div>
     <?php
             }
     ?>
-        </div>
-        <div class="img-delete">
-            <input type="hidden" name="hidden-id1" value="<?= $imgData[1]['id']; ?>">
-            <a href="index.php?action=delete-img&amp;id=<?= $imgData[1]['id']; ?>&amp;filename=<?= $imgData[1]['filename']; ?>">delete</a>
-        </div>
+
 
         <!-- img 2 -->
         <div>
@@ -113,16 +110,18 @@ else {
             <input type="hidden" name="hidden-img2" value="<?= $act2; ?>">
             <?php 
             if(isset($imgData[2])) {
-    ?>            
+    ?>     
+        </div>
+                <div class="img-delete">
+                    <input type="hidden" name="hidden-id2" value="<?= $imgData[2]['id']; ?>">
+                    <a href="index.php?action=delete-img&amp;id=<?= $imgData[2]['id']; ?>&amp;filename=<?= $imgData[2]['filename']; ?>">delete</a>
+                </div>
     <?php
             }
     ?>
         </div>
 
-        <div class="img-delete">
-            <input type="hidden" name="hidden-id2" value="<?= $imgData[2]['id']; ?>">
-            <a href="index.php?action=delete-img&amp;id=<?= $imgData[2]['id']; ?>&amp;filename=<?= $imgData[2]['filename']; ?>">delete</a>
-        </div>
+
     </div>
 
     

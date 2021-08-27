@@ -11,7 +11,7 @@
             <header>
                 <h1>your offers</h1>
             </header>
-            <div>
+            <div class="return-link">
                 <a href="index.php?action=new">new offer</a>
             </div>
             

@@ -40,7 +40,6 @@
                 <!--  -->
                 <?php
                     $file = isset($data['images'][0]) ? $data['images'][0]['filename'] : 'default-image-300x225.jpg';
-
                 ?>
                 <figure>
                     <!-- <img src="public/uploads/<?= $data['images'][0]['filename']; ?>" alt="<?= $data['images'][0]['filename']; ?>" > -->

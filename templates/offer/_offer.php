@@ -36,18 +36,14 @@
     <div class="content">
 
         <div class="img-container">
-            <div class="img-preview">
-                <!--  -->
+        <div class="img-preview">
                 <?php
-                    $file = isset($data['images'][0]) ? $data['images'][0]['filename'] : 'default-image-300x225.jpg';
+                    $file = isset($data['images'][0]) ? "public/uploads/" .$data['images'][0]['filename'] : 'public/images/default-image-300x225.jpg';
                 ?>
-                <figure>
-                    <!-- <img src="public/uploads/<?= $data['images'][0]['filename']; ?>" alt="<?= $data['images'][0]['filename']; ?>" > -->
-
-                    <img src="public/uploads/<?= $file; ?>" alt="<?= $file; ?>" >
-
-                </figure>
-            </div>
+                    <figure>
+                        <img src="<?= $file; ?>" alt="<?= $file; ?>" >
+                    </figure>
+                </div>
 
             <!-- <div class="img-mini"> -->
                 <?php 
@@ -65,16 +61,19 @@
             <!-- </div> -->
         </div>
 
+        <?php 
+            $description = strlen($data['content']) > 100 ? substr($data['content'], 0, 100) . ' ...' : $data['content'];
+        ?> 
+
         <div class="offer-description">
-            <?= $data['content']; ?>
+            <?= $description; ?>
         </div>
     </div>
+</section>
 
 <?php 
-    // include 'templates/' . $currentDirectory . '/_offer-footer.php';
-    // if($currentDirectory == 'admin') {
-    //     include '_offer-footer.php';
-    // }
+    include 'templates/' . $currentDirectory . '/_offer-footer.php';
+    if($currentDirectory == 'admin') {
+        include '_offer-footer.php';
+    }
 ?>
-
-</section>

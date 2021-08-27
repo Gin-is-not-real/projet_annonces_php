@@ -1,7 +1,6 @@
 <?php 
     $title = 'Offers';
     ob_start();
-
     $data = $_POST['offer'][0];
 
 ?>
@@ -49,10 +48,10 @@
 
                 <div class="img-preview">
                 <?php
-                    $file = isset($data['images'][0]) ? $data['images'][0]['filename'] : 'default-image-300x225.jpg';
+                    $file = isset($data['images'][0]) ? "public/uploads/" .$data['images'][0]['filename'] : 'public/images/default-image-300x225.jpg';
                 ?>
                     <figure>
-                        <img src="public/uploads/<?= $file; ?>" alt="<?= $file; ?>" >
+                        <img src="<?= $file; ?>" alt="<?= $file; ?>" >
                     </figure>
                 </div>
 

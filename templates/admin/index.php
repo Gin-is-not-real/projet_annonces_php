@@ -5,7 +5,7 @@
 ?>
 
     <main>
-    **admin/index.php</br>
+    <!-- **admin/index.php</br> -->
 
         <div class="container">
             <header>
@@ -14,20 +14,19 @@
             <div>
                 <a href="index.php?action=new">new offer</a>
             </div>
-            <?php 
-                if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {
-                    $data = $_POST['user-offers'];
-                    
-                    foreach($_POST['user-offers'] as $data) {
-                        include 'templates/offer/_offer.php';
-
-                        ?>
-
-            <?php
-                    } 
-
-                }
-            ?>
+            
+            <div class="content offers-list">
+                <?php 
+                    if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {
+                        $data = $_POST['user-offers'];
+                        foreach($_POST['user-offers'] as $data) {
+                            include 'templates/offer/_offer.php';
+                            ?>
+                <?php
+                        } 
+                    }
+                ?>
+            </div>
         </div>
 
     </main>

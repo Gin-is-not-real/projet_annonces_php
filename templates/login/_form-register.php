@@ -1,4 +1,4 @@
-<div class="container  form-container">
+<div class="container  login-form-container">
     <header>
         <h1>Register</h1>
     </header>

@@ -8,6 +8,20 @@ require_once 'ArrayPrint.php';
 class OfferController extends Controller {
     public static $ENTITY = Offer::class;
 
+    public function newCategory($category) {
+        $error = null;
+        if($data = $this->manager->findByIn('categories', 'name', $category)->fetch()) {
+            $error = 'this category already exists';
+        }
+
+        if(isset($error)) {
+            $_POST['add-cat-error'] = $error;
+        } 
+        else {
+            $this->manager->addNewCategory($category);
+        }
+    }
+
     public function listOffersByCategory($category) {
         $offersId = $this->manager->findByIn('offers_categories', 'category', $category);
         $reqParam = '';

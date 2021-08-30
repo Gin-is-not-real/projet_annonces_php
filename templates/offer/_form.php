@@ -2,10 +2,8 @@
 $title = 'Form';
 ob_start();
 
-// if(isset($_POST['offer'])) {
 if(isset($offers)) {
     $values = [];
-    // $data = $_POST['offer']->fetchAll();
     $data = $offers->fetchAll();
     $imgData = $images->fetchAll();
     $offerCategories = $_POST['offer-categories']->fetchAll();
@@ -78,6 +76,8 @@ else {
                 </fieldset>
                 <!-- <input type="checkbox" name="categories"> -->
             </div>
+
+
         </div>
 
 
@@ -160,6 +160,8 @@ else {
         <input type="submit">
     </div>
 </form>
+
+
 </div>
 
 <?php 

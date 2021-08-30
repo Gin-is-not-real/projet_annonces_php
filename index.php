@@ -110,6 +110,13 @@ try {
                 htmlspecialchars($_POST['mail-about']), 
                 htmlspecialchars($_POST['mail-message']));
         }
+
+        //ne doit pas reinitialiser le formulaire
+        elseif($_GET['action'] == 'add-category') {
+            // die(var_dump($_POST['new-category']));
+            $offerController->newCategory($_POST['new-category']);
+            $offerController->new($imageController);
+        }
     }
     
     

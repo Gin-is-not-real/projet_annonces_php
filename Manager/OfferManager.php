@@ -13,6 +13,19 @@ class OfferManager extends DatabaseManager {
         $statement->execute([$offerId]);
     }
 
+    public function addNewCategory($category) {
+        //la requete fonctionne
+            try {
+                $entry = $this->pdo->prepare("INSERT INTO categories (name) VALUES (:name)");
+                $affectedLines = $entry->execute(array(
+                    'name' => $category
+                ));
+            } catch(Exception $e) {
+                die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+            }
+
+    }
+
     public function addCategory($category, $offerId) {
         try {
             $entry = $this->pdo->prepare(" INSERT INTO offers_categories (category, offer_id) VALUES (:category, :offer_id)");

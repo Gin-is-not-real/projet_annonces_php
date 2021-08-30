@@ -39,4 +39,6 @@
             echo '<div id="notices">' . 'Your message about the offer ' . $_GET['id'] . ' has been sent' . '</div>';
         }
     ?>
+    <?php include 'templates/_error.php'; ?>
+
 </div>

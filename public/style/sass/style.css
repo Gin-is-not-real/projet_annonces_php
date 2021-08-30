@@ -297,7 +297,8 @@ input {
 
   .offer-show-container {
     width: 90%;
-    min-width: 320px;
+    min-width: 270px;
+    max-width: 90%;
   }
 
   .img-preview {
@@ -313,7 +314,8 @@ input {
 
   .seller-container {
     width: 90%;
-    min-width: 320px;
+    min-width: 270px;
+    max-width: 400px;
   }
 }
 /* FORM */

@@ -62,7 +62,7 @@ try {
         }
         elseif($_GET['action'] == 'admin') {
             if(isset($_SESSION['user_id'])) {
-                $offerController->listByUser($_SESSION['user_id'], $imageController);
+                $offerController->listByUser($_SESSION['user_id'], $imageController, 'own');
             }
             else {
                 $loginController->index();

@@ -24,7 +24,7 @@ class OfferController extends Controller {
         require_once 'templates/offer/index.php';
     }
 
-    public function listByUser($id, $imageController) {
+    public function listByUser($id, $imageController, $option = null) {
         $_POST['user-offers'] = [];
         $offers = $this->manager->listOffers([' WHERE user_id =', $id]);
 
@@ -41,7 +41,9 @@ class OfferController extends Controller {
             array_push($_POST['user-offers'], $data);
         }
 
-        require_once 'templates/admin/index.php';
+        $get = $option != null ? '' : '?own=true';
+
+        require_once 'templates/admin/index.php' . $get;
     }
 
     public function show($id) {

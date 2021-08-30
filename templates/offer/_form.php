@@ -8,8 +8,15 @@ if(isset($offers)) {
     // $data = $_POST['offer']->fetchAll();
     $data = $offers->fetchAll();
     $imgData = $images->fetchAll();
+    $offerCategories = $_POST['offer-categories']->fetchAll();
+    $categories = [];
+    foreach($offerCategories as $cat) {
+        array_push($categories, $cat['category']);
+    }
+
+    // die(in_array('living samples', $offerCategories[0]));
     // $images = $images->fetchAll();
-    // var_dump($imgData);
+    var_dump($categories);
     $edit = true;
     $title = 'edit';
     $action = 'edit&amp;id=' . $data[0]['id'];
@@ -53,22 +60,26 @@ else {
             <div>
                 <label for="categories">categories</label>
                 <fieldset>
-                <?php 
-                    while($field = $_POST['categories']->fetch()) {
-                ?>
-                        <div>
-                            <label for="<?= $field['name']; ?>"><?= $field['name']; ?></label>
-                            <input type="checkbox" name="categories[]" id="<?= $field['name']; ?>" value="<?= $field['name']; ?>">
-                    </div>
-                <?php
-                    }
-                ?>
+                    <?php 
+                        while($field = $_POST['categories']->fetch()) {
+                            $checked = '';
+                            if($edit AND in_array(strtolower($field['name']), $categories)) {
+                                $checked = 'checked';
+                            }
+                            // $checked = in_array(strtolower($field['name']), $categories) ? 'checked' : '';
+                    ?>
+                            <div>
+                                <label for="<?= $field['name']; ?>"><?= $field['name']; ?></label>
+                                <input type="checkbox" name="categories[]" id="<?= $field['name']; ?>" value="<?= $field['name']; ?>" <?= $checked; ?> >
+                            </div>
+                    <?php
+                        }
+                    ?>
                 </fieldset>
-
-
                 <!-- <input type="checkbox" name="categories"> -->
             </div>
         </div>
+
 
     <?php 
         $src0 = isset($imgData[0]) ? $imgData[0]['filename'] : 'default';
@@ -120,7 +131,6 @@ else {
     <?php
             }
     ?>
-
 
         <!-- img 2 -->
         <div>

@@ -9,17 +9,17 @@ class OfferController extends Controller {
     public static $ENTITY = Offer::class;
 
     public function listOffersByCategory($category) {
-        // $_POST['all-offers'] = [];
-
         $offersId = $this->manager->findByIn('offers_categories', 'category', $category);
-        $offers = [];
+        $reqParam = '';
 
-        foreach($offersId as $offerId) {
-            array_push($offers, $this->manager->listOffers([' WHERE offers.id =', $offerId['offer_id']]));
+        while($offer = $offersId->fetch()) {
+            $offerid = $offer['offer_id'];
+
+            $reqParam .= 'offers.id =' . $offerid . ' OR ';
         }
+        $reqParam = substr($reqParam, 0, strlen($reqParam) -3);
 
-        die(var_dump($offers->fetchAll()));
-        // $this->index([' WHERE offers.id ="', $offerId])
+        $this->index([' WHERE ', $reqParam]);
     }
 
     public function index($option = null) {
@@ -104,8 +104,6 @@ class OfferController extends Controller {
 
             if(isset($_POST['categories'])) {
                 foreach($_POST['categories'] as $category) {
-                    // var_dump($category);
-
                     $this->manager->addCategory($category, $generateOfferId);
                 }
             }
@@ -123,6 +121,8 @@ class OfferController extends Controller {
         $offers = $this->manager->find($offerId);
         //cherche en base les images liées a l'offre
         $images = $imageController->manager->findBy('offer_id', $offerId);
+        $categories = $this->manager->getCategoriesFields();
+        $offersCats = $this->manager->getCategoriesForOffer($offerId);
 
         //on verifie que le formulaire a été touché 
         if(isset($_POST['title'])) {
@@ -142,11 +142,26 @@ class OfferController extends Controller {
                 }
             }
 
+            if(isset($_POST['categories'])) {
+                $this->manager->clearCategories($offerId);
+
+                foreach($_POST['categories'] as $category) {
+                    $this->manager->addCategory($category, $offerId);
+                }
+            }
+            // die();
+            $_POST['offer-categories'] = [];
+            while($category = $offersCats->fetch()) {
+                array_push($_POST['offer-categories'], $category['category']);
+            }
+
             header('Location: index.php?action=admin');
         }
         else {
             $_POST['offer'] = $offers;
             $_POST['images'] = $images;
+            $_POST['categories'] = $categories;
+            $_POST['offer-categories'] = $offersCats;
 
             require 'templates/offer/_form.php';
         }

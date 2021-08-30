@@ -7,6 +7,12 @@ require_once 'ArrayPrint.php';
 
 class OfferManager extends DatabaseManager {
 
+    public function clearCategories($offerId) {
+        $sql = "DELETE FROM offers_categories WHERE offer_id=?";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$offerId]);
+    }
+
     public function addCategory($category, $offerId) {
         try {
             $entry = $this->pdo->prepare(" INSERT INTO offers_categories (category, offer_id) VALUES (:category, :offer_id)");
@@ -33,7 +39,7 @@ class OfferManager extends DatabaseManager {
 
     public function getCategoriesForOffer($offerId) {
         try {
-            $result = $this->pdo->query("SELECT * FROM offers_categories WHERE offer_id = '" . $offerId . "'");
+            $result = $this->pdo->query("SELECT category FROM offers_categories WHERE offer_id = '" . $offerId . "'");
             return $result;
         } catch (Exception $e) {
             die('Error on ' . __METHOD__ . ': ' . $e->getMessage());
@@ -57,7 +63,6 @@ class OfferManager extends DatabaseManager {
     }
 
     public function update($id) {
-        // var_dump($_POST);
         try {
             $toUp = $this->pdo->prepare("UPDATE $this->tablename SET 
                 title = :title, content = :content, price = :price, place = :place, date = :date WHERE id = $id");
@@ -105,7 +110,7 @@ class OfferManager extends DatabaseManager {
         } catch (Exception $e) {
             die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
         }
-        ArrayPrint::printMultiArray($result->fetchAll());
+        // ArrayPrint::printMultiArray($result->fetchAll());
         return $result;
     }
 

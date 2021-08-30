@@ -95,6 +95,7 @@ try {
             $offerController->edit($_GET['id'], $imageController);
         }
         elseif($_GET['action'] == 'delete') {
+            $imageController->manager->clearImagesOfOffer($_GET['id']);
             $offerController->delete($_GET['id']);
         }
 

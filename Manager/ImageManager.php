@@ -3,6 +3,12 @@ require_once 'DatabaseManager.php';
 
 class ImageManager extends DatabaseManager {
 
+    public function clearImagesOfOffer($offerId) {
+        $sql = "DELETE FROM $this->tablename WHERE offer_id=?";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$offerId]);
+    }
+
     public function add($image) {
         try {
             $entry = $this->pdo->prepare("INSERT INTO $this->tablename (id, filename, offer_id) VALUES (:id, :filename, :offer_id)");

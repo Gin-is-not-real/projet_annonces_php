@@ -168,6 +168,7 @@ class OfferController extends Controller {
     }
 
     public function delete($id) {
+        $this->manager->clearCategories($id);
         $this->manager->remove($id);
         header('Location: index.php?action=admin');
     }

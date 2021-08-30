@@ -71,13 +71,18 @@ try {
         elseif($_GET['action'] == 'offer-index') {
             $offerController->index();
         }
-
+        
         elseif($_GET['action'] == 'show') {
             $offerController->show($_GET['id']);
         }
 
         elseif($_GET['action'] == 'new') {
-            $offerController->new($imageController);
+            if(isset($_SESSION['user_id']) ) {
+                $offerController->new($imageController);
+            }
+            else {
+                $loginController->index();
+            }
         }
         elseif($_GET['action'] == 'edit') {
             $offerController->edit($_GET['id'], $imageController);
@@ -88,6 +93,14 @@ try {
 
         elseif($_GET['action'] == 'delete-img') {
             $imageController->delete($_GET['id'], $_GET['filename']);
+        }
+
+        elseif($_GET['action'] == 'mail') {
+            $loginController->sendMail(
+                htmlspecialchars($_POST['mail-from']), 
+                $_POST['mail-to'], 
+                htmlspecialchars($_POST['mail-about']), 
+                htmlspecialchars($_POST['mail-message']));
         }
     }
     

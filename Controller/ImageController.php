@@ -63,7 +63,7 @@ class ImageController extends Controller {
         $files = scandir($this::$FILE_DEST);
 
         foreach($files as $file) {
-            if(file_exists($this::$FILE_DEST . $file)) {
+            if(file_exists($this::$FILE_DEST . $file) AND $file != 'default-image-300x225.jpg') {
                 if($file !== '.' AND $file !== '..') {
                     $image = $this->manager->findBy('filename', $file);
                     if(!$image->fetch()) {

@@ -1,8 +1,26 @@
+@media screen and (min-width: 800px) {
+    .offer-container {
+        width: 30%;
+        max-width: 400px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .offer-container {
+        width: 95vw !important;
+        min-width: 300px !important;
+    }
+    // .img-container {
+    //     width: 60% !important;
+    // }
+    // .offer-description {
+    //     width: 40%
+    // }
+}
+
 .offers-list {
-    // border: 1px solid black;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 5%;
 }
 
@@ -10,6 +28,7 @@
     box-shadow: var(--box-shadow);
     width: 400px;
     max-width: 400px;
+    min-width: 95%;
 
     .offer-header {
         height: 20%;

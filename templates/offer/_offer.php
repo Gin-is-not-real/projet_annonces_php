@@ -7,7 +7,6 @@
         </div>
 
         <!-- <h3 class="offer-user">Par: <?= $data['username']; ?></h3> -->
-
         <!-- formatage de la str pour la date -->
         <?php
             $now = new DateTime();

@@ -1,15 +1,19 @@
-@media screen and (min-width: 800px) {
-    .main-show-offer {
-        display: flex;
-        justify-content: space-evenly;
-    }
+
+
+.seller-container {
+    box-shadow: var(--box-shadow);
+    width: 30%;
+    min-width: 200px;
 }
-@media screen and (max-width: 800px) {
-    .main-show-offer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+
+#notices {
+    width: 50vw;
+    min-width: 300px;
+    margin: 2% auto;
+    padding: 2%;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-input);
+    text-align: center;
 }
 
 .offer-show-container {
@@ -75,7 +79,6 @@
                 font-size: 0.7rem;
             }
         }
-
         .offer-description {
             // width: 32%;
             padding: 4%;
@@ -85,8 +88,65 @@
     }
 }
 
-.seller-container {
-    box-shadow: var(--box-shadow);
-    width: 30%;
-    min-width: 200px;
+.form-contact {
+    margin: 1%;
+    .content div {
+        display: flex;
+        justify-content: space-between;
+        margin: 4% auto;
+
+    }
+    input {
+        margin: 1% 0;
+    }
+}
+
+/* QUERIES */ 
+@media screen and (min-width: 800px) {
+    .main-show-offer {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .seller-container {
+        width: 30%;
+        min-width: 200px;
+    }
+    .form-contact {
+        .content div {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            // flex-direction: column;
+            margin: 4%;
+        }
+        input {
+            margin: 2% auto;
+        }
+    }
+}
+@media screen and (max-width: 800px) {
+    .main-show-offer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .offer-show-container {
+        width: 90%;
+        min-width: 320px;
+    }
+    .img-preview {
+        height: auto;
+        max-height: 40vh;
+    }
+    #general-header {
+        ul {
+            width: 100% !important;
+            justify-content: space-between;
+            gap: inherit;
+        }
+    }
+    .seller-container {
+        width: 90%;
+        min-width: 320px;
+    }
 }

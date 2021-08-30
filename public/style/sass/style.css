@@ -81,12 +81,25 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2% auto;
 }
 
+@media screen and (min-width: 800px) {
+  .offer-container {
+    width: 30%;
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .offer-container {
+    width: 95vw !important;
+    min-width: 300px !important;
+  }
+}
 .offers-list {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 5%;
 }
 
@@ -94,6 +107,7 @@ input {
   box-shadow: var(--box-shadow);
   width: 400px;
   max-width: 400px;
+  min-width: 95%;
 }
 .offer-container .offer-header {
   height: 20%;
@@ -166,19 +180,22 @@ input {
   gap: 10%;
 }
 
-@media screen and (min-width: 800px) {
-  .main-show-offer {
-    display: flex;
-    justify-content: space-evenly;
-  }
+.seller-container {
+  box-shadow: var(--box-shadow);
+  width: 30%;
+  min-width: 200px;
 }
-@media screen and (max-width: 800px) {
-  .main-show-offer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+
+#notices {
+  width: 50vw;
+  min-width: 300px;
+  margin: 2% auto;
+  padding: 2%;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius-input);
+  text-align: center;
 }
+
 .offer-show-container {
   box-shadow: var(--box-shadow);
   max-width: 85%;
@@ -237,12 +254,68 @@ input {
   background-color: var(--bg-1);
 }
 
-.seller-container {
-  box-shadow: var(--box-shadow);
-  width: 30%;
-  min-width: 200px;
+.form-contact {
+  margin: 1%;
+}
+.form-contact .content div {
+  display: flex;
+  justify-content: space-between;
+  margin: 4% auto;
+}
+.form-contact input {
+  margin: 1% 0;
 }
 
+/* QUERIES */
+@media screen and (min-width: 800px) {
+  .main-show-offer {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .seller-container {
+    width: 30%;
+    min-width: 200px;
+  }
+
+  .form-contact .content div {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin: 4%;
+  }
+  .form-contact input {
+    margin: 2% auto;
+  }
+}
+@media screen and (max-width: 800px) {
+  .main-show-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer-show-container {
+    width: 90%;
+    min-width: 320px;
+  }
+
+  .img-preview {
+    height: auto;
+    max-height: 40vh;
+  }
+
+  #general-header ul {
+    width: 100% !important;
+    justify-content: space-between;
+    gap: inherit;
+  }
+
+  .seller-container {
+    width: 90%;
+    min-width: 320px;
+  }
+}
 /* FORM */
 .login-form-container {
   width: 300px;

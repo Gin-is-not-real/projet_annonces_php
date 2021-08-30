@@ -10,6 +10,17 @@ class LoginController extends Controller {
         require_once('templates/login/index.php');
     }
 
+    public function sendMail($from, $to, $about, $message) {
+        $subject = 'Your offer n° ' . $about;
+        $msg = $message;
+        $header = 'From: ' . $from;
+
+        mail($to, $subject, $msg, $header);
+
+        // $_POST['notice'] = 'Your message about the offer ' . $about . ' has been sent';
+        header('Location: index.php?action=show&id='.$about.'&notice=sent');
+    }
+
     public function logout() {
         unset($_SESSION['username']);
         unset($_SESSION['user_id']);

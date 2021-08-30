@@ -2,20 +2,15 @@
     $title = 'Offers';
     ob_start();
     $data = $_POST['offer'][0];
-
 ?>
 <main class="main-show-offer">
-<!-- **offer/show.php</br> -->
     <section class="container offer-show-container">
         <header>
             <div class="offer-header">
                 <h2 class="offer-title"><a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>"><?= $data['title']; ?> </a></h2>
                 <h2 class="offer-price"><?= $data['price']; ?> €</h2>
             </div>
-            <!-- 
 
-            <h3 class="offer-user">By: <?= $data['username']; ?></h3>
--->
             <!-- formatage de la str pour la date -->
             <?php
                 $now = new DateTime();
@@ -73,16 +68,38 @@
                 <?= $data['content']; ?>
             </div>
         </div>
-
             <footer>
 
             </footer>
         </section>
 
         <section class="container seller-container">
+                <header>
+                    <h1>Send a message</h1>
+                </header>
             <header>
-                <h3 class="offer-user">By: <?= $data['username']; ?></h3>
+                <h3 class="offer-user">To: <?= $data['username']; ?></h3>
             </header>
+
+            <div class="form-container">
+
+                <form action="index.php?action=mail" method="post" class="form-contact">
+                <div class="content">
+                    <div>
+                        <label for="mail-from">Mail: </label>
+                        <input type="email" name="mail-from" required>
+                    </div>
+                    <div>
+                        <label for="mail-message">Message: </label>
+                        <textarea name="mail-message" required></textarea>
+                    </div>
+                    <input type="hidden" name="mail-to" value="<?= $data['usersid']; ?>">
+                    <input type="hidden" name="mail-about" value="<?= $data['offerid']; ?>">
+
+                    <input type="submit">
+                </div>
+                </form>
+            </div>
 
         </section>
             

@@ -8,17 +8,38 @@ require_once 'ArrayPrint.php';
 class OfferController extends Controller {
     public static $ENTITY = Offer::class;
 
-    public function index() {
+    public function listOffersByCategory($category) {
+        // $_POST['all-offers'] = [];
+
+        $offersId = $this->manager->findByIn('offers_categories', 'category', $category);
+        $offers = [];
+
+        foreach($offersId as $offerId) {
+            array_push($offers, $this->manager->listOffers([' WHERE offers.id =', $offerId['offer_id']]));
+        }
+
+        die(var_dump($offers->fetchAll()));
+        // $this->index([' WHERE offers.id ="', $offerId])
+    }
+
+    public function index($option = null) {
         $_POST['all-offers'] = [];
-        $offers = $this->manager->listOffers();
-        
+        $offers = $this->manager->listOffers($option);
+
         while($data = $offers->fetch()) {
             $images = $this->manager->findByIn('images', 'offer_id', $data['offerid']);
-
             $data['images'] = [];
             while($image = $images->fetch()) {
                 array_push($data['images'], $image);
             }
+
+            $categories = $this->manager->getCategoriesForOffer($data['offerid']);
+
+            $data['categories'] = [];
+            while($category = $categories->fetch()) {
+                array_push($data['categories'], $category);
+            }
+
             array_push($_POST['all-offers'], $data);
         }
         require_once 'templates/offer/index.php';
@@ -28,16 +49,19 @@ class OfferController extends Controller {
         $_POST['user-offers'] = [];
         $offers = $this->manager->listOffers([' WHERE user_id =', $id]);
 
-        // die(var_dump($offers->fetchAll()));
-
         while($data = $offers->fetch()) {
-            // $images = $this->manager->findByIn('images', 'offer_id', $data['offerid']);
             $images = $imageController->manager->findBy('offer_id', $data['offerid']);
-
             $data['images'] = [];
             while($image = $images->fetch()) {
                 array_push($data['images'], $image);
             }
+
+            $categories = $this->manager->getCategoriesForOffer($data['offerid']);
+            $data['categories'] = [];
+            while($category = $categories->fetch()) {
+                array_push($data['categories'], $category);
+            }
+
             array_push($_POST['user-offers'], $data);
         }
 
@@ -63,6 +87,7 @@ class OfferController extends Controller {
     }
 
     public function new($imageController) {
+        $categories = $this->manager->getCategoriesFields();
         //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
             //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
@@ -77,9 +102,19 @@ class OfferController extends Controller {
                 }
             }
 
+            if(isset($_POST['categories'])) {
+                foreach($_POST['categories'] as $category) {
+                    // var_dump($category);
+
+                    $this->manager->addCategory($category, $generateOfferId);
+                }
+            }
+
             header('Location: index.php?action=admin');
         }
         else {
+            $_POST['categories'] = $categories;
+            // var_dump($_POST['categories']->fetchAll());
             require 'templates/offer/_form.php';
         }
     }

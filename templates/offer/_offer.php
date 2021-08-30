@@ -31,6 +31,20 @@
             <div class="offer-date"><?= $dateStr; ?></div>
             <div class="offer-place"><p><i class="fab fa-periscope"></i></p> <p><?= $data['place']; ?></p></div>
         </div>
+        
+        <div class="offer-categories">
+            <ul class="ul-categories">
+            <?php 
+            
+                if(isset($data['categories']) AND count($data['categories']) > 0) {
+
+                    foreach($data['categories'] as $cat) {
+                        echo '<li><a href="index.php?action=offer-index&filter=' . $cat['category'] . '">' . $cat['category'] . '</a></li>';
+                    }
+                }
+            ?>
+            </ul>
+        </div>
     </header>
 
     <div class="content">

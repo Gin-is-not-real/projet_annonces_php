@@ -121,6 +121,9 @@ input {
   display: flex;
   justify-content: space-between;
 }
+.offer-container .offer-categories {
+  min-height: 20px;
+}
 .offer-container .content {
   padding: 0;
   height: 200px;
@@ -160,6 +163,11 @@ input {
 
 .offer-price {
   color: var(--orange);
+}
+
+.ul-categories {
+  display: flex;
+  gap: 10px;
 }
 
 .img-mini {

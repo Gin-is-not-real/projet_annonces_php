@@ -18,6 +18,7 @@ else {
     $edit = false;
     $title = 'new';
     $action = 'new';
+
 }
 
 ?>
@@ -46,7 +47,26 @@ else {
             <div>
                 <label for="content">description</label>
                 <!-- <input type="text" name="content" value="<?= $edit ? $data[0]['content'] : ''; ?>" required> -->
-                <textarea name="content" value="<?= $edit ? $data[0]['content'] : ''; ?>" required></textarea>
+                <textarea name="content" required><?= $edit ? $data[0]['content'] : ''; ?></textarea>
+            </div>
+
+            <div>
+                <label for="categories">categories</label>
+                <fieldset>
+                <?php 
+                    while($field = $_POST['categories']->fetch()) {
+                ?>
+                        <div>
+                            <label for="<?= $field['name']; ?>"><?= $field['name']; ?></label>
+                            <input type="checkbox" name="categories[]" id="<?= $field['name']; ?>" value="<?= $field['name']; ?>">
+                    </div>
+                <?php
+                    }
+                ?>
+                </fieldset>
+
+
+                <!-- <input type="checkbox" name="categories"> -->
             </div>
         </div>
 
@@ -89,6 +109,7 @@ else {
             <input type="file" name="image-1" value="" >
             <input type="hidden" name="hidden-img1" value="<?= $act1; ?>">
         </div>
+
             <?php 
             if(isset($imgData[1])) {
     ?>            

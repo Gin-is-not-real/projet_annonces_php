@@ -7,6 +7,39 @@ require_once 'ArrayPrint.php';
 
 class OfferManager extends DatabaseManager {
 
+    public function addCategory($category, $offerId) {
+        try {
+            $entry = $this->pdo->prepare(" INSERT INTO offers_categories (category, offer_id) VALUES (:category, :offer_id)");
+            $affectedLines = $entry->execute(array(
+                'category' => $category,
+                'offer_id' => $offerId
+            ));
+            return $affectedLines;
+        } catch(Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+    }
+
+    public function getCategoriesFields() {
+        try {
+            $result = $this->pdo->query("
+            SELECT * FROM categories
+            ");
+            return $result;
+        } catch (Exception $e) {
+            die('Error on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+    }
+
+    public function getCategoriesForOffer($offerId) {
+        try {
+            $result = $this->pdo->query("SELECT * FROM offers_categories WHERE offer_id = '" . $offerId . "'");
+            return $result;
+        } catch (Exception $e) {
+            die('Error on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+    }
+
     public function add($offer) {
         try {
             $entry = $this->pdo->prepare("INSERT INTO $this->tablename (id, title, content, price, place, user_id) VALUES (:id, :title, :content, :price, :place, :user_id)");
@@ -49,7 +82,7 @@ class OfferManager extends DatabaseManager {
 
             try {
                 $result = $this->pdo->query("
-                SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content
+                SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content, offers.categories
                 FROM users 
                 INNER JOIN offers 
                 ON users.id = offers.user_id
@@ -63,7 +96,7 @@ class OfferManager extends DatabaseManager {
     public function findOffer($id) {
         try {
             $result = $this->pdo->query("
-            SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content
+            SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content, offers.categories
             FROM users 
             INNER JOIN offers 
             ON users.id = offers.user_id

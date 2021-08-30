@@ -69,7 +69,14 @@ try {
             }
         }
         elseif($_GET['action'] == 'offer-index') {
-            $offerController->index();
+            if(isset($_GET['filter'])) {
+                $offerController->listOffersByCategory($_GET['filter']);
+            }
+            else {
+                $option = null;
+                $offerController->index($option);
+            }
+
         }
         
         elseif($_GET['action'] == 'show') {

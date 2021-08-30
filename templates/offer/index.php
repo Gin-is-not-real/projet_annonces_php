@@ -5,22 +5,22 @@
 ?>
 
     <main>
-        <!-- **offer/index.php</br> -->
-
         <div class="container">
             <header>
-                <h1>all offers</h1>
+                <h1>All offers</h1>
             </header>
-            
-            <?php 
-                if(isset($_POST['all-offers']) AND !empty($_POST['all-offers'])) {
-                    $data = $_POST['all-offers'];
-                    
-                    foreach($_POST['all-offers'] as $data) {
-                        include '_offer.php';
-                    } 
-                }
-            ?>
+
+            <div class="content offers-list">
+                <?php 
+                    if(isset($_POST['all-offers']) AND !empty($_POST['all-offers'])) {
+                        $data = $_POST['all-offers'];
+                        
+                        foreach($_POST['all-offers'] as $data) {
+                            include '_offer.php';
+                        } 
+                    }
+                ?>
+            </div>
         </div>
     </main>
 <?php 

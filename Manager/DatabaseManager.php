@@ -51,16 +51,12 @@ class DatabaseManager {
         $table = $relation['table'];
         $strKey = $relation['strangerKey'];
         $thisKey = $relation['key'];
-
         $option = $option != null ? $option[0] . ' ' . $option[1] : '';
-
         try {
             $result = $this->pdo->query("SELECT * FROM $table INNER JOIN $this->tablename ON $strKey = $thisKey" . $option);
-
         } catch (Exception $e) {
             die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
         }
-
         return $result;
     }
 
@@ -68,16 +64,12 @@ class DatabaseManager {
         $tableRel = $relation['table'];
         $strKey = $tableRel.'.'.$relation['strangerKey'];
         $thisKey = $manager->tablename.'.'.$relation['key'];
-
         $option = $option != null ? ' WHERE ' . $option[0] . ' ' . $option[1] : '';
-
         try {
             $result = $this->pdo->query("SELECT * FROM $tableRel INNER JOIN $manager->tablename ON $strKey = $thisKey" . $option);
-
         } catch (Exception $e) {
             die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
         }
-
         return $result;
     }
 

@@ -24,7 +24,6 @@ class LoginController extends Controller {
     public function logout() {
         unset($_SESSION['username']);
         unset($_SESSION['user_id']);
-
         session_destroy();
         $this->index();
     }
@@ -33,7 +32,7 @@ class LoginController extends Controller {
         $logs = $this->manager->findBy('username', $username);
 
         if($data = $logs->fetch()) {
-            if($pass == $data['pass']) {
+            if(password_verify($pass, PASSWORD_DEFAULT) == password_verify($data['pass'], PASSWORD_DEFAULT)) {
                 $_SESSION['username'] = htmlspecialchars($username);
                 $_SESSION['user_id'] = $data['id'];
                 setcookie('session', htmlspecialchars($username), time() + 1);
@@ -65,13 +64,10 @@ class LoginController extends Controller {
         }
         
         else {
-            $result = $this->manager->insert($username, $email, $pass);
+            $hash = password_hash($pass, PASSWORD_DEFAULT);
+            $result = $this->manager->insert($username, $email, $hash);
             if($result) {
-                // $_SESSION['username'] = $username;
-                // setcookie('session', $username, time() + 1);
-
-                $this->login($username, $pass);
-                
+                $this->login($username, $hash);
                 header('Location: index.php?action=admin');
             }
         }

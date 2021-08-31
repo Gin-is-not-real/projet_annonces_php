@@ -38,7 +38,6 @@
 
             <!-- FAVORITES -->
             <?php
-                echo $_POST['offer']['favorite'];
                 $text = $_POST['offer']['favorite'] ? 'remove' : 'add';
             ?>
                 <a href="index.php?action=add-favorite&id=<?= $data['offerid']; ?>"><button value="<?= $data['offerid']; ?>"><?= $text; ?> to favorites</button></a>

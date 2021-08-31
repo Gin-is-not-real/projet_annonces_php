@@ -43,13 +43,33 @@ class OfferController extends Controller {
         }
     }
 
+
+    public function listFavorites($userId) {
+        //recup les id des relations 
+        $favoritesId = $this->manager->findByIn('users_favorites', 'user_id', $userId);
+        $reqParam = '';
+
+        while($fav = $favoritesId->fetch()) {
+            $favid = $fav['offer_id'];
+            $reqParam .= 'offers.id=' . $favid . ' OR ';
+        }
+        $reqParam = substr($reqParam, 0, strlen($reqParam) -3);
+
+        if(strlen($reqParam) > 0) {
+            $this->index([' WHERE ', $reqParam]);
+        }
+        else {
+            header('Location: index.php?action=offer-index');
+            // $this->index();
+        }
+    }
+
     public function listOffersByCategory($category) {
         $offersId = $this->manager->findByIn('offers_categories', 'category', $category);
         $reqParam = '';
 
         while($offer = $offersId->fetch()) {
             $offerid = $offer['offer_id'];
-
             $reqParam .= 'offers.id =' . $offerid . ' OR ';
         }
         $reqParam = substr($reqParam, 0, strlen($reqParam) -3);

@@ -68,6 +68,11 @@ try {
                 $loginController->index();
             }
         }
+
+        elseif($_GET['action'] == 'favorites') {
+            $offerController->listFavorites($_SESSION['user_id']);
+        }
+
         elseif($_GET['action'] == 'offer-index') {
             if(isset($_GET['filter'])) {
                 $offerController->listOffersByCategory($_GET['filter']);

@@ -10,7 +10,8 @@ class OfferController extends Controller {
 
     public function isFavorite($offerId) {
         if($_SESSION['user_id']) {
-            if($data = $this->manager->findByIn('users_favorites', 'offer_id', $offerId)->fetch()) {
+            $isFavorite = $this->manager->isFavorite($_SESSION['user_id'], $offerId);
+            if($data = $isFavorite->fetch()) {
                 return $data['id'];
             }
             else {
@@ -21,28 +22,14 @@ class OfferController extends Controller {
 
     public function newFavorite($offerId) {
         $favoriteId = $this->isFavorite($offerId);
-        if($favoriteId) {
+
+        if($favoriteId != null) {
             $this->manager->removeFavorite($favoriteId);
         }
         else {
             $this->manager->addFavorite($_SESSION['user_id'], $offerId);
         }
     }
-
-    public function newCategory($category) {
-        $error = null;
-        if($data = $this->manager->findByIn('categories', 'name', $category)->fetch()) {
-            $error = 'this category already exists';
-        }
-
-        if(isset($error)) {
-            $_POST['add-cat-error'] = $error;
-        } 
-        else {
-            $this->manager->addNewCategory($category);
-        }
-    }
-
 
     public function listFavorites($userId) {
         //recup les id des relations 
@@ -63,6 +50,21 @@ class OfferController extends Controller {
             // $this->index();
         }
     }
+
+    public function newCategory($category) {
+        $error = null;
+        if($data = $this->manager->findByIn('categories', 'name', $category)->fetch()) {
+            $error = 'this category already exists';
+        }
+
+        if(isset($error)) {
+            $_POST['add-cat-error'] = $error;
+        } 
+        else {
+            $this->manager->addNewCategory($category);
+        }
+    }
+
 
     public function listOffersByCategory($category) {
         $offersId = $this->manager->findByIn('offers_categories', 'category', $category);
@@ -127,8 +129,7 @@ class OfferController extends Controller {
         $offer = $this->manager->listOffers([' WHERE offers.id= ', $id . '']);
 
         $isFavorite = $this->isFavorite($id);
-        $_POST['offer']['favorite'] = $isFavorite ? true : false;
-
+        $_POST['offer']['favorite'] = $isFavorite != null ? true : false;
 
         while($data = $offer->fetch()) {
             $images = $this->manager->findByIn('images', 'offer_id', $data['offerid']);

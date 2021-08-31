@@ -14,6 +14,17 @@ class OfferManager extends DatabaseManager {
     //     }
     // }
 
+    public function isFavorite($userId, $offerId) {
+        try {
+            $result = $this->pdo->query("SELECT * FROM users_favorites WHERE user_id=" . $userId . " AND offer_id=" . $offerId);
+            return $result;
+        } catch(Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+
+
+    }
+
     public function removeFavorite($id) {
         $sql = "DELETE FROM users_favorites WHERE id=?";
         $statement = $this->pdo->prepare($sql);

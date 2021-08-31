@@ -39,8 +39,9 @@
 
             <!-- FAVORITES -->
             <?php
+                //on n'affiche le bouton que si un user est connecté, et si cet user est different de celui qui as posté l'annonce
                 if(isset($_SESSION['username']) AND ($_SESSION['username'] != $data['username'])) {
-                    $text = $_POST['offer']['favorite'] ? 'remove' : 'add';
+                    $text = $_POST['offer']['favorite'] == true? 'remove' : 'add';
             ?>
                     <a href="index.php?action=add-favorite&id=<?= $data['offerid']; ?>"><button value="<?= $data['offerid']; ?>"><?= $text; ?> to favorites</button></a>
             <?php

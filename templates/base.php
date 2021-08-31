@@ -16,6 +16,11 @@
 
 <body>
     <?= $content ?>
+
+
+    <script type="text/javascript" src="public/scripts/addCategory.js">
+
+    </script>
 </body>
 
 </html>

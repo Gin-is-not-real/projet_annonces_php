@@ -14,7 +14,12 @@ class OfferManager extends DatabaseManager {
     }
 
     public function addNewCategory($category) {
-        //la requete fonctionne
+        $test = $this->findByIn('categories', 'name', $category);
+        if($data = $test->fetch()) {
+
+        }
+        else {
+            //la requete fonctionne
             try {
                 $entry = $this->pdo->prepare("INSERT INTO categories (name) VALUES (:name)");
                 $affectedLines = $entry->execute(array(
@@ -23,7 +28,7 @@ class OfferManager extends DatabaseManager {
             } catch(Exception $e) {
                 die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
             }
-
+        }
     }
 
     public function addCategory($category, $offerId) {

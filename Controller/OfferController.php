@@ -118,6 +118,7 @@ class OfferController extends Controller {
 
             if(isset($_POST['categories'])) {
                 foreach($_POST['categories'] as $category) {
+                    $this->manager->addNewCategory($category);
                     $this->manager->addCategory($category, $generateOfferId);
                 }
             }
@@ -160,6 +161,7 @@ class OfferController extends Controller {
                 $this->manager->clearCategories($offerId);
 
                 foreach($_POST['categories'] as $category) {
+                    $this->manager->addNewCategory($category);
                     $this->manager->addCategory($category, $offerId);
                 }
             }

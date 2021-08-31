@@ -6,3 +6,4 @@
     <button type="submit" form="add-cat" formaction="index.php?action=add-category" formmethod="post">add</button>
 </form>
 <!-- formaction="index.php?action=add-category" formmethod="post" -->
+

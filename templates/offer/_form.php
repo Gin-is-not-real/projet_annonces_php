@@ -77,6 +77,8 @@ else {
                 <!-- <input type="checkbox" name="categories"> -->
             </div>
 
+            <?php include '_category-add.php'; ?>
+
 
         </div>
 
@@ -151,7 +153,6 @@ else {
             }
     ?>
         </div>
-
 
     </div>
 

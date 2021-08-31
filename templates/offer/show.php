@@ -74,7 +74,8 @@
         </section>
 
 <?php
-    if(isset($_GET['own']) AND $_GET['own'] != 'true') {
+    if(isset($_SESSION['username']) AND $_SESSION['username'] != $data['username']) {
+    // if(isset($_GET['own']) AND $_GET['own'] != 'true') {
         include '_form-contact.php';
     }
 ?>

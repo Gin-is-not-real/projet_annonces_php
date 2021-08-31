@@ -1,5 +1,6 @@
 <?php 
     $title = 'Offers';
+    $currentDirectory = basename(__DIR__); 
     ob_start();
     $data = $_POST['offer'][0];
 ?>
@@ -30,18 +31,21 @@
                 }
                 $dateStr .= ' ago';
             ?>
-
             <div class="offer-sub-header">
-                <div class="offer-date"><?= $dateStr; ?></div>
+                <div class="offer-date"><?= $dateStr; ?> by <a href="index.php?action=offer-index&amp;by-user-id=<?= $data[0]; ?>"><?= $data['username']; ?></a></div>
+
                 <div class="offer-place"><p><i class="fab fa-periscope"></i></p> <p><?= $data['place']; ?></p></div>
             </div>
 
             <!-- FAVORITES -->
             <?php
-                $text = $_POST['offer']['favorite'] ? 'remove' : 'add';
+                if(isset($_SESSION['username']) AND ($_SESSION['username'] != $data['username'])) {
+                    $text = $_POST['offer']['favorite'] ? 'remove' : 'add';
             ?>
-                <a href="index.php?action=add-favorite&id=<?= $data['offerid']; ?>"><button value="<?= $data['offerid']; ?>"><?= $text; ?> to favorites</button></a>
-
+                    <a href="index.php?action=add-favorite&id=<?= $data['offerid']; ?>"><button value="<?= $data['offerid']; ?>"><?= $text; ?> to favorites</button></a>
+            <?php
+                }
+            ?>
         </header>
 
         <div class="content">

@@ -70,19 +70,28 @@ try {
         }
 
         elseif($_GET['action'] == 'favorites') {
+            $_POST['h'] = 'Your favorites';
             $offerController->listFavorites($_SESSION['user_id']);
         }
 
         elseif($_GET['action'] == 'offer-index') {
-            if(isset($_GET['filter'])) {
+            if(isset($_GET['by-user-id'])) {
+                $user = $loginController->manager->find($_GET['by-user-id'])->fetch();
+                $_POST['h'] = 'All offers posted by ' . $user['username'];
+                $offerController->index([' WHERE users.id=', $_GET['by-user-id']]);
+            }
+            elseif(isset($_GET['filter'])) {
+                $_POST['h'] = 'All offers for the category ' . $_GET['filter'];
                 $offerController->listOffersByCategory($_GET['filter']);
             }
             else {
                 $option = null;
+                $_POST['h'] = 'All offers';
                 $offerController->index($option);
             }
 
         }
+
         
         elseif($_GET['action'] == 'show') {
             $offerController->show($_GET['id']);

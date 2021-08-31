@@ -6,6 +6,7 @@
             <h2 class="offer-price"><?= $data['price']; ?> €</h2>
         </div>
 
+
         <!-- <h3 class="offer-user">Par: <?= $data['username']; ?></h3> -->
         <!-- formatage de la str pour la date -->
         <?php
@@ -28,7 +29,9 @@
         ?>
 
         <div class="offer-sub-header">
-            <div class="offer-date"><?= $dateStr; ?></div>
+            <div class="offer-date"><?= $dateStr; ?> by 
+                <a href="index.php?action=offer-index&amp;by-user-id=<?= $data[0]; ?>"><?= $data['username']; ?></a>
+            </div>
             <div class="offer-place"><p><i class="fab fa-periscope"></i></p> <p><?= $data['place']; ?></p></div>
         </div>
         

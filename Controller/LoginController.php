@@ -17,8 +17,8 @@ class LoginController extends Controller {
 
         mail($to, $subject, $msg, $header);
 
-        // $_POST['notice'] = 'Your message about the offer ' . $about . ' has been sent';
-        header('Location: index.php?action=show&id='.$about.'&notice=sent');
+        $notice = 'Your message about the offer ' . $about . ' has been sent';
+        header('Location: index.php?action=show&id='.$about.'&notice=' . $notice);
     }
 
     public function logout() {

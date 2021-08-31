@@ -43,7 +43,6 @@ try {
         }
         $imageController->clearFolder();
         $offerController->index();
-
     }
     else {
         if($_GET['action'] == 'login-index') {
@@ -69,11 +68,6 @@ try {
             }
         }
 
-        elseif($_GET['action'] == 'favorites') {
-            $_POST['h'] = 'Your favorites';
-            $offerController->listFavorites($_SESSION['user_id']);
-        }
-
         elseif($_GET['action'] == 'offer-index') {
             if(isset($_GET['by-user-id'])) {
                 $user = $loginController->manager->find($_GET['by-user-id'])->fetch();
@@ -91,12 +85,9 @@ try {
             }
 
         }
-
-        
         elseif($_GET['action'] == 'show') {
             $offerController->show($_GET['id']);
         }
-
         elseif($_GET['action'] == 'new') {
             if(isset($_SESSION['user_id']) ) {
                 $offerController->new($imageController);
@@ -113,9 +104,11 @@ try {
             $offerController->delete($_GET['id']);
         }
 
+
         elseif($_GET['action'] == 'delete-img') {
             $imageController->delete($_GET['id'], $_GET['filename']);
         }
+
 
         elseif($_GET['action'] == 'mail') {
             $loginController->sendMail(
@@ -125,14 +118,20 @@ try {
                 htmlspecialchars($_POST['mail-message']));
         }
 
+
         elseif($_GET['action'] == 'add-category') {
             $offerController->newCategory($_POST['new-category']);
             $offerController->new($imageController);
         }
 
+
         elseif($_GET['action'] == 'add-favorite') {
             $offerController->newFavorite($_GET['id']);
             $offerController->show($_GET['id']);
+        }
+        elseif($_GET['action'] == 'favorites') {
+            $_POST['h'] = 'Your favorites';
+            $offerController->listFavorites($_SESSION['user_id']);
         }
     }
     

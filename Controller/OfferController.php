@@ -4,7 +4,6 @@ require_once 'Entity/Offer.php';
 require_once 'Manager/OfferManager.php';
 require_once 'ArrayPrint.php';
 
-
 class OfferController extends Controller {
     public static $ENTITY = Offer::class;
 
@@ -46,8 +45,8 @@ class OfferController extends Controller {
             $this->index([' WHERE ', $reqParam]);
         }
         else {
-            header('Location: index.php?action=offer-index');
-            // $this->index();
+            $notice = 'No favorites yet !';
+            header('Location: index.php?action=offer-index&notice=' . $notice);
         }
     }
 

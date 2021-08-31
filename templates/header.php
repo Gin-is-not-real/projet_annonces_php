@@ -35,8 +35,8 @@
 
     <?php 
         if(isset($_GET['notice'])){
-
-            echo '<div id="notices">' . 'Your message about the offer ' . $_GET['id'] . ' has been sent' . '</div>';
+            echo '<div id="notices">' . $_GET['notice'] . '</div>';
+            // echo '<div id="notices">' . 'Your message about the offer ' . $_GET['id'] . ' has been sent' . '</div>';
         }
     ?>
     <?php include 'templates/_error.php'; ?>

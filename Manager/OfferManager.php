@@ -6,6 +6,32 @@ require_once 'ArrayPrint.php';
 
 
 class OfferManager extends DatabaseManager {
+    // public function getFavoritesForUser($userId) {
+    //     try {
+    //         $req = $this->pdo->query("SELECT * FROM users_favorites WHERE user_id=$userId");
+    //     } catch(Exception $e) {
+    //         die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+    //     }
+    // }
+
+    public function removeFavorite($id) {
+        $sql = "DELETE FROM users_favorites WHERE id=?";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$id]);
+    }
+
+    public function addFavorite($userId, $offerId) {
+        try {
+            $entry =$this->pdo->prepare("INSERT INTO users_favorites (user_id, offer_id) VALUES (:user_id, :offer_id)");
+            $affectedLines = $entry->execute(array(
+                'user_id' => $userId,
+                'offer_id' => $offerId
+            ));
+            return $affectedLines;
+        } catch(Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+    }
 
     public function clearCategories($offerId) {
         $sql = "DELETE FROM offers_categories WHERE offer_id=?";
@@ -25,6 +51,7 @@ class OfferManager extends DatabaseManager {
                 $affectedLines = $entry->execute(array(
                     'name' => $category
                 ));
+                return $affectedLines;
             } catch(Exception $e) {
                 die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
             }

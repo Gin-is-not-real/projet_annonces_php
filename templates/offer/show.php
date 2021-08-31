@@ -35,6 +35,14 @@
                 <div class="offer-date"><?= $dateStr; ?></div>
                 <div class="offer-place"><p><i class="fab fa-periscope"></i></p> <p><?= $data['place']; ?></p></div>
             </div>
+
+            <!-- FAVORITES -->
+            <?php
+                echo $_POST['offer']['favorite'];
+                $text = $_POST['offer']['favorite'] ? 'remove' : 'add';
+            ?>
+                <a href="index.php?action=add-favorite&id=<?= $data['offerid']; ?>"><button value="<?= $data['offerid']; ?>"><?= $text; ?> to favorites</button></a>
+
         </header>
 
         <div class="content">

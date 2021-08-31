@@ -8,6 +8,27 @@ require_once 'ArrayPrint.php';
 class OfferController extends Controller {
     public static $ENTITY = Offer::class;
 
+    public function isFavorite($offerId) {
+        if($_SESSION['user_id']) {
+            if($data = $this->manager->findByIn('users_favorites', 'offer_id', $offerId)->fetch()) {
+                return $data['id'];
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
+    public function newFavorite($offerId) {
+        $favoriteId = $this->isFavorite($offerId);
+        if($favoriteId) {
+            $this->manager->removeFavorite($favoriteId);
+        }
+        else {
+            $this->manager->addFavorite($_SESSION['user_id'], $offerId);
+        }
+    }
+
     public function newCategory($category) {
         $error = null;
         if($data = $this->manager->findByIn('categories', 'name', $category)->fetch()) {
@@ -75,18 +96,19 @@ class OfferController extends Controller {
             while($category = $categories->fetch()) {
                 array_push($data['categories'], $category);
             }
-
             array_push($_POST['user-offers'], $data);
         }
-
         $get = $option != null ? '' : '?own=true';
-
         require_once 'templates/admin/index.php' . $get;
     }
 
     public function show($id) {
         $_POST['offer'] = [];
         $offer = $this->manager->listOffers([' WHERE offers.id= ', $id . '']);
+
+        $isFavorite = $this->isFavorite($id);
+        $_POST['offer']['favorite'] = $isFavorite ? true : false;
+
 
         while($data = $offer->fetch()) {
             $images = $this->manager->findByIn('images', 'offer_id', $data['offerid']);

@@ -111,11 +111,14 @@ try {
                 htmlspecialchars($_POST['mail-message']));
         }
 
-        //ne doit pas reinitialiser le formulaire
         elseif($_GET['action'] == 'add-category') {
-            // die(var_dump($_POST['new-category']));
             $offerController->newCategory($_POST['new-category']);
             $offerController->new($imageController);
+        }
+
+        elseif($_GET['action'] == 'add-favorite') {
+            $offerController->newFavorite($_GET['id']);
+            $offerController->show($_GET['id']);
         }
     }
     

@@ -5,9 +5,6 @@
             <h2 class="offer-title"><a href="index.php?action=show&amp;id=<?= $data['offerid']; ?>"><?= $data['title']; ?> </a></h2>
             <h2 class="offer-price"><?= $data['price']; ?> €</h2>
         </div>
-
-
-        <!-- <h3 class="offer-user">Par: <?= $data['username']; ?></h3> -->
         <!-- formatage de la str pour la date -->
         <?php
             $now = new DateTime();
@@ -38,9 +35,7 @@
         <div class="offer-categories">
             <ul class="ul-categories">
             <?php 
-            
                 if(isset($data['categories']) AND count($data['categories']) > 0) {
-
                     foreach($data['categories'] as $cat) {
                         echo '<li><a href="index.php?action=offer-index&filter=' . $cat['category'] . '">' . $cat['category'] . '</a></li>';
                     }

@@ -152,10 +152,14 @@ input {
 
 .offer-date {
   font-size: 0.75rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
 }
 
 .offer-place {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   display: flex;
   gap: 5px;
@@ -364,6 +368,8 @@ input {
   margin: 1%;
   display: flex;
   justify-content: start;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
 }
 .offer-form-container .img-delete {
@@ -372,6 +378,4 @@ input {
 .offer-form-container input[type=submit] {
   margin: 2%;
   padding: 1%;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

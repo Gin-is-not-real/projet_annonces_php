@@ -1,0 +1,107 @@
+@media screen and (min-width: 800px) {
+  .offer-container {
+    width: 30%;
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .offer-container {
+    width: 95vw !important;
+    min-width: 300px !important;
+  }
+}
+.offers-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 5%;
+}
+
+.offer-container {
+  box-shadow: var(--box-shadow);
+  width: 400px;
+  max-width: 400px;
+  min-width: 95%;
+}
+.offer-container .offer-header {
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.offer-container .offer-header .offer-title {
+  margin-bottom: 3%;
+}
+.offer-container .offer-sub-header {
+  display: flex;
+  justify-content: space-between;
+}
+.offer-container .offer-categories {
+  min-height: 20px;
+}
+.offer-container .content {
+  padding: 0;
+  height: 200px;
+  display: flex;
+}
+.offer-container .content .img-container {
+  width: 68%;
+  height: 100%;
+}
+.offer-container .content .img-preview {
+  width: 100%;
+}
+.offer-container .content .img-preview figure {
+  height: 100%;
+  overflow: hidden;
+}
+.offer-container .content .img-preview img {
+  height: 100%;
+  max-height: 200px;
+}
+.offer-container .content .offer-description {
+  width: 32%;
+  padding: 2%;
+  background-color: var(--bg-1);
+}
+
+.offer-date {
+  font-size: 0.75rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.offer-place {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  gap: 5px;
+}
+
+.offer-price {
+  color: var(--orange);
+}
+
+.ul-categories {
+  display: flex;
+  gap: 10px;
+}
+
+.img-mini {
+  margin: 2%;
+  display: flex;
+  justify-content: space-around;
+}
+.img-mini figure {
+  margin: 2%;
+}
+.img-mini figcaption {
+  font-size: 0.7rem;
+}
+
+.offer-footer {
+  margin: 0% 8% 4%;
+  display: flex;
+  gap: 10%;
+}/*# sourceMappingURL=offer.css.map */

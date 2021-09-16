@@ -67,7 +67,7 @@ class ImageController extends Controller {
                 if($file !== '.' AND $file !== '..') {
                     $image = $this->manager->findBy('filename', $file);
                     if(!$image->fetch()) {
-                        // $this->delete($id);
+                        $this->delete($image->id);
                         unlink($this::$FILE_DEST . $file);
                     }
                 }

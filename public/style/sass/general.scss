@@ -10,6 +10,7 @@ html {
     --black-font: rgba(0, 0, 0, 0.809);
 
     --bg-header: var(--grey);
+    // --bg-header: var(--grey);
     --bg-1: var(--light-grey);
 
     --color-1: var(--black-font);
@@ -17,6 +18,7 @@ html {
 
     --box-shadow: 0 1px 3px black;
     --border-radius-input: 2px;
+    --border: 1px solid var(--grey);
 
     font-size: 11pt;
     // font-family: 'Comfortaa';
@@ -30,6 +32,9 @@ html * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+main {
+    background-color: var(--bg-1);
 }
 li {
     list-style: none;
@@ -51,13 +56,17 @@ input {
 
 /* HEADER */
 #general-header {
-    padding: 2%;
+    padding: 4% 4% 0 4%;
     background-color: var(--bg-header);
+    border-bottom: var(--border);
 
     #log-info {
         margin-bottom: 2%;
+        display: flex;
+        justify-content: space-between;
     }
     ul {
+        // padding: 2% 0 1%;
         width: 60%;
         display: flex;
         gap: 20%;
@@ -65,18 +74,32 @@ input {
     a {
         color: rgba(0, 0, 0, 0.871);
         text-transform: uppercase;
-        font-weight: bold;
+        // font-weight: bold;
         font-size: 0.9rem;
+        text-decoration: none;
+        &:hover {
+            // background-color: rgba(155, 155, 155, 0.14);
+            border-bottom: var(--border);
+        }
     }
+    li {
+        padding: 2% 2% 0 2%;
+        padding: 2%;
+        // border: 1px solid black;
+    }
+
 }
 fieldset {
     width: 70vw;
 }
 /* CONTAINER */ 
 .container {
-    margin: 2%;
+    
+    // margin: 2%;
     header {
         background-color: var(--bg-header) !important;
+        // background-color: var(--bg-1) !important;
+
         padding: 2%;
         >* {
             margin: 1%;

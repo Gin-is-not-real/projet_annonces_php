@@ -11,6 +11,7 @@ html {
   --color-2: var(--orange);
   --box-shadow: 0 1px 3px black;
   --border-radius-input: 2px;
+  --border: 1px solid var(--grey);
   font-size: 11pt;
   font-family: "Do Hyeon", sans-serif;
   font-family: "Open Sans", sans-serif;
@@ -21,6 +22,10 @@ html * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+main {
+  background-color: var(--bg-1);
 }
 
 li {
@@ -43,11 +48,14 @@ input {
 
 /* HEADER */
 #general-header {
-  padding: 2%;
+  padding: 4% 4% 0 4%;
   background-color: var(--bg-header);
+  border-bottom: var(--border);
 }
 #general-header #log-info {
   margin-bottom: 2%;
+  display: flex;
+  justify-content: space-between;
 }
 #general-header ul {
   width: 60%;
@@ -57,14 +65,22 @@ input {
 #general-header a {
   color: rgba(0, 0, 0, 0.871);
   text-transform: uppercase;
-  font-weight: bold;
   font-size: 0.9rem;
+  text-decoration: none;
+}
+#general-header a:hover {
+  border-bottom: var(--border);
+}
+#general-header li {
+  padding: 2% 2% 0 2%;
+  padding: 2%;
+}
+
+fieldset {
+  width: 70vw;
 }
 
 /* CONTAINER */
-.container {
-  margin: 2%;
-}
 .container header {
   background-color: var(--bg-header) !important;
   padding: 2%;
@@ -108,6 +124,10 @@ input {
   width: 400px;
   max-width: 400px;
   min-width: 95%;
+  margin-bottom: 4%;
+}
+.offer-container header {
+  background-color: var(--bg-header);
 }
 .offer-container .offer-header {
   height: 20%;
@@ -152,14 +172,10 @@ input {
 
 .offer-date {
   font-size: 0.75rem;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
 }
 
 .offer-place {
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   display: flex;
   gap: 5px;
@@ -368,8 +384,6 @@ input {
   margin: 1%;
   display: flex;
   justify-content: start;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
 }
 .offer-form-container .img-delete {
@@ -378,4 +392,6 @@ input {
 .offer-form-container input[type=submit] {
   margin: 2%;
   padding: 1%;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

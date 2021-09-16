@@ -23,6 +23,11 @@
     width: 400px;
     max-width: 400px;
     min-width: 95%;
+    margin-bottom: 4%;
+
+    header {
+        background-color: var(--bg-header);
+    }
 
     .offer-header {
         height: 20%;

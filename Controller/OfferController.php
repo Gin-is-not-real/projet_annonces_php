@@ -8,7 +8,7 @@ class OfferController extends Controller {
     public static $ENTITY = Offer::class;
 
     public function isFavorite($offerId) {
-        if($_SESSION['user_id']) {
+        if(isset($_SESSION['user_id'])) {
             $isFavorite = $this->manager->isFavorite($_SESSION['user_id'], $offerId);
             if($data = $isFavorite->fetch()) {
                 return $data['id'];
@@ -197,6 +197,7 @@ class OfferController extends Controller {
                         $imageController->new($image);
                     }
                 }
+                $count ++;
             }
 
             if(isset($_POST['categories'])) {

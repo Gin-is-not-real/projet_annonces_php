@@ -31,7 +31,6 @@
         </ul>
     </nav>
 </header>
-<hr>
 
     <?php 
         if(isset($_GET['notice'])){

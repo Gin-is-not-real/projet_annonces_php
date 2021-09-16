@@ -1,0 +1,35 @@
+.green-link {
+    color: var(--green-font); 
+    text-shadow: 0px 1px 3% var(--green-font);
+    &:hover {
+        text-shadow: 0px 1px 50px var(--green-font);
+        border-bottom: 1px solid rgba(89, 235, 41, 0.31);
+    }
+}
+.orange-link {
+    color: var(--orange-soft); 
+    text-shadow: 0px 1px 3% var(--orange);
+    &:hover {
+        text-shadow: 0px 1px 50px var(--orange);
+        border-bottom: 1px solid rgba(235, 125, 41, 0.31);
+    }
+}
+.user-link {
+    // color: var(--green-font); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.194) !important;
+    &:hover {
+        text-shadow: 0px 5px 10% white !important;
+        border-color: white;
+    }
+}
+
+.return-link a,  .ul-categories a {
+    @extend .green-link;
+}
+
+#general-header a {
+
+}
+.offer-date a {
+    @extend .user-link;
+}

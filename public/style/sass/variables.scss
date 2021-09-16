@@ -1,0 +1,51 @@
+// @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+html {
+    --grey: rgba(128, 128, 128, 0.344);
+    --light-grey: rgba(141, 140, 140, 0.22);
+    --light-grey-2 : rgba(41, 41, 41, 0.699);
+    --orange: rgba(235, 118, 41, 0.981);
+    --orange-soft: rgba(225, 110, 41, 0.87);
+    --black-font: rgba(0, 0, 0, 0.809);
+    --grey-font: rgba(57, 56, 56, 0.809);
+    --grey-font: rgba(206, 205, 205, 0.81);
+    --white-font: rgba(184, 184, 184, 0.809);
+    --green-font: rgba(89, 235, 41, 0.687);
+
+
+    --bg-header: var(--grey);
+    --bg-header: var(--black-font);
+    --bg-header-2: var(--grey-font);
+    --bg-1: var(--light-grey);
+    --bg-1: var(--black-font);
+    --bg-2: var(--light-grey-2);
+
+    // --bg-1: red;
+    --color-1: var(--black-font);
+    --color-1: var(--white-font);
+
+    --color-2: var(--orange);
+    --color-3: var(--grey-font);
+
+
+    --box-shadow: 0 1px 3px black;
+    --box-shadow: 1px 1px 10px #938d8d37;
+
+    --border-radius-input: 2px;
+    --border: 1px solid var(--grey);
+
+    font-size: 11pt;
+    // font-family: 'Comfortaa';
+    font-family: 'Do Hyeon', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+
+    --color: var(--color-1);
+    --color: var(--white-font);
+
+    --color-a: var(--color-1);
+    --color-a: var(--white-font);
+}
+

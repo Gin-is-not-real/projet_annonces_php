@@ -1,5 +1,3 @@
-
-
 .seller-container {
     box-shadow: var(--box-shadow);
     width: 30%;
@@ -101,55 +99,4 @@
     }
 }
 
-/* QUERIES */ 
-@media screen and (min-width: 800px) {
-    .main-show-offer {
-        display: flex;
-        justify-content: space-evenly;
-    }
-    .seller-container {
-        width: 30%;
-        min-width: 200px;
-    }
-    .form-contact {
-        .content div {
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-            // flex-direction: column;
-            margin: 4%;
-        }
-        input {
-            margin: 2% auto;
-        }
-    }
-}
-@media screen and (max-width: 800px) {
-    .main-show-offer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .offer-show-container {
-        width: 90%;
-        min-width: 270px;
-        max-width: 90%;
 
-    }
-    .img-preview {
-        height: auto;
-        max-height: 40vh;
-    }
-    #general-header {
-        ul {
-            width: 100% !important;
-            justify-content: space-between;
-            gap: inherit;
-        }
-    }
-    .seller-container {
-        width: 90%;
-        min-width: 270px;
-        max-width: 400px;
-    }
-}

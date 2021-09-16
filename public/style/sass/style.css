@@ -3,33 +3,63 @@
 html {
   --grey: rgba(128, 128, 128, 0.344);
   --light-grey: rgba(141, 140, 140, 0.22);
+  --light-grey-2: rgba(41, 41, 41, 0.699);
   --orange: rgba(235, 118, 41, 0.981);
+  --orange-soft: rgba(225, 110, 41, 0.87);
   --black-font: rgba(0, 0, 0, 0.809);
+  --grey-font: rgba(57, 56, 56, 0.809);
+  --grey-font: rgba(206, 205, 205, 0.81);
+  --white-font: rgba(184, 184, 184, 0.809);
+  --green-font: rgba(89, 235, 41, 0.687);
   --bg-header: var(--grey);
+  --bg-header: var(--black-font);
+  --bg-header-2: var(--grey-font);
   --bg-1: var(--light-grey);
+  --bg-1: var(--black-font);
+  --bg-2: var(--light-grey-2);
   --color-1: var(--black-font);
+  --color-1: var(--white-font);
   --color-2: var(--orange);
+  --color-3: var(--grey-font);
   --box-shadow: 0 1px 3px black;
+  --box-shadow: 1px 1px 10px #938d8d37;
   --border-radius-input: 2px;
   --border: 1px solid var(--grey);
   font-size: 11pt;
   font-family: "Do Hyeon", sans-serif;
   font-family: "Open Sans", sans-serif;
-  color: var(--color-1);
+  --color: var(--color-1);
+  --color: var(--white-font);
+  --color-a: var(--color-1);
+  --color-a: var(--white-font);
 }
 
 html * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: var(--white-font);
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.96);
 }
 
 main {
   background-color: var(--bg-1);
 }
+main header:first-child {
+  background-color: var(--light-grey);
+}
 
 li {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--grey-font);
+  font-weight: bold;
 }
 
 figure {
@@ -38,12 +68,25 @@ figure {
   align-items: center;
 }
 
-input {
+input, textarea, button {
   padding: 1%;
+  background-color: var(--grey);
+  border: 1px solid var(--light-grey-2);
+  border-radius: var(--border-radius-input);
+}
+input:focus, textarea:focus, button:focus {
+  outline: none;
+  border: 1px solid var(--light-grey);
+}
+
+fieldset {
+  border: none;
+  width: 70vw;
 }
 
 .return-link {
   margin: 0% 0% 0% 2%;
+  background-color: transparent;
 }
 
 /* HEADER */
@@ -64,6 +107,7 @@ input {
 }
 #general-header a {
   color: rgba(0, 0, 0, 0.871);
+  color: var(--color-a);
   text-transform: uppercase;
   font-size: 0.9rem;
   text-decoration: none;
@@ -74,10 +118,6 @@ input {
 #general-header li {
   padding: 2% 2% 0 2%;
   padding: 2%;
-}
-
-fieldset {
-  width: 70vw;
 }
 
 /* CONTAINER */
@@ -92,31 +132,34 @@ fieldset {
   padding: 2%;
 }
 
+.main-container {
+  background: url("../../images/banniere.jpg");
+  background: url("../../images/pexels-sam-clarke-3541209.jpg");
+  background: linear-gradient(to bottom, #2331199e, #0d0806c2), url("../../images/pexels-stephen-niemeier-63703.jpg");
+  background-size: cover;
+  background-position: center;
+}
+#admin-main-container {
+  background: linear-gradient(to bottom, #2331199e, #0d0806c2), url("../../images/pexels-sam-clarke-3541209.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 #login-main-container {
   max-width: 320px;
+  margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 2% auto;
 }
 
-@media screen and (min-width: 800px) {
-  .offer-container {
-    width: 30%;
-    max-width: 400px;
-  }
-}
-@media screen and (max-width: 500px) {
-  .offer-container {
-    width: 95vw !important;
-    min-width: 300px !important;
-  }
-}
 .offers-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   gap: 5%;
+  background: linear-gradient(to bottom, #0000004a, #0d0d0da3);
 }
 
 .offer-container {
@@ -124,7 +167,9 @@ fieldset {
   width: 400px;
   max-width: 400px;
   min-width: 95%;
-  margin-bottom: 4%;
+  margin-bottom: 2%;
+  border: 1px solid #ffffff1c;
+  border-radius: 1px;
 }
 .offer-container header {
   background-color: var(--bg-header);
@@ -159,6 +204,7 @@ fieldset {
 .offer-container .content .img-preview figure {
   height: 100%;
   overflow: hidden;
+  background: linear-gradient(to right, #2b2d2a5c, #1717165e);
 }
 .offer-container .content .img-preview img {
   height: 100%;
@@ -167,7 +213,7 @@ fieldset {
 .offer-container .content .offer-description {
   width: 32%;
   padding: 2%;
-  background-color: var(--bg-1);
+  background-color: var(--bg-2);
 }
 
 .offer-date {
@@ -203,9 +249,12 @@ fieldset {
 }
 
 .offer-footer {
-  margin: 0% 8% 4%;
+  padding: 0% 8% 4%;
   display: flex;
   gap: 10%;
+}
+.offer-footer button {
+  padding: 10px;
 }
 
 .seller-container {
@@ -294,11 +343,142 @@ fieldset {
   margin: 1% 0;
 }
 
+/* FORM */
+.login-form-container {
+  width: 300px;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 4%;
+}
+.login-form-container form {
+  margin: 1%;
+}
+.login-form-container form div {
+  display: flex;
+  justify-content: space-between;
+}
+.login-form-container form input {
+  margin: 1% 0;
+}
+
+#newoffer-main-container {
+  background-size: cover;
+  background: linear-gradient(to bottom, #060606bf, #11110857), url("../../images/pexels-sam-clarke-3541209.jpg");
+  padding-bottom: 4%;
+}
+
+.offer-form-container {
+  width: 80%;
+  max-width: 400px;
+  margin: 4% auto;
+  padding: 1%;
+  box-shadow: var(--box-shadow);
+  border: 1px solid #ffffff1c;
+  border-radius: 1px;
+  background: linear-gradient(to bottom, var(--bg-1), var(--black-font));
+}
+.offer-form-container .form-inputs div {
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
+}
+.offer-form-container .form-img {
+  padding-top: 2%;
+}
+.offer-form-container .form-img div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3%;
+}
+.offer-form-container figure {
+  margin: 1%;
+  display: flex;
+  justify-content: start;
+  width: max-content;
+}
+.offer-form-container .img-delete {
+  margin: 0% 0% 5% 7%;
+}
+.offer-form-container input[type=submit] {
+  margin: 2%;
+  padding: 2%;
+}
+.offer-form-container h3 {
+  margin: 1%;
+}
+
+#div-categories {
+  margin: 4% auto;
+  display: flex;
+  flex-direction: column;
+}
+#div-categories .content {
+  background-color: var(--bg-2);
+}
+#div-categories fieldset {
+  border: none;
+  width: 100%;
+  height: 25vh;
+  display: flex;
+  flex-flow: column;
+  overflow-y: scroll;
+}
+#div-categories fieldset div {
+  margin: 0;
+  width: 95%;
+}
+
+.green-link, .return-link a, .ul-categories a {
+  color: var(--green-font);
+  text-shadow: 0px 1px 3% var(--green-font);
+}
+.green-link:hover, .return-link a:hover, .ul-categories a:hover {
+  text-shadow: 0px 1px 50px var(--green-font);
+  border-bottom: 1px solid rgba(89, 235, 41, 0.31);
+}
+
+.orange-link {
+  color: var(--orange-soft);
+  text-shadow: 0px 1px 3% var(--orange);
+}
+.orange-link:hover {
+  text-shadow: 0px 1px 50px var(--orange);
+  border-bottom: 1px solid rgba(235, 125, 41, 0.31);
+}
+
+.user-link, .offer-date a {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.194) !important;
+}
+.user-link:hover, .offer-date a:hover {
+  text-shadow: 0px 5px 10% white !important;
+  border-color: white;
+}
+
 /* QUERIES */
+@media screen and (min-width: 800px) {
+  .offer-container {
+    width: 30%;
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .offer-container {
+    width: 95vw !important;
+    min-width: 300px !important;
+  }
+}
+/* SHOW */
 @media screen and (min-width: 800px) {
   .main-show-offer {
     display: flex;
     justify-content: space-evenly;
+  }
+
+  #general-header ul {
+    width: 80% !important;
+    justify-content: space-between;
+    gap: inherit;
   }
 
   .seller-container {
@@ -345,53 +525,6 @@ fieldset {
     min-width: 270px;
     max-width: 400px;
   }
-}
-/* FORM */
-.login-form-container {
-  width: 300px;
-  box-shadow: var(--box-shadow);
-}
-.login-form-container form {
-  margin: 1%;
-}
-.login-form-container form div {
-  display: flex;
-  justify-content: space-between;
-}
-.login-form-container form input {
-  margin: 1% 0;
-}
-
-.offer-form-container {
-  width: 80%;
-  max-width: 400px;
-  box-shadow: var(--box-shadow);
-  margin: 4% auto;
-}
-.offer-form-container .form-inputs div {
-  max-width: 400px;
-  display: flex;
-  justify-content: space-between;
-  margin: 2%;
-}
-.offer-form-container .form-img div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 3%;
-}
-.offer-form-container figure {
-  margin: 1%;
-  display: flex;
-  justify-content: start;
-  width: max-content;
-}
-.offer-form-container .img-delete {
-  margin: 0% 0% 5% 7%;
-}
-.offer-form-container input[type=submit] {
-  margin: 2%;
-  padding: 1%;
 }
 
 /*# sourceMappingURL=style.css.map */

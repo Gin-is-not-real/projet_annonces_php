@@ -6,7 +6,7 @@
 ?>
 
     <main>
-        <div class="container">
+        <div class="container main-container">
             <header>
                 <!-- <h1><?= $h; ?></h1> -->
                 <h1><?= $h; ?></h1>

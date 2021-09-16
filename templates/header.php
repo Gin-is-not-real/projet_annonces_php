@@ -21,7 +21,6 @@
         <ul>
             <li><a href="index.php?action=new">post an offer</a><li>
             <li><a href="index.php?action=offer-index">offers</a></li>
-            <!-- <li><a href="index.php?action=admin">your offers</a></li> -->
         <?php
             if(isset($_SESSION['username'])) {
                 echo '<li><a href="index.php?action=admin">your offers</a></li>';

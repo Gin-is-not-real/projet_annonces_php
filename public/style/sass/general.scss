@@ -39,15 +39,19 @@ input, textarea, button {
         border: 1px solid var(--light-grey);
     }
 }
-
+button {
+    background-color: var(--bg-1);
+}
 fieldset {
     border: none;
     width: 70vw;
 }
 
 .return-link {
-    margin: 0% 0% 0% 2%;
-    background-color: transparent;
+    padding: 2%;
+    background: linear-gradient(to bottom, #0000004a, #0d0d0da3);
+    display: flex;
+    justify-content: center;
     // a {
     //     @extend .green-link;
     // }

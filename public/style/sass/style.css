@@ -5,12 +5,15 @@ html {
   --light-grey: rgba(141, 140, 140, 0.22);
   --light-grey-2: rgba(41, 41, 41, 0.699);
   --orange: rgba(235, 118, 41, 0.981);
+  --orange: rgba(210, 111, 49, 0.767);
   --orange-soft: rgba(225, 110, 41, 0.87);
+  --red: rgba(198, 34, 34, 0.66);
   --black-font: rgba(0, 0, 0, 0.809);
   --grey-font: rgba(57, 56, 56, 0.809);
   --grey-font: rgba(206, 205, 205, 0.81);
   --white-font: rgba(184, 184, 184, 0.809);
   --green-font: rgba(89, 235, 41, 0.687);
+  --green-font: rgba(89, 168, 62, 0.756);
   --bg-header: var(--grey);
   --bg-header: var(--black-font);
   --bg-header-2: var(--grey-font);
@@ -79,14 +82,20 @@ input:focus, textarea:focus, button:focus {
   border: 1px solid var(--light-grey);
 }
 
+button {
+  background-color: var(--bg-1);
+}
+
 fieldset {
   border: none;
   width: 70vw;
 }
 
 .return-link {
-  margin: 0% 0% 0% 2%;
-  background-color: transparent;
+  padding: 2%;
+  background: linear-gradient(to bottom, #0000004a, #0d0d0da3);
+  display: flex;
+  justify-content: center;
 }
 
 /* HEADER */
@@ -207,7 +216,7 @@ fieldset {
   background: linear-gradient(to right, #2b2d2a5c, #1717165e);
 }
 .offer-container .content .img-preview img {
-  height: 100%;
+  height: 200px;
   max-height: 200px;
 }
 .offer-container .content .offer-description {
@@ -225,6 +234,7 @@ fieldset {
   width: max-content;
   display: flex;
   gap: 5px;
+  font-size: 0.75rem;
 }
 
 .offer-price {
@@ -361,8 +371,8 @@ fieldset {
 }
 
 #newoffer-main-container {
-  background-size: cover;
-  background: linear-gradient(to bottom, #060606bf, #11110857), url("../../images/pexels-sam-clarke-3541209.jpg");
+  background-size: cover !important;
+  background: linear-gradient(to bottom, #060606eb, #11110857), url("../../images/pexels-sam-clarke-3541209.jpg");
   padding-bottom: 4%;
 }
 
@@ -438,11 +448,11 @@ fieldset {
   border-bottom: 1px solid rgba(89, 235, 41, 0.31);
 }
 
-.orange-link {
+.orange-link, .offer-form-container .img-delete a {
   color: var(--orange-soft);
   text-shadow: 0px 1px 3% var(--orange);
 }
-.orange-link:hover {
+.orange-link:hover, .offer-form-container .img-delete a:hover {
   text-shadow: 0px 1px 50px var(--orange);
   border-bottom: 1px solid rgba(235, 125, 41, 0.31);
 }
@@ -455,10 +465,53 @@ fieldset {
   border-color: white;
 }
 
+.green-input, .return-link a, .login-form-container input[type=submit], .offer-form-container input[type=submit] {
+  color: var(--green-font);
+  border: 1px solid var(--green-font);
+}
+.green-input:hover, .return-link a:hover, .login-form-container input[type=submit]:hover, .offer-form-container input[type=submit]:hover {
+  text-shadow: 0px 1px 50px var(--green-font);
+}
+
+.orange-input, #btn-new-category, .edit-link button {
+  color: var(--orange-soft);
+  border: 1px solid var(--orange-soft);
+}
+.orange-input:hover, #btn-new-category:hover, .edit-link button:hover {
+  text-shadow: 0px 1px 50px var(--orange-soft);
+}
+.orange-input a, #btn-new-category a, .edit-link button a {
+  color: var(--orange-soft);
+}
+
+.red-input {
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+.red-input:hover {
+  text-shadow: 0px 1px 50px var(--red);
+}
+.red-input a {
+  color: var(--red);
+}
+
+#btn-new-category, .edit-link button {
+  background-color: var(--bg-1);
+}
+
+.del-link button {
+  background-color: var(--red);
+}
+
+.return-link a, .login-form-container input[type=submit], .offer-form-container input[type=submit] {
+  padding: 1% 2%;
+  background-color: var(--bg-1);
+}
+
 /* QUERIES */
 @media screen and (min-width: 800px) {
   .offer-container {
-    width: 30%;
+    width: 400px;
     max-width: 400px;
   }
 }

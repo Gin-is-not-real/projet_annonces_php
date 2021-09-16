@@ -12,10 +12,11 @@ if(isset($offers)) {
         array_push($categories, $cat['category']);
     }
 
-    var_dump($categories);
     $edit = true;
     $title = 'edit';
-    $action = 'edit&amp;id=' . $data[0]['id'];
+    if(isset($data[0]['id'])) {
+        $action = 'edit&amp;id=' . $data[0]['id'];
+    }
 }
 else {
     $edit = false;
@@ -26,7 +27,7 @@ else {
 <main>
     <div class="container main-container" id="newoffer-main-container">
         <header>
-                <h1>add an offer</h1>
+                <h1><?= $title ?> an offer</h1>
                 <!-- <div class="return-link">
                     <a href="index.php?action=admin">your offers</a>
                 </div> -->
@@ -60,7 +61,6 @@ else {
                     </div>
 
                         <?php include '_category-add.php'; ?>
-
                 </div>
             <?php 
                 $src0 = isset($imgData[0]) ? $imgData[0]['filename'] : 'default';

@@ -27,9 +27,50 @@
     @extend .green-link;
 }
 
+.green-input {
+    color: var(--green-font);
+    border: 1px solid var(--green-font);
+    &:hover {
+        text-shadow: 0px 1px 50px var(--green-font);
+    }
+}
+.orange-input {
+    color: var(--orange-soft);
+    border: 1px solid var(--orange-soft);
+    &:hover {
+        text-shadow: 0px 1px 50px var(--orange-soft);
+    }
+    a {
+        color: var(--orange-soft);
+    }
+}
+.red-input {
+    color: var(--red);
+    border: 1px solid var(--red);
+    &:hover {
+        text-shadow: 0px 1px 50px var(--red);
+    }
+    a {
+        color: var(--red);
+    }
+}
+
 #general-header a {
 
 }
 .offer-date a {
     @extend .user-link;
+}
+
+#btn-new-category, .edit-link button {
+    @extend .orange-input;
+    background-color: var(--bg-1);
+}
+.del-link button {
+    background-color: var(--red);
+}
+.return-link a, .login-form-container input[type=submit], .offer-form-container input[type=submit] {
+    @extend .green-input;
+    padding: 1% 2%;
+    background-color: var(--bg-1);
 }

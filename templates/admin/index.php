@@ -10,11 +10,13 @@
         <div class="container main-container" id="admin-main-container">
             <header>
                 <h1>your offers</h1>
-                <div class="return-link">
+                <!-- <div class="return-link">
                     <a href="index.php?action=new">new offer</a>
-                </div>
+                </div> -->
             </header>
-            
+            <div class="return-link">
+                <a href="index.php?action=new">add an offer</a>
+            </div>
             <div class="content offers-list">
                 <?php 
                     if(isset($_POST['user-offers']) AND !empty($_POST['user-offers'])) {

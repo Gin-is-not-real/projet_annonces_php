@@ -11,15 +11,18 @@ require_once 'Manager/LoginManager.php';
 require_once 'Manager/OfferManager.php';
 require_once 'Manager/ImageManager.php';
 
-$hostname = 'localhost';
-$basename = 'projet_offers';
-$username = 'admin';
-$password = 'admin';
-
-// $hostname = 'promo-72.codeur.online';
-// $basename = 'ninap_bases';
-// $username = 'ninap';
-// $password = 'pXvu3qcH1Ry83Q==';
+if($_SERVER['HTTP_HOST'] == 'localhost') {
+    $hostname = 'localhost';
+    $basename = 'projet_offers';
+    $username = 'admin';
+    $password = 'admin';
+}
+else {
+    $hostname = 'promo-72.codeur.online';
+    $basename = 'ninap_bases';
+    $username = 'ninap';
+    $password = 'pXvu3qcH1Ry83Q==';
+}
 
 $loginController = new LoginController();
 // $loginController->setManager(new LoginManager('localhost', 'projet_offers', 'admin', 'admin', 'users'));

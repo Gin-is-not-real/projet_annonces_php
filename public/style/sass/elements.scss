@@ -32,6 +32,7 @@
     border: 1px solid var(--green-font);
     &:hover {
         text-shadow: 0px 1px 50px var(--green-font);
+        box-shadow: 0 0 2px var(--green-font);
     }
 }
 .orange-input {
@@ -39,6 +40,7 @@
     border: 1px solid var(--orange-soft);
     &:hover {
         text-shadow: 0px 1px 50px var(--orange-soft);
+        box-shadow: 0 0 2px var(--orange-soft);
     }
     a {
         color: var(--orange-soft);
@@ -49,6 +51,7 @@
     border: 1px solid var(--red);
     &:hover {
         text-shadow: 0px 1px 50px var(--red);
+        box-shadow: 0 0 2px var(--red);
     }
     a {
         color: var(--red);

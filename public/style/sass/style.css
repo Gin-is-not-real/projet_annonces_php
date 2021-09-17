@@ -157,6 +157,7 @@ fieldset {
 #login-main-container {
   max-width: 320px;
   margin-bottom: 2%;
+  padding: 4%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -471,6 +472,7 @@ fieldset {
 }
 .green-input:hover, .return-link a:hover, .login-form-container input[type=submit]:hover, .offer-form-container input[type=submit]:hover {
   text-shadow: 0px 1px 50px var(--green-font);
+  box-shadow: 0 0 2px var(--green-font);
 }
 
 .orange-input, #btn-new-category, .edit-link button {
@@ -479,6 +481,7 @@ fieldset {
 }
 .orange-input:hover, #btn-new-category:hover, .edit-link button:hover {
   text-shadow: 0px 1px 50px var(--orange-soft);
+  box-shadow: 0 0 2px var(--orange-soft);
 }
 .orange-input a, #btn-new-category a, .edit-link button a {
   color: var(--orange-soft);
@@ -490,6 +493,7 @@ fieldset {
 }
 .red-input:hover {
   text-shadow: 0px 1px 50px var(--red);
+  box-shadow: 0 0 2px var(--red);
 }
 .red-input a {
   color: var(--red);

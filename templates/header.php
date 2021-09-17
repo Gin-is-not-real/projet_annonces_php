@@ -3,7 +3,7 @@
         $logInfo = 'Not connected.';
         if(isset($_GET['action'])) {
             if($_GET['action'] != 'login-index' AND $_GET['action'] != 'logout') {
-                $logInfo .=  ' Please <a href="index.php?action=login-index">Login or register</a>';
+                $logInfo .=  ' Please login or register<a href="index.php?action=login-index">Login/register</a>';
             }  
         }   
     }
@@ -37,6 +37,6 @@
             // echo '<div id="notices">' . 'Your message about the offer ' . $_GET['id'] . ' has been sent' . '</div>';
         }
     ?>
-    <?php include 'templates/_error.php'; ?>
+    <!-- <?php include 'templates/_error.php'; ?> -->
 
 </div>

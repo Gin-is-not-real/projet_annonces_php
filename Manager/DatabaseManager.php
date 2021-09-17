@@ -11,20 +11,30 @@ class DatabaseManager {
 
     protected $tablename;
     
-    public function __construct($servname, $dbname, $user, $pass, $tablename) {
-        $this->servname = $servname;
-        $this->dbname = $dbname;
-        $this->user = $user;
-        $this->pass = $pass;
+    // public function __construct($servname, $dbname, $user, $pass, $tablename) {
+    //     $this->servname = $servname;
+    //     $this->dbname = $dbname;
+    //     $this->user = $user;
+    //     $this->pass = $pass;
+    //     if(!empty($tablename) AND $tablename !== null) {
+    //         $this->tablename = $tablename;
+    //     }
+    //     $this->pdo = $this->initPdo($servname, $dbname, $user, $pass);
+    // }
+    public function __construct($conInfos, $tablename = null) {
+        $this->servname = $conInfos['hostname'];
+        $this->dbname = $conInfos['basename'];
+        $this->user = $conInfos['username'];
+        $this->pass = $conInfos['password'];
         if(!empty($tablename) AND $tablename !== null) {
             $this->tablename = $tablename;
         }
-        $this->pdo = $this->initPdo($servname, $dbname, $user, $pass);
+        $this->pdo = $this->initPdo();
     }
 
-    public function initPdo($servname, $dbname, $user, $pass) {
+    public function initPdo() {
         try {
-            $pdo = new PDO("mysql:host=$servname;dbname=$dbname", $user, $pass);
+            $pdo = new PDO("mysql:host=$this->servname;dbname=$this->dbname", $this->user, $this->pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(PDOException $e){

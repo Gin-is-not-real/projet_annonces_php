@@ -14,16 +14,15 @@ $username = $conInfos['username'];
 $password = $conInfos['password'];
 
 $loginController = new LoginController();
-$loginController->setManager(new LoginManager($hostname, $basename, $username, $password, 'users'));
+$loginController->setManager(new LoginManager($conInfos, 'users'));
 
 $offerController = new OfferController();
-$offerController->setManager(new OfferManager($hostname, $basename, $username, $password, 'offers'), 'Offer');
+$offerController->setManager(new OfferManager($conInfos, 'offers'), 'Offer');
 $offerController->pushRelation('users', 'users.id',  'offers.user_id');
-
 $offerController->pushRelation('images', 'images.id', 'offers.image_id');
 
 $imageController = new ImageController();
-$imageController->setManager(new ImageManager($hostname, $basename, $username, $password, 'images'), 'Image');
+$imageController->setManager(new ImageManager($conInfos, 'images'), 'Image');
 
 function getConnectionInformations() {
     if($_SERVER['HTTP_HOST'] == 'localhost') {

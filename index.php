@@ -2,7 +2,7 @@
 /**
  * routeur
  */
-require_once 'classesInstances.php';
+require_once 'main.php';
 
 if(session_id() == '') {
     session_start();
@@ -10,14 +10,7 @@ if(session_id() == '') {
 
 try {
     if(!isset($_GET['action'])) {
-
-        if(isset($_SESSION['username'])) {
-            if(session_id() !== '') {
-                unset($_SESSION['username']);
-                unset($_SESSION['user_id']);
-                session_destroy();
-            }
-        }
+        clearSession();
         $imageController->clearFolder();
         $offerController->index();
     }

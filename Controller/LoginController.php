@@ -28,26 +28,53 @@ class LoginController extends Controller {
         $this->index();
     }
 
-    public function login($username, $pass) {
-        $logs = $this->manager->findBy('username', $username);
+    // public function login($username, $pass) {
+    //     $logs = $this->manager->findBy('username', $username);
 
-        if($data = $logs->fetch()) {
-            if(password_verify($pass, PASSWORD_DEFAULT) == password_verify($data['pass'], PASSWORD_DEFAULT)) {
-                $_SESSION['username'] = htmlspecialchars($username);
-                $_SESSION['user_id'] = $data['id'];
-                setcookie('session', htmlspecialchars($username), time() + 1);
+    //     if($data = $logs->fetch()) {
+    //         if(password_verify($pass, PASSWORD_DEFAULT) == password_verify($data['pass'], PASSWORD_DEFAULT)) {
+    //             $_SESSION['username'] = htmlspecialchars($username);
+    //             $_SESSION['user_id'] = $data['id'];
+    //             setcookie('session', htmlspecialchars($username), time() + 1);
 
-                header('Location: index.php?action=admin');
+    //             header('Location: index.php?action=admin');
+    //         }
+    //         else {
+    //             $_POST['login-error'] = 'Wrong password or username';
+    //             $this->index();
+    //         }
+    //     }
+    //     else {
+    //         $_POST['login-error'] = 'Wrong password or username';
+    //         $this->index();
+    //     }
+    // }
+    public function login() {
+        if(isset($_POST['username']) AND isset($_POST['pass']) ) {
+            $username = $_POST['username'];
+            $pass = $_POST['pass'];
+            
+            $logs = $this->manager->findBy('username', $username);
+
+            if($data = $logs->fetch()) {
+                if(password_verify($pass, PASSWORD_DEFAULT) == password_verify($data['pass'], PASSWORD_DEFAULT)) {
+                    $_SESSION['username'] = htmlspecialchars($username);
+                    $_SESSION['user_id'] = $data['id'];
+                    setcookie('session', htmlspecialchars($username), time() + 1);
+    
+                    header('Location: index.php?action=admin');
+                }
+                else {
+                    $_POST['login-error'] = 'Wrong password or username';
+                    $this->index();
+                }
             }
             else {
                 $_POST['login-error'] = 'Wrong password or username';
                 $this->index();
             }
         }
-        else {
-            $_POST['login-error'] = 'Wrong password or username';
-            $this->index();
-        }
+
     }
 
     public function register($username, $email, $pass) {

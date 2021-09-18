@@ -21,14 +21,9 @@ try {
         elseif($_GET['action'] == 'logout') {
             $GLOBALS['loginController']->logout();
         }
-        
+
         elseif($_GET['action'] == 'admin') {
-            if(isset($_SESSION['user_id'])) {
-                $GLOBALS['offerController']->listByUser($_SESSION['user_id'], $GLOBALS['imageController'], 'own');
-            }
-            else {
-                $GLOBALS['loginController']->index();
-            }
+                $GLOBALS['offerController']->listByUser($_SESSION['user_id'], 'own');
         }
 
         elseif($_GET['action'] == 'offer-index') {
@@ -46,8 +41,8 @@ try {
                 $_POST['h'] = 'All offers';
                 $GLOBALS['offerController']->index($option);
             }
-
         }
+
         elseif($_GET['action'] == 'show') {
             $GLOBALS['offerController']->show($_GET['id']);
         }

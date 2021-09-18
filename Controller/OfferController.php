@@ -101,12 +101,12 @@ class OfferController extends Controller {
         require_once 'templates/offer/index.php';
     }
 
-    public function listByUser($id, $imageController, $option = null) {
+    public function listByUser($id, $option = null) {
         $_POST['user-offers'] = [];
         $offers = $this->manager->listOffers([' WHERE user_id =', $id]);
 
         while($data = $offers->fetch()) {
-            $images = $imageController->manager->findBy('offer_id', $data['offerid']);
+            $images = $GLOBALS['imageController']->manager->findBy('offer_id', $data['offerid']);
             $data['images'] = [];
             while($image = $images->fetch()) {
                 array_push($data['images'], $image);
@@ -121,6 +121,28 @@ class OfferController extends Controller {
         }
         $get = $option != null ? '' : '?own=true';
         require_once 'templates/admin/index.php' . $get;
+    }
+    public function listOwnOffers() {
+        if(!empty($_SESSION['user_id'])) {
+            $offers = $this->manager->listOffers([' WHERE user_id =', $_SESSION['user_id']]);
+            while($data = $offers->fetch()) {
+                $images = $GLOBALS['imageController']->manager->findBy('offer_id', $data['offerid']);
+                $data['images'] = [];
+                while($image = $images->fetch()) {
+                    array_push($data['images'], $image);
+                }
+                $categories = $this->manager->getCategoriesForOffer($data['offerid']);
+                $data['categories'] = [];
+                while($category = $categories->fetch()) {
+                    array_push($data['categories'], $category);
+                }
+                array_push($_POST['user-offers'], $data);
+            }
+            require_once 'templates/admin/index.php';
+        }
+        else {
+            $GLOBALS['loginController']->index();
+        }
     }
 
     public function show($id) {

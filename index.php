@@ -10,17 +10,18 @@ try {
             $GLOBALS['loginController']->index();
         }
         elseif($_GET['action'] == 'login') {
-            // if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
-            //     $GLOBALS['loginController']->login($_POST['username'], $_POST['pass']);
-            // }
             $GLOBALS['loginController']->login();
         }
         elseif($_GET['action'] == 'register') {
-            $GLOBALS['loginController']->register($_POST['username'], $_POST['email'], $_POST['pass']);
+            $GLOBALS['loginController']->register();
+        }
+        elseif($_GET['action'] == 'mail') {
+            $GLOBALS['loginController']->sendMail();
         }
         elseif($_GET['action'] == 'logout') {
             $GLOBALS['loginController']->logout();
         }
+        
         elseif($_GET['action'] == 'admin') {
             if(isset($_SESSION['user_id'])) {
                 $GLOBALS['offerController']->listByUser($_SESSION['user_id'], $GLOBALS['imageController'], 'own');
@@ -72,13 +73,7 @@ try {
         }
 
 
-        elseif($_GET['action'] == 'mail') {
-            $GLOBALS['loginController']->sendMail(
-                htmlspecialchars($_POST['mail-from']), 
-                $_POST['mail-to'], 
-                htmlspecialchars($_POST['mail-about']), 
-                htmlspecialchars($_POST['mail-message']));
-        }
+
 
 
         elseif($_GET['action'] == 'add-category') {

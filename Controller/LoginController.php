@@ -10,15 +10,20 @@ class LoginController extends Controller {
         require_once('templates/login/index.php');
     }
 
-    public function sendMail($from, $to, $about, $message) {
-        $subject = 'Your offer n° ' . $about;
-        $msg = $message;
-        $header = 'From: ' . $from;
-
-        mail($to, $subject, $msg, $header);
-
-        $notice = 'Your message about the offer ' . $about . ' has been sent';
-        header('Location: index.php?action=show&id='.$about.'&notice=' . $notice);
+    public function sendMail() {
+        if(!empty($_POST['mail-from']) AND !empty($_POST['mail-to']) AND !empty($_POST['mail-about']) AND !empty($_POST['mail-message'])) {
+            $subject = 'Your offer n° ' . $_POST['mail-about'];
+            $msg = $_POST['mail-message'];
+            $header = 'From: ' . $_POST['mail-from'];
+    
+            mail($_POST['mail-to'], $subject, $msg, $header);
+    
+            $notice = 'Your message about the offer ' . $_POST['mail-about'] . ' has been sent';
+            header('Location: index.php?action=show&id='.$_POST['mail-about'].'&notice=' . $notice);
+        }
+        else {
+            $this->index();
+        }
     }
 
     public function logout() {
@@ -27,27 +32,6 @@ class LoginController extends Controller {
         session_destroy();
         $this->index();
     }
-
-    // public function login($username, $pass) {
-    //     $logs = $this->manager->findBy('username', $username);
-
-    //     if($data = $logs->fetch()) {
-    //         if(password_verify($pass, $data['pass'])) {
-    //             $_SESSION['username'] = htmlspecialchars($username);
-    //             $_SESSION['user_id'] = $data['id'];
-    //             setcookie('session', htmlspecialchars($username), time() + 1);
-    //             header('Location: index.php?action=admin');
-    //         }
-    //         else {
-    //             $_POST['login-error'] = 'Wrong password or username';
-    //             $this->index();
-    //         }
-    //     }
-    //     else {
-    //         $_POST['login-error'] = 'Wrong password or username';
-    //         $this->index();
-    //     }
-    // }
 
     public function login() {
         if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
@@ -77,26 +61,35 @@ class LoginController extends Controller {
         }
     }
 
-    public function register($username, $email, $pass) {
-        if($data = $this->manager->findBy('username', $username)->fetch()) {
-            $error = 'This username is not available';
-        }
-        elseif($data = $this->manager->findBy('email', $email)->fetch()) {
-            $error = 'This email is not available';
-        }
+    public function register() {
+        if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['pass'])) {
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $pass = $_POST['pass'];
 
-        if(isset($error)) {
-            $_POST['login-error'] = $error;
-            $this->index();
-        }
-        
-        else {
-            $hash = password_hash($pass, PASSWORD_DEFAULT);
-            $result = $this->manager->insert($username, $email, $hash);
-            if($result) {
-                $this->login($username, $hash);
-                header('Location: index.php?action=admin');
+            if($data = $this->manager->findBy('username', $username)->fetch()) {
+                $error = 'This username is not available';
             }
+            elseif($data = $this->manager->findBy('email', $email)->fetch()) {
+                $error = 'This email is not available';
+            }
+    
+            if(isset($error)) {
+                $_POST['login-error'] = $error;
+                $this->index();
+            }
+            
+            else {
+                $hash = password_hash($pass, PASSWORD_DEFAULT);
+                $result = $this->manager->insert($username, $email, $hash);
+                if($result) {
+                    $this->login($username, $hash);
+                    header('Location: index.php?action=admin');
+                }
+            }
+        }
+        else {
+            $this->index();
         }
     }
 }

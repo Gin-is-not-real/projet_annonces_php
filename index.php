@@ -1,7 +1,4 @@
 <?php 
-/**
- * routeur
- */
 require_once 'main.php';
 
 try {
@@ -13,9 +10,10 @@ try {
             $GLOBALS['loginController']->index();
         }
         elseif($_GET['action'] == 'login') {
-            if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
-                $GLOBALS['loginController']->login($_POST['username'], $_POST['pass']);
-            }
+            // if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
+            //     $GLOBALS['loginController']->login($_POST['username'], $_POST['pass']);
+            // }
+            $GLOBALS['loginController']->login();
         }
         elseif($_GET['action'] == 'register') {
             $GLOBALS['loginController']->register($_POST['username'], $_POST['email'], $_POST['pass']);

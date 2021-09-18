@@ -32,11 +32,10 @@ class LoginController extends Controller {
     //     $logs = $this->manager->findBy('username', $username);
 
     //     if($data = $logs->fetch()) {
-    //         if(password_verify($pass, PASSWORD_DEFAULT) == password_verify($data['pass'], PASSWORD_DEFAULT)) {
+    //         if(password_verify($pass, $data['pass'])) {
     //             $_SESSION['username'] = htmlspecialchars($username);
     //             $_SESSION['user_id'] = $data['id'];
     //             setcookie('session', htmlspecialchars($username), time() + 1);
-
     //             header('Location: index.php?action=admin');
     //         }
     //         else {
@@ -49,19 +48,18 @@ class LoginController extends Controller {
     //         $this->index();
     //     }
     // }
+
     public function login() {
-        if(isset($_POST['username']) AND isset($_POST['pass']) ) {
+        if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
             $username = $_POST['username'];
             $pass = $_POST['pass'];
-            
-            $logs = $this->manager->findBy('username', $username);
 
+            $logs = $this->manager->findBy('username', $username);
             if($data = $logs->fetch()) {
-                if(password_verify($pass, PASSWORD_DEFAULT) == password_verify($data['pass'], PASSWORD_DEFAULT)) {
+                if(password_verify($pass, $data['pass'])) {
                     $_SESSION['username'] = htmlspecialchars($username);
                     $_SESSION['user_id'] = $data['id'];
                     setcookie('session', htmlspecialchars($username), time() + 1);
-    
                     header('Location: index.php?action=admin');
                 }
                 else {
@@ -74,7 +72,9 @@ class LoginController extends Controller {
                 $this->index();
             }
         }
-
+        else {
+            $this->index();
+        }
     }
 
     public function register($username, $email, $pass) {

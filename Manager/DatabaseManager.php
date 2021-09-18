@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * 
  */
@@ -11,16 +11,6 @@ class DatabaseManager {
 
     protected $tablename;
     
-    // public function __construct($servname, $dbname, $user, $pass, $tablename) {
-    //     $this->servname = $servname;
-    //     $this->dbname = $dbname;
-    //     $this->user = $user;
-    //     $this->pass = $pass;
-    //     if(!empty($tablename) AND $tablename !== null) {
-    //         $this->tablename = $tablename;
-    //     }
-    //     $this->pdo = $this->initPdo($servname, $dbname, $user, $pass);
-    // }
     public function __construct($conInfos, $tablename = null) {
         $this->servname = $conInfos['hostname'];
         $this->dbname = $conInfos['basename'];

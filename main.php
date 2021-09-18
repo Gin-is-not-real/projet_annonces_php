@@ -11,18 +11,7 @@ require_once 'Manager/LoginManager.php';
 require_once 'Manager/OfferManager.php';
 require_once 'Manager/ImageManager.php';
 
-$conInfos = getConnectionInformations();
-
-$GLOBALS['loginController'] = new LoginController();
-$GLOBALS['loginController']->setManager(new LoginManager($conInfos, 'users'));
-
-$GLOBALS['offerController'] = new OfferController();
-$GLOBALS['offerController']->setManager(new OfferManager($conInfos, 'offers'), 'Offer');
-$GLOBALS['offerController']->pushRelation('users', 'users.id',  'offers.user_id');
-$GLOBALS['offerController']->pushRelation('images', 'images.id', 'offers.image_id');
-
-$GLOBALS['imageController'] = new ImageController();
-$imageController->setManager(new ImageManager($conInfos, 'images'), 'Image');
+$GLOBALS = !empty($GLOBALS['loginController']) ? $GLOBALS : initControllers();
 
 function getConnectionInformations() {
     if($_SERVER['HTTP_HOST'] == 'localhost') {
@@ -42,6 +31,22 @@ function getConnectionInformations() {
         ];
     }
     return $conInfos;
+}
+function initControllers() {
+    $conInfos = getConnectionInformations();
+
+    $GLOBALS['loginController'] = new LoginController();
+    $GLOBALS['loginController']->setManager(new LoginManager($conInfos, 'users'));
+
+    $GLOBALS['offerController'] = new OfferController();
+    $GLOBALS['offerController']->setManager(new OfferManager($conInfos, 'offers'), 'Offer');
+    $GLOBALS['offerController']->pushRelation('users', 'users.id',  'offers.user_id');
+    $GLOBALS['offerController']->pushRelation('images', 'images.id', 'offers.image_id');
+
+    $GLOBALS['imageController'] = new ImageController();
+    $GLOBALS['imageController']->setManager(new ImageManager($conInfos, 'images'), 'Image');
+
+    return $GLOBALS;
 }
 function clearSession() {
     if(isset($_SESSION['username'])) {

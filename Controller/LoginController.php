@@ -16,10 +16,14 @@ class LoginController extends Controller {
             $msg = $_POST['mail-message'];
             $header = 'From: ' . $_POST['mail-from'];
     
-            mail($_POST['mail-to'], $subject, $msg, $header);
-    
-            $notice = 'Your message about the offer ' . $_POST['mail-about'] . ' has been sent';
-            header('Location: index.php?action=show&id='.$_POST['mail-about'].'&notice=' . $notice);
+            $notice = 'Your message about the offer ' . $_POST['mail-about'];
+            if(mail($_POST['mail-to'], $subject, $msg, $header)) {
+                $notice .= ' has been sent';
+            }
+            else {
+                $notice .= ' has not been sent';
+            }
+            header('Location: index.php?action=show&id='. $_POST['mail-about'].'&notice=' . $notice);
         }
         else {
             $this->index();

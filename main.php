@@ -3,7 +3,6 @@ if(session_id() == '') {
     session_start();
 }
 
-require 'config.php';
 require_once 'Controller/LoginController.php';
 require_once 'Controller/OfferController.php';
 require_once 'Controller/ImageController.php';
@@ -20,15 +19,12 @@ function getConnectionInformations() {
     
     if($_SERVER['HTTP_HOST'] == 'localhost') {
         require 'config.dev.php';
-
-        $conInfos = $CON_INFOS;
     }
     else {
         require 'config.php';
-
-        $conInfos = $CON_INFOS;
     }
-    return $conInfos;
+    
+    return $CON_INFOS;
 }
 function initControllers() {
     $conInfos = getConnectionInformations();

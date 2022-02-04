@@ -16,14 +16,7 @@ $GLOBALS = !empty($GLOBALS['loginController']) ? $GLOBALS : initControllers();
 ini_set('sendmail_path', 'C:\MAMP\sendmail\sendmail.exe');
 
 function getConnectionInformations() {
-    
-    if($_SERVER['HTTP_HOST'] == 'localhost') {
-        require 'config.dev.php';
-    }
-    else {
-        require 'config.php';
-    }
-    
+    require 'config.php';
     return $CON_INFOS;
 }
 function initControllers() {

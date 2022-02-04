@@ -145,6 +145,7 @@ class OfferController extends Controller {
         }
     }
 
+    //TODO: ajouter recuperation email du posteur
     public function show($id) {
         $_POST['offer'] = [];
         $offer = $this->manager->listOffers([' WHERE offers.id= ', $id . '']);

@@ -143,7 +143,7 @@ class OfferManager extends DatabaseManager {
 
             try {
                 $result = $this->pdo->query("
-                SELECT users.id AS usersid, users.username, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content
+                SELECT users.id AS usersid, users.username, users.email, offers.id AS offerid, offers.title, offers.place, offers.price, offers.date, offers.place, offers.content
                 FROM users 
                 INNER JOIN offers 
                 ON users.id = offers.user_id

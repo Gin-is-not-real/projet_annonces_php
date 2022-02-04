@@ -17,6 +17,7 @@ class LoginController extends Controller {
             $header = 'From: ' . $_POST['mail-from'];
     
             $notice = 'Your message about the offer ' . $_POST['mail-about'];
+
             if(mail($_POST['mail-to'], $subject, $msg, $header)) {
                 $notice .= ' has been sent';
             }

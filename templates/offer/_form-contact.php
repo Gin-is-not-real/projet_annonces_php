@@ -18,7 +18,7 @@
                         <label for="mail-message">Message: </label>
                         <textarea name="mail-message" required></textarea>
                     </div>
-                    <input type="hidden" name="mail-to" value="<?= $data['usersid']; ?>">
+                    <input type="hidden" name="mail-to" value="<?= $data['email']; ?>">
                     <input type="hidden" name="mail-about" value="<?= $data['offerid']; ?>">
 
                     <input type="submit">

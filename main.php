@@ -3,6 +3,7 @@ if(session_id() == '') {
     session_start();
 }
 
+require 'config.php';
 require_once 'Controller/LoginController.php';
 require_once 'Controller/OfferController.php';
 require_once 'Controller/ImageController.php';
@@ -13,22 +14,16 @@ require_once 'Manager/ImageManager.php';
 
 $GLOBALS = !empty($GLOBALS['loginController']) ? $GLOBALS : initControllers();
 
+ini_set('sendmail_path', 'C:\MAMP\sendmail\sendmail.exe');
+
 function getConnectionInformations() {
+    require 'config.php';
+    
     if($_SERVER['HTTP_HOST'] == 'localhost') {
-        $conInfos = [
-            'hostname' => 'localhost',
-            'basename' => 'projet_offers',
-            'username' => 'admin',
-            'password' => 'admin',
-        ];
+        $conInfos = $CON_INFOS['local'];
     }
     else {
-        $conInfos = [
-            'hostname' => 'promo-72.codeur.online',
-            'basename' => 'ninap_bases',
-            'username' => 'ninap',
-            'password' => 'pXvu3qcH1Ry83Q==',
-        ];
+        $conInfos = $CON_INFOS['hostinger'];
     }
     return $conInfos;
 }

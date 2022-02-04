@@ -17,13 +17,16 @@ $GLOBALS = !empty($GLOBALS['loginController']) ? $GLOBALS : initControllers();
 ini_set('sendmail_path', 'C:\MAMP\sendmail\sendmail.exe');
 
 function getConnectionInformations() {
-    require 'config.php';
     
     if($_SERVER['HTTP_HOST'] == 'localhost') {
-        $conInfos = $CON_INFOS['local'];
+        require 'config.dev.php';
+
+        $conInfos = $CON_INFOS;
     }
     else {
-        $conInfos = $CON_INFOS['hostinger'];
+        require 'config.php';
+
+        $conInfos = $CON_INFOS;
     }
     return $conInfos;
 }

@@ -11,6 +11,18 @@ require_once 'Manager/LoginManager.php';
 require_once 'Manager/OfferManager.php';
 require_once 'Manager/ImageManager.php';
 
+/*
+Addition of my script gin2021_DatabaseManager that automatically create the database if it does not exist
+*/
+require_once 'gin2021_DatabaseManager/GinDatabaseManager.php';
+
+$options = ['force_import' => 'if_no_exist'];
+$gdbm = new GinDatabaseManager('gin2021_DatabaseManager/conf.json', $options);
+
+
+/*
+must be improved
+*/
 $GLOBALS = !empty($GLOBALS['loginController']) ? $GLOBALS : initControllers();
 
 ini_set('sendmail_path', 'C:\MAMP\sendmail\sendmail.exe');

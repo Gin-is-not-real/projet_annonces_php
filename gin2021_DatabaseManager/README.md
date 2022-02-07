@@ -35,6 +35,11 @@ Exemple:
 ```
 
 
+## FICHIER D'IMPORT
+L'import s'effectue à partir d'un fichier .sql (autres formats à venir).  
+Placer votre fichier .sql dans le dossier du script 
+
+
 ## FONCTIONNEMENT
 Lors de son instance, l'objet defini ses propriétés en **récupérant les informations d'un fichier de configuration** (json), défini par défault (conf.json). On peut éditer ce fichier ou renseigner un chemin vers le fichier json désiré lors de l'appel du constucteur.  
 

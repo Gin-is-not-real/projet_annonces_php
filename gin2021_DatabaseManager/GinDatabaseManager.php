@@ -1,5 +1,5 @@
 <?php 
-class DatabaseManager {
+class GinDatabaseManager {
     private $DB_INFO;
     public $pdo;
 

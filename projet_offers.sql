@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 06, 2022 at 04:38 PM
+-- Generation Time: Feb 08, 2022 at 10:25 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -29,10 +29,11 @@ USE `projet_offers`;
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
@@ -40,7 +41,11 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Demo'),
-(2, 'test');
+(2, 'test'),
+(3, 'Fx'),
+(4, 'Synthétiseur'),
+(5, 'clone303'),
+(6, 'analogique');
 
 -- --------------------------------------------------------
 
@@ -48,10 +53,11 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- Table structure for table `images`
 --
 
-CREATE TABLE `images` (
+CREATE TABLE IF NOT EXISTS `images` (
   `id` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
-  `offer_id` int(255) NOT NULL
+  `offer_id` int(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -59,9 +65,9 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `filename`, `offer_id`) VALUES
-('289-16', '278labo_39_-16.png', 204121142),
-('294ica', '121Spica.png', 204121142),
-('322mmi', '96Emmi.png', 204120602);
+('313hon', '259363typhon.jpg', 208102030),
+('79one', '491233cyclone.jpg', 208102254),
+('98erb', '341226reverb.jpg', 208101905);
 
 -- --------------------------------------------------------
 
@@ -69,14 +75,15 @@ INSERT INTO `images` (`id`, `filename`, `offer_id`) VALUES
 -- Table structure for table `offers`
 --
 
-CREATE TABLE `offers` (
+CREATE TABLE IF NOT EXISTS `offers` (
   `id` int(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `place` varchar(255) NOT NULL,
   `user_id` int(255) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -84,8 +91,9 @@ CREATE TABLE `offers` (
 --
 
 INSERT INTO `offers` (`id`, `title`, `content`, `price`, `place`, `user_id`, `date`) VALUES
-(204120602, 'Demo 1', 'Lorem ipsum', 10, 'Cosne', 204115053, '2022-02-04 13:06:02'),
-(204121142, 'Demo 2', 'Un test de demo', 50, 'Here', 204115053, '2022-02-04 12:11:53');
+(208101905, 'Reverb à ressort DIY', 'Reverb à ressort faite main, acheté il y à un an', 40, 'Cosne sur loire', 204115053, '2022-02-08 11:19:05'),
+(208102030, 'Synthé Dreadbox Typhon', 'Synthétiseur Typhon de la marque Dreadbox', 300, 'Cosne sur loire', 204115053, '2022-02-08 10:23:21'),
+(208102254, 'Cyclone Bass Bot ', 'Clone tb 303', 180, 'Nevers', 204121255, '2022-02-08 11:22:54');
 
 -- --------------------------------------------------------
 
@@ -93,20 +101,25 @@ INSERT INTO `offers` (`id`, `title`, `content`, `price`, `place`, `user_id`, `da
 -- Table structure for table `offers_categories`
 --
 
-CREATE TABLE `offers_categories` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `offers_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(255) NOT NULL,
-  `offer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `offer_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `offers_categories`
 --
 
 INSERT INTO `offers_categories` (`id`, `category`, `offer_id`) VALUES
-(1, 'Demo', 204120602),
-(4, 'Demo', 204121142),
-(5, 'test', 204121142);
+(6, 'Demo', 208101905),
+(7, 'Fx', 208101905),
+(10, 'Demo', 208102254),
+(11, 'Synthétiseur', 208102254),
+(12, 'clone303', 208102254),
+(13, 'analogique', 208102254),
+(14, 'analogique', 208102030);
 
 -- --------------------------------------------------------
 
@@ -114,11 +127,12 @@ INSERT INTO `offers_categories` (`id`, `category`, `offer_id`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `pass` varchar(255) NOT NULL
+  `pass` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -135,80 +149,20 @@ INSERT INTO `users` (`id`, `username`, `email`, `pass`) VALUES
 -- Table structure for table `users_favorites`
 --
 
-CREATE TABLE `users_favorites` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users_favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `offer_id` int(255) NOT NULL,
-  `user_id` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_id` int(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users_favorites`
 --
 
 INSERT INTO `users_favorites` (`id`, `offer_id`, `user_id`) VALUES
-(2, 204120602, 204121255);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `images`
---
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `offers`
---
-ALTER TABLE `offers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `offers_categories`
---
-ALTER TABLE `offers_categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users_favorites`
---
-ALTER TABLE `users_favorites`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `offers_categories`
---
-ALTER TABLE `offers_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `users_favorites`
---
-ALTER TABLE `users_favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+(2, 204120602, 204121255),
+(3, 208102254, 204115053);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

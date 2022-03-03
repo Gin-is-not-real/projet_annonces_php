@@ -3,13 +3,13 @@ if(session_id() == '') {
     session_start();
 }
 
-require_once 'Controller/LoginController.php';
-require_once 'Controller/OfferController.php';
-require_once 'Controller/ImageController.php';
-require_once 'Manager/DatabaseManager.php';
-require_once 'Manager/LoginManager.php';
-require_once 'Manager/OfferManager.php';
-require_once 'Manager/ImageManager.php';
+require_once 'src/Controller/LoginController.php';
+require_once 'src/Controller/OfferController.php';
+require_once 'src/Controller/ImageController.php';
+require_once 'src/Manager/DatabaseManager.php';
+require_once 'src/Manager/LoginManager.php';
+require_once 'src/Manager/OfferManager.php';
+require_once 'src/Manager/ImageManager.php';
 
 /*
 Addition of my script gin2021_DatabaseManager that automatically create the database if it does not exist

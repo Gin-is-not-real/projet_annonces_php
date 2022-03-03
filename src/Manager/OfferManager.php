@@ -1,7 +1,7 @@
 <?php 
 require_once 'DatabaseManager.php';
 
-require_once 'Entity/User.php';
+require_once 'src/Entity/User.php';
 require_once 'ArrayPrint.php';
 
 

@@ -1,6 +1,6 @@
 <?php 
 require_once 'Controller.php';
-require_once 'Manager/ImageManager.php';
+require_once 'src/Manager/ImageManager.php';
 require_once 'ArrayPrint.php';
 
 class ImageController extends Controller {

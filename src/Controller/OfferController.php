@@ -1,7 +1,7 @@
 <?php 
 require_once 'Controller.php';
-require_once 'Entity/Offer.php';
-require_once 'Manager/OfferManager.php';
+require_once 'src/Entity/Offer.php';
+require_once 'src/Manager/OfferManager.php';
 require_once 'ArrayPrint.php';
 
 class OfferController extends Controller {

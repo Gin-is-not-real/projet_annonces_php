@@ -1,7 +1,7 @@
 <?php 
 require_once 'Controller.php';
-require_once 'Entity/User.php';
-require_once 'Manager/LoginManager.php';
+require_once 'src/Entity/User.php';
+require_once 'src/Manager/LoginManager.php';
 
 class LoginController extends Controller {
     public static $ENTITY = User::class;

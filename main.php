@@ -21,16 +21,24 @@ $gdbm = new GinDatabaseManager('gin2021_DatabaseManager/conf.json', $options);
 
 
 /*
-must be improved
+this next must be improved
 */
 $GLOBALS = !empty($GLOBALS['loginController']) ? $GLOBALS : initControllers();
 
 ini_set('sendmail_path', 'C:\MAMP\sendmail\sendmail.exe');
 
+
+/**
+ * return informations for connect to database
+ */
 function getConnectionInformations() {
     require 'config.php';
     return $CON_INFOS;
 }
+
+/**
+ * initiate controlers and managers and store it on a GLOBALS var
+ */
 function initControllers() {
     $conInfos = getConnectionInformations();
 
@@ -47,6 +55,8 @@ function initControllers() {
 
     return $GLOBALS;
 }
+
+
 function clearSession() {
     if(isset($_SESSION['username'])) {
         if(session_id() !== '') {
@@ -56,6 +66,8 @@ function clearSession() {
         }
     }
 }
+
+
 function initNavigation() {
     clearSession();
     $GLOBALS['imageController']->clearFolder();

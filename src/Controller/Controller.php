@@ -6,7 +6,6 @@ class Controller {
     //relation = [table, strangerKey, key]
     public $relations = [];
 
-
     public function getManager() {
         return $this->manager;
     }

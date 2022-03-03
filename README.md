@@ -16,7 +16,11 @@ L'ajout dynamique de catégorie se fait en **Javascript**.
 
 
 ## Scripts externe
+### gin2021_DatabaseManager
 La **création et l'import de la base de données** se fait de manière **automatique** via une classe php sur lequel je travaille en amont, **gin2021_DatabaseManager** (*voir le readme dans le dossier gin2021_DatabaseManager*)
+
+### securize_form.php
+La **validation des données** de formulaire est gérée par les fonctions de ce script, appelées dans les controllers.
 
 
 ## Installation

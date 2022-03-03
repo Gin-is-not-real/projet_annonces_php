@@ -12,8 +12,11 @@ Adaptation et optimisation du projet de formation 'projet_offers', un site de pe
     [ ] supprimer un utilisateur doit supprimer ses annonces etc
 
 [ ] Verifier l'envoi de mails lors de l'insription
-[ ] Verifier la sécurité
 
+[ ] Verifier la sécurité
+    [X] ajout du script securize_form.php 
+    [X] utilisation de valid_data_array() dans les controllers Login et Offer
+        
 ## Base de données
 [X] exporter la bdd locale
 [X] gerer l'import de la bdd

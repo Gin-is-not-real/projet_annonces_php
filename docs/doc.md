@@ -10,6 +10,12 @@ Un utilisateur inscrit peut publier des annonces, mettre des annonces en favoris
 ### Annonces
 Lors de la publication d'une annonce l'utilisateur doit renseigner **. Il peut aussi inclure des images, choisir parmis des catégories existantes ou ajouter sa propre catégorie.
 
+## Securité
+### validations des données de formulaires
+Les données de formulaires sont controllées par mon script perso lib/securize_form.php. Les fonctions de validation du script sont appelées dans les fonctions des controllers necessitant la validation des données.
+
+### base de donnée
+Les mot de passe sont hashés
 
 ## Fonctionnement
 

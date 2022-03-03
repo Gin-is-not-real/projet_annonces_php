@@ -1,5 +1,6 @@
 <?php 
 require_once 'src/main.php';
+require_once 'lib/securize_form.php';
 
 try {
     if(!isset($_GET['action'])) {

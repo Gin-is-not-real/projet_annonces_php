@@ -2,7 +2,7 @@
 require_once 'Controller.php';
 require_once 'src/Entity/Offer.php';
 require_once 'src/Manager/OfferManager.php';
-require_once 'ArrayPrint.php';
+require_once 'lib/ArrayPrint.php';
 
 class OfferController extends Controller {
     public static $ENTITY = Offer::class;

@@ -14,10 +14,10 @@ require_once 'src/Manager/ImageManager.php';
 /*
 Addition of my script gin2021_DatabaseManager that automatically create the database if it does not exist
 */
-require_once 'gin2021_DatabaseManager/GinDatabaseManager.php';
+require_once 'lib/gin2021_DatabaseManager/GinDatabaseManager.php';
 
 $options = ['force_import' => 'if_no_exist'];
-$gdbm = new GinDatabaseManager('gin2021_DatabaseManager/conf.json', $options);
+$gdbm = new GinDatabaseManager('lib/gin2021_DatabaseManager/conf.json', $options);
 
 
 /*

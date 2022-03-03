@@ -2,7 +2,7 @@
 require_once 'DatabaseManager.php';
 
 require_once 'src/Entity/User.php';
-require_once 'ArrayPrint.php';
+require_once 'lib/ArrayPrint.php';
 
 
 class OfferManager extends DatabaseManager {

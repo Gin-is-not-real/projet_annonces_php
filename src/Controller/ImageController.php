@@ -1,7 +1,7 @@
 <?php 
 require_once 'Controller.php';
 require_once 'src/Manager/ImageManager.php';
-require_once 'ArrayPrint.php';
+require_once 'lib/ArrayPrint.php';
 
 class ImageController extends Controller {
     public static $ENTITY = Offer::class;

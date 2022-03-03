@@ -1,7 +1,7 @@
-# projet offers - prod (demo)
+# projet offers
 Adaptation et optimisation du projet de formation 'projet_offers', un site de petites annonces en php (MVC).  
 
-## todo
+## todo - version prod (demo)
 [ ] Ne pas saturer la base de donnée
     [ ] Limiter le nombre d'annonces par utilisateur
     [ ] Limiter la durée d'inscription

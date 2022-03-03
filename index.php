@@ -1,5 +1,5 @@
 <?php 
-require_once 'main.php';
+require_once 'src/main.php';
 
 try {
     if(!isset($_GET['action'])) {

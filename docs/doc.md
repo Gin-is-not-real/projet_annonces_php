@@ -11,11 +11,14 @@ Un utilisateur inscrit peut publier des annonces, mettre des annonces en favoris
 Lors de la publication d'une annonce l'utilisateur doit renseigner **. Il peut aussi inclure des images, choisir parmis des catégories existantes ou ajouter sa propre catégorie.
 
 ## Securité
-### validations des données de formulaires
-Les données de formulaires sont controllées par mon script perso lib/securize_form.php. Les fonctions de validation du script sont appelées dans les fonctions des controllers necessitant la validation des données.
+### sécurisation des données de formulaires
+Les données de formulaires sont formatées si nécessaire par un script perso, lib/securize_form.php. Les fonctions de sécurisation du script sont appelées dans l'index sur les données POST/GET avant toute utilisation de ceux-ci.  
+
+Des champs cachés dans les formulaires (nommées ici "atbt") permmettent une vérification antibots. Ceux-ci doivent rester vides, sinon une condition dans l'index annule l'envoi du formulaire et renvoi à l'index.
+
 
 ### base de donnée
-Les mot de passe sont hashés
+Les mot de passe des utilisateurs sont hashés avant enregistrement et ne sont donc pas stockées en clair dans la base. Il est impossible de récuperer le mot de passe.
 
 ## Fonctionnement
 

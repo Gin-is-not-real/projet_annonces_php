@@ -5,22 +5,23 @@ Projet de formation: un site de petites annonces autour de la vente d'instrument
 - Creer un compte, se connecter et se deconnecter
 - Consulter la liste des annonces, filtrer par utilisateur ou catégorie
 - Consulter une annonce, contacter le vendeur
-- Mettre ou enlever une annonce de liste des favoris, consulter la liste des favoris
+- Mettre ou enlever une annonce de la liste des favoris, consulter la liste des favoris
 - Publier une annonce
-- Afficher la liste de ses annonces, éditer ou supprimer une annonce
+- Afficher la liste de ses propres annonces, éditer ou supprimer une annonce
 - Uploader des images, ajouter des catégories personnalisées
+- Formulaires sécurisés par vérification des données et antibot, mot de passe hashé 
 
 ## Technologies
 Le projet est principalement écrit en **Php** et communique avec une base de donnée **SQL**. 
 L'ajout dynamique de catégorie se fait en **Javascript**.  
 
 
-## Scripts externe
+## Scripts externes
 ### gin2021_DatabaseManager
 La **création et l'import de la base de données** se fait de manière **automatique** via une classe php sur lequel je travaille en amont, **gin2021_DatabaseManager** (*voir le readme dans le dossier gin2021_DatabaseManager*)
 
 ### securize_form.php
-La **validation des données** de formulaire est gérée par les fonctions de ce script, appelées dans les controllers.
+La **validation des données** de formulaire est gérée par les fonctions de ce script, appelées dans l'index sur les données POST et GET pour les sécuriser avant toute utilisation.
 
 
 ## Installation

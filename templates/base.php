@@ -13,14 +13,10 @@
 <?php include 'templates/header.php'; ?> 
 
 
-
 <body>
     <?= $content ?>
 
-
-    <script type="text/javascript" src="public/scripts/addCategory.js">
-
-    </script>
+    <script type="text/javascript" src="public/scripts/addCategory.js"></script>
 </body>
 
 </html>

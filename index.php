@@ -3,9 +3,16 @@ require_once 'src/main.php';
 require_once 'lib/securize_form.php';
 
 try {
-    // securise POST and GET using securize_form.php
+    // secure POST and GET using securize_form.php
     $_POST = valid_data_array($_POST);
     $_GET = valid_data_array($_GET);
+
+    // anti-bot check: if this input if filled, return to index
+    if(isset($_POST['atbt']) && !empty($_POST['atbt'])) {
+        // $_POST['error'] = 'something wrong';
+        $GLOBALS['offerController']->index();
+        return;
+    }
 
     if(!isset($_GET['action'])) {
         // call a main.php function

@@ -175,9 +175,6 @@ class OfferController extends Controller {
         $categories = $this->manager->getCategoriesFields();
         //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
-            $posted_categories = isset($_POST['categories']) ? $_POST['categories'] : null;
-            $_POST['categories'] = null;
-
             $_POST = valid_data_array($_POST);
 
             //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
@@ -192,15 +189,10 @@ class OfferController extends Controller {
                 }
             }
 
-            if($posted_categories !== null) {
-                if(valid_data_array($posted_categories) === false) {
-                    // error traitement
-                }
-                else {
-                    foreach($posted_categories as $category) {
-                        $this->manager->addNewCategory($category);
-                        $this->manager->addCategory($category, $generateOfferId);
-                    }
+            if(isset($_POST['categories'])) {
+                foreach($_POST['categories'] as $category) {
+                    $this->manager->addNewCategory($category);
+                    $this->manager->addCategory($category, $generateOfferId);
                 }
             }
 
@@ -223,9 +215,6 @@ class OfferController extends Controller {
 
         //on verifie que le formulaire a été touché 
         if(isset($_POST['title'])) {
-            $posted_categories = isset($_POST['categories']) ? $_POST['categories'] : null;
-            $_POST['categories'] = null;
-
             $_POST = valid_data_array($_POST);
 
             $this->manager->update($offerId);
@@ -246,17 +235,12 @@ class OfferController extends Controller {
             }
 
 
-            if($posted_categories !== null) {
+            if(isset($_POST['categories'])) {
                 $this->manager->clearCategories($offerId);
 
-                if(valid_data_array($posted_categories) === false) {
-                    // error
-                }
-                else {
-                    foreach($posted_categories as $category) {
-                        $this->manager->addNewCategory($category);
-                        $this->manager->addCategory($category, $offerId);
-                    }
+                foreach($_POST['categories'] as $category) {
+                    $this->manager->addNewCategory($category);
+                    $this->manager->addCategory($category, $offerId);
                 }
             }
             // die();

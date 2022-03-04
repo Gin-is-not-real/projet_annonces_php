@@ -13,12 +13,18 @@ function valid_data_array($array) {
     $valided = $array;
 
     foreach ($valided as $key => $value) {
-        $valided[$key] = securize_input($value);
+        $type = gettype($value);
+
+        if($type === 'string') {
+            $valided[$key] = securize_input($value);
+        }
+        elseif($type === 'array') {
+            $valided[$key] = valid_data_array($value);
+        }
     }
 
     return $valided;
 }
-
 
 /**
  * Securize the data passed on parameter with php basic functions like htmlspecialchars(), stripslashes() and trim()

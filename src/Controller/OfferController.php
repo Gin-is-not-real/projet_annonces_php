@@ -178,36 +178,33 @@ class OfferController extends Controller {
             $posted_categories = isset($_POST['categories']) ? $_POST['categories'] : null;
             $_POST['categories'] = null;
 
-            if(valid_data_array($_POST) === false) {
-                // error traitement
+            $_POST = valid_data_array($_POST);
+
+            //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
+            $generateOfferId = date('mdhis');
+
+            $this->manager->add($_POST);
+
+            foreach($_FILES as $file) {
+                if(strlen($file['name']) != 0) {
+                    $image = $imageController->uploadImageAndCreatePost($file, $generateOfferId);
+                    $imageController->new($image);
+                }
             }
-            else {
-                //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
-                $generateOfferId = date('mdhis');
 
-                $this->manager->add($_POST);
-
-                foreach($_FILES as $file) {
-                    if(strlen($file['name']) != 0) {
-                        $image = $imageController->uploadImageAndCreatePost($file, $generateOfferId);
-                        $imageController->new($image);
+            if($posted_categories !== null) {
+                if(valid_data_array($posted_categories) === false) {
+                    // error traitement
+                }
+                else {
+                    foreach($posted_categories as $category) {
+                        $this->manager->addNewCategory($category);
+                        $this->manager->addCategory($category, $generateOfferId);
                     }
                 }
-
-                if($posted_categories !== null) {
-                    if(valid_data_array($posted_categories) === false) {
-                        // error traitement
-                    }
-                    else {
-                        foreach($posted_categories as $category) {
-                            $this->manager->addNewCategory($category);
-                            $this->manager->addCategory($category, $generateOfferId);
-                        }
-                    }
-                }
-
-                header('Location: index.php?action=admin');
             }
+
+            header('Location: index.php?action=admin');
 
         }
         else {
@@ -229,26 +226,23 @@ class OfferController extends Controller {
             $posted_categories = isset($_POST['categories']) ? $_POST['categories'] : null;
             $_POST['categories'] = null;
 
-            if(valid_data_array($_POST) === false) {
-                // error traitement
-            }
-            else {
-                $this->manager->update($offerId);
+            $_POST = valid_data_array($_POST);
 
-                $count = 0;
-                foreach($_FILES as $file) {
-                    if(isset($file) AND strlen($file['name']) != 0) {
-                        $image = $imageController->uploadImageAndCreatePost($file, $offerId);
-    
-                        if($_POST['hidden-img'.$count] == 'edit-img') {
-                            $imageController->edit($_POST['hidden-id'.$count], $image);
-                        }
-                        else {
-                            $imageController->new($image);
-                        }
+            $this->manager->update($offerId);
+
+            $count = 0;
+            foreach($_FILES as $file) {
+                if(isset($file) AND strlen($file['name']) != 0) {
+                    $image = $imageController->uploadImageAndCreatePost($file, $offerId);
+
+                    if($_POST['hidden-img'.$count] == 'edit-img') {
+                        $imageController->edit($_POST['hidden-id'.$count], $image);
                     }
-                    $count ++;
+                    else {
+                        $imageController->new($image);
+                    }
                 }
+                $count ++;
             }
 
 

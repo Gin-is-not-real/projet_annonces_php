@@ -40,33 +40,28 @@ class LoginController extends Controller {
 
     public function login() {
         if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
+            $_POST = valid_data_array($_POST);
 
-            if(valid_data_array($_POST) === false) {
-                $_POST['login-error'] = 'Forbidden entry';
-                $this->index();
-            }
-            else {
-                $username = $_POST['username'];
-                $pass = $_POST['pass'];
-    
-                $logs = $this->manager->findBy('username', $username);
+            $username = $_POST['username'];
+            $pass = $_POST['pass'];
 
-                if($data = $logs->fetch()) {
-                    if(password_verify($pass, $data['pass'])) {
-                        $_SESSION['username'] = htmlspecialchars($username);
-                        $_SESSION['user_id'] = $data['id'];
-                        setcookie('session', htmlspecialchars($username), time() + 1);
-                        header('Location: index.php?action=admin');
-                    }
-                    else {
-                        $_POST['login-error'] = 'Wrong password or username';
-                        $this->index();
-                    }
+            $logs = $this->manager->findBy('username', $username);
+
+            if($data = $logs->fetch()) {
+                if(password_verify($pass, $data['pass'])) {
+                    $_SESSION['username'] = htmlspecialchars($username);
+                    $_SESSION['user_id'] = $data['id'];
+                    setcookie('session', htmlspecialchars($username), time() + 1);
+                    header('Location: index.php?action=admin');
                 }
                 else {
                     $_POST['login-error'] = 'Wrong password or username';
                     $this->index();
                 }
+            }
+            else {
+                $_POST['login-error'] = 'Wrong password or username';
+                $this->index();
             }
 
         }
@@ -77,21 +72,17 @@ class LoginController extends Controller {
 
     public function register() {
         if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['pass'])) {
+            $_POST = valid_data_array($_POST);
 
-            if(valid_data_array($_POST) === false) {
-                $error = 'Forbidden entry';
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $pass = $_POST['pass'];
+
+            if($data = $this->manager->findBy('username', $username)->fetch()) {
+                $error = 'This username is not available';
             }
-            else {
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $pass = $_POST['pass'];
-    
-                if($data = $this->manager->findBy('username', $username)->fetch()) {
-                    $error = 'This username is not available';
-                }
-                elseif($data = $this->manager->findBy('email', $email)->fetch()) {
-                    $error = 'This email is not available';
-                }
+            elseif($data = $this->manager->findBy('email', $email)->fetch()) {
+                $error = 'This email is not available';
             }
 
     

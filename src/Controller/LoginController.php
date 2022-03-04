@@ -40,7 +40,7 @@ class LoginController extends Controller {
 
     public function login() {
         if(!empty($_POST['username']) AND !empty($_POST['pass'])) {
-            $_POST = valid_data_array($_POST);
+            // $_POST = valid_data_array($_POST);
 
             $username = $_POST['username'];
             $pass = $_POST['pass'];
@@ -72,7 +72,7 @@ class LoginController extends Controller {
 
     public function register() {
         if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['pass'])) {
-            $_POST = valid_data_array($_POST);
+            // $_POST = valid_data_array($_POST);
 
             $username = $_POST['username'];
             $email = $_POST['email'];

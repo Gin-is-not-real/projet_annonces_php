@@ -53,13 +53,8 @@ class OfferController extends Controller {
     public function newCategory($category) {
         $error = null;
 
-        if(valid_data_array($_POST) === false) {
-            $error = 'Forbidden entry';
-        }
-        else {
-            if($data = $this->manager->findByIn('categories', 'name', $category)->fetch()) {
-                $error = 'this category already exists';
-            }
+        if($data = $this->manager->findByIn('categories', 'name', $category)->fetch()) {
+            $error = 'this category already exists';
         }
 
         if(isset($error)) {
@@ -175,7 +170,7 @@ class OfferController extends Controller {
         $categories = $this->manager->getCategoriesFields();
         //on verifie que le formulaire a été touché -> il doit y avoir une fonction is_form_submit ??
         if(isset($_POST['title'])) {
-            $_POST = valid_data_array($_POST);
+            // $_POST = valid_data_array($_POST);
 
             //genere un id pour l'offer afin de pouvoir l'affecter directement a l'offer_id de l'image
             $generateOfferId = date('mdhis');
@@ -215,7 +210,7 @@ class OfferController extends Controller {
 
         //on verifie que le formulaire a été touché 
         if(isset($_POST['title'])) {
-            $_POST = valid_data_array($_POST);
+            // $_POST = valid_data_array($_POST);
 
             $this->manager->update($offerId);
 

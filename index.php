@@ -3,7 +3,12 @@ require_once 'src/main.php';
 require_once 'lib/securize_form.php';
 
 try {
+    // securise POST and GET using securize_form.php
+    $_POST = valid_data_array($_POST);
+    $_GET = valid_data_array($_GET);
+
     if(!isset($_GET['action'])) {
+        // call a main.php function
         initNavigation();
     }
     else {
@@ -87,8 +92,6 @@ try {
             $GLOBALS['offerController']->listFavorites($_SESSION['user_id']);
         }
     }
-    
-    
 
 } catch (Exception $e) {
     die('ERROR: ' . $e->getMessage());

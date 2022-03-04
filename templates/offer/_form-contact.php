@@ -21,6 +21,7 @@
                     <input type="hidden" name="mail-to" value="<?= $data['email']; ?>">
                     <input type="hidden" name="mail-about" value="<?= $data['offerid']; ?>">
 
+                    <input type="hidden" name="atbt">
                     <input type="submit">
                 </div>
                 </form>

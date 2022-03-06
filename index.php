@@ -2,6 +2,9 @@
 require_once 'src/main.php';
 require_once 'lib/securize_form.php';
 
+// session lifetime
+require 'src/demo_account_task.php';
+
 try {
     // secure POST and GET using securize_form.php
     $_POST = valid_data_array($_POST);

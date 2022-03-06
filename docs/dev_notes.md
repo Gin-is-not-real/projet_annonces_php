@@ -11,16 +11,20 @@ Verification et amélioration de la sécurité:
 
 ## todo - version prod (demo)
 [ ] Ne pas saturer la base de donnée
-    [ ] Limiter le nombre d'annonces par utilisateur
     [ ] Limiter la durée d'inscription
-    [ ] L'utilisateur ne doit pas recevoir les mails de contact (annonces)
-
-    [ ] prévenir l'utilisateur des conditions
-
+    
     [ ] supprimer un utilisateur doit supprimer ses annonces etc
+
+    [ ] prévenir l'utilisateur des conditions:
+        [X] information affiché dans le formulaire register
+
+
+[ ] L'utilisateur recevra lui même les mails lorsqu'il contacte un vendeur               
 
 
 [ ] Verifier l'envoi de mails lors de l'insription
+    [ ] rapeller les conditions d'enregistrement dans le mail
+    [ ] formater le mail
 
 
 [X] Verifier la sécurité

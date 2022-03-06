@@ -1,6 +1,7 @@
 <div class="container  login-form-container">
     <header>
         <h1>Register</h1>
+        <div id="demo-information" style="font-size: 0.6em;width: 80%;margin: 0 auto;">*This site being a <strong>demonstration site</strong>, your account and your ads will be <strong>deleted</strong> in ** hours. If you try contact a sender, <strong>you</strong> will receive your email.</div>
     </header>
 
     <div class="content">

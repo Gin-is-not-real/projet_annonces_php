@@ -9,6 +9,16 @@ Verification et amélioration de la sécurité:
 - verification antibot via champs cachés et condition dans l'index   *(4 mars 22)*
 
 
+## a optimiser
+- offer manager:
+    - fonction add(): 
+        - A voir: les POST sont récupérés dans la fonction (elles sont cependant securisée dans l'index)
+        - dans les fonctions addCategory et addNewCategorie, les données sont passées en parametre
+
+    - les fonctions liées aux categories devraient étre à part (sauf addCategory qui concerne l'offre)
+
+    - isFavorite devrait etre rennomée (check_if_is_favorite ?)
+
 ## todo - version prod (demo)
 [ ] Limiter la durée d'inscription pour ne pas saturer la bdd
     [X] un fichier json stocke des id et des valeur de temps

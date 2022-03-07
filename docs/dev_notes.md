@@ -10,29 +10,26 @@ Verification et amélioration de la sécurité:
 
 
 ## todo - version prod (demo)
-[ ] Ne pas saturer la base de donnée
-    [ ] Limiter la durée d'inscription
-        [X] un fichier json stocke des id et des valeur de temps
-        [ ] script php
-            [ ] enregistre les ids de l'user et la valeur de time() au moment de la connection dans le json
-            [X] recupere les donnée, compare les dates (valeurs tests à remplacer) pour definir si le delai est expiré
-            [X] met à jour le fichier json
-            
-        [ ] verifier la chaine de suppression
-        [ ] appeler les controller
-    
-    [ ] supprimer un utilisateur doit supprimer ses annonces etc
+[ ] Limiter la durée d'inscription pour ne pas saturer la bdd
+    [X] un fichier json stocke des id et des valeur de temps
+    [ ] script php
+        [ ] enregistre les ids de l'user et la valeur de time() au moment de la connection dans le json
+        [X] recupere les donnée, compare les dates (valeurs tests à remplacer) pour definir si le delai est expiré
+        [X] met à jour le fichier json
+        
+    [ ] mettre en place la suppression d'un utilisateur. doit supprimer aussi ses annonces etc
 
-    [ ] prévenir l'utilisateur des conditions:
-        [X] information affiché dans le formulaire register
+
+[ ] prévenir l'utilisateur des conditions:
+    [X] information affiché dans le formulaire register
+    [ ] rapeller les conditions d'enregistrement dans le mail
 
 
 [ ] L'utilisateur recevra lui même les mails lorsqu'il contacte un vendeur               
 
 
 [ ] Verifier l'envoi de mails lors de l'insription
-    [ ] rapeller les conditions d'enregistrement dans le mail
-    [ ] formater le mail
+    [ ] formater le mail (rappel conditions)
 
 
 [X] Verifier la sécurité

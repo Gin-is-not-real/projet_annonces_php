@@ -10,14 +10,16 @@ Verification et amélioration de la sécurité:
 
 
 ## a optimiser
-- offer manager:
-    - fonction add(): 
-        - A voir: les POST sont récupérés dans la fonction (elles sont cependant securisée dans l'index)
-        - dans les fonctions addCategory et addNewCategorie, les données sont passées en parametre
+[ ] offer manager:
+    [ ] fonction add(): 
+        [ ] A voir: les POST sont récupérés dans la fonction (elles sont cependant securisée dans l'index)
+        *dans les fonctions addCategory et addNewCategorie, les données sont passées en parametre*
+    [ ] les fonctions liées aux categories devraient étre à part (sauf addCategory qui concerne l'offre)
+    [ ] isFavorite devrait etre rennomée (check_if_is_favorite ?)
 
-    - les fonctions liées aux categories devraient étre à part (sauf addCategory qui concerne l'offre)
+[ ] login manager:
+    [ ] verifier findRelations  
 
-    - isFavorite devrait etre rennomée (check_if_is_favorite ?)
 
 ## todo - version prod (demo)
 [ ] Limiter la durée d'inscription pour ne pas saturer la bdd

@@ -99,7 +99,13 @@ class OfferController extends Controller {
 
             array_push($_POST['all-offers'], $data);
         }
+
         require_once 'templates/offer/index.php';
+    }
+
+    public function countByUser($id) {
+        $number = $this->manager->countOffersByUser($id)->fetch()[0];
+        return $number;
     }
 
     public function listByUser($id, $option = null) {

@@ -36,6 +36,10 @@
             echo '<div id="notices">' . $_GET['notice'] . '</div>';
             // echo '<div id="notices">' . 'Your message about the offer ' . $_GET['id'] . ' has been sent' . '</div>';
         }
+        elseif (isset($_POST['notice'])) {
+            echo '<div id="notices">' . $_POST['notice'] . '</div>';
+
+        }
     ?>
     <!-- <?php include 'templates/_error.php'; ?> -->
 

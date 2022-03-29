@@ -138,6 +138,19 @@ class OfferManager extends DatabaseManager {
     }
                 // UNION ALL
 
+    // SELECT COUNT(nom_colonne) FROM table
+    // $this->pdo->query("SELECT category FROM offers_categories WHERE offer_id = '" . $offerId . "'"
+    public function countOffersByUser($id) {
+        try {
+            $result = $this->pdo->query("SELECT COUNT(user_id) FROM offers WHERE user_id = '" . $id . "'");
+
+        } catch (Exception $e) {
+            die('ERROR on ' . __METHOD__ . ': ' . $e->getMessage());
+        }
+
+        return $result;
+    }
+
     public function listOffers($option = null) {
             $option = $option != null ? $option[0] . ' ' . $option[1] : '';
 

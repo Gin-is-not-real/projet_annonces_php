@@ -2,6 +2,8 @@
 require_once 'src/main.php';
 require_once 'lib/securize_form.php';
 
+$max_offers_by_user = 5;
+
 try {
     // secure POST and GET using securize_form.php
     $_POST = valid_data_array($_POST);
@@ -59,9 +61,22 @@ try {
         elseif($_GET['action'] == 'show') {
             $GLOBALS['offerController']->show($_GET['id']);
         }
+
         elseif($_GET['action'] == 'new') {
             if(isset($_SESSION['user_id']) ) {
-                $GLOBALS['offerController']->new($GLOBALS['imageController']);
+                // verifier le nombre d'annonces
+                $user_offers_nbr = $GLOBALS['offerController']->countByUser($_SESSION['user_id']);
+
+                if($user_offers_nbr < $max_offers_by_user) {
+                    $GLOBALS['offerController']->new($GLOBALS['imageController']);
+                }
+
+                else {
+                    $_POST['notice'] = "Limited to $max_offers_by_user offers by user. Please delete an offer before create new";
+                    $GLOBALS['offerController']->listByUser($_SESSION['user_id'], 'own');
+                }
+
+                // $GLOBALS['offerController']->new($GLOBALS['imageController']);
             }
             else {
                 $GLOBALS['loginController']->index();
